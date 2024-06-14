@@ -4,7 +4,6 @@ import {
 import laravel from 'laravel-vite-plugin';
 import path from 'path'; // <-- require path from node
 
-
 export default defineConfig({
     plugins: [
         laravel({
