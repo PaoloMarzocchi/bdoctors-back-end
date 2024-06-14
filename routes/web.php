@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'verified'])
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/', function () {
+            return view('dashboard');
+        });
+        Route::resource('/doctorProfile', DoctorProfileController::class);
+    });
+
+require __DIR__ . '/auth.php';
