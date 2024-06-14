@@ -59,16 +59,6 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="specialization"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="specialization" type="text" class="form-control" name="specialization"
-                                        required autocomplete="new-specialization">
-                                </div>
-                            </div>
-
-                            <div class="mb-4 row">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -110,6 +100,22 @@
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    @foreach ($specializations as $specialization)
+                                        <input name="specializations[]" type="checkbox" class="btn-check"
+                                            id="specialization-{{ $specialization->id }}" autocomplete="off"
+                                            value="{{ $specialization->id }}"
+                                            {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }} />
+                                        <label class="btn btn-outline-primary"
+                                            for="specialization-{{ $specialization->id }}">{{ $specialization->name }}</label>
+                                    @endforeach
+                                </div>
+                                @error('specializzations')
+                                    <div class="text-danger py-2">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-4 row mb-0">
