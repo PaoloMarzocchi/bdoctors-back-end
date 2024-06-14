@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DoctorProfile;
 use App\Http\Requests\StoreDoctorProfileRequest;
 use App\Http\Requests\UpdateDoctorProfileRequest;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorProfileController extends Controller
 {
@@ -30,7 +31,12 @@ class DoctorProfileController extends Controller
      */
     public function store(StoreDoctorProfileRequest $request)
     {
-        //
+        $validatedRequest = $request->validated();
+        if ($request->has('photo')) {
+            $validatedRequest['photo'] = Storage::put('uploads', $validatedRequest['photo']);
+        }
+        $doctorProfile = DoctorProfile::create($validatedRequest);
+        return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Add successfully your profile info');
     }
 
     /**

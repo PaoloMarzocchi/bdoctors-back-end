@@ -7,7 +7,7 @@
         </h2>
         <div class="row justify-content-center">
             <div class="col">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-header">{{ __('User Dashboard') }}</div>
 
                     <div class="card-body">
@@ -18,12 +18,16 @@
                         @endif
 
                         {{ __('You are logged in!') }}
-                        <button>
-                            <a href="{{ route('admin.doctorProfile.index') }}">QUI</a>
-                        </button>
                     </div>
                 </div>
             </div>
+            <div class="col d-flex flex-column gap-2">
+                <a class="btn btn-primary" href="{{ route('admin.doctorProfile.index') }}">YOUR PROFILE</a>
+                <a class="btn btn-primary" href="">MY MESSAGES</a>
+                <a class="btn btn-primary" href="">MY REVIEWS</a>
+                <a class="btn btn-primary" href="">MY STATISTICS</a>
+            </div>
+
         </div>
     </div>
 @endsection
