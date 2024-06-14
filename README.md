@@ -18,3 +18,11 @@
 - Take care if there are problems to about merge
 - Merge branches
 - Delete the branch
+
+## Git's steps to undo a merge commit ##
+
+- Enter inside a Bash-terminal
+- Run `git reflog` to see the hashes of commits
+- Use `git revert` command to create a new commit that undoes the changes made by a specific commit
+- Adding the option `-m 1` to the git revert command tells Git that you want to keep the branch you merged into. If you want to keep the side of the branch merged, you change `1` to `2`. 
+- Revert the merge commit by running `git revert -m 1 <merge-commit-hash>`
