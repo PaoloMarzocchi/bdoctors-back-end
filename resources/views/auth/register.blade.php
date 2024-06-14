@@ -28,7 +28,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="mb-4 row">
+                            <div class="mb-4 row">
                                 <label for="surname"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
 
@@ -43,7 +43,27 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div> --}}
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="address"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text" class="form-control" name="address" required
+                                        autocomplete="new-address">
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="specialization"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="specialization" type="text" class="form-control" name="specialization"
+                                        required autocomplete="new-specialization">
+                                </div>
+                            </div>
 
                             <div class="mb-4 row">
                                 <label for="email"
@@ -86,26 +106,6 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="mb-4 row">
-                                <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="address" type="text" class="form-control" name="address" required
-                                        autocomplete="new-address">
-                                </div>
-                            </div>
-
-                            <div class="mb-4 row">
-                                <label for="services"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Services') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="services" type="text" class="form-control" name="services" required
-                                        autocomplete="new-services">
                                 </div>
                             </div>
 

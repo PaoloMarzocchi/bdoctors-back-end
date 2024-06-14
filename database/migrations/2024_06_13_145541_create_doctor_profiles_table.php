@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('doctor_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('surname', 255);
             $table->string('cv', 255)->nullable();
             $table->string('photo', 255)->nullable();
             $table->string('address', 255);

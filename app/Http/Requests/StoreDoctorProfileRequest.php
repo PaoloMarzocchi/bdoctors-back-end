@@ -11,7 +11,7 @@ class StoreDoctorProfileRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreDoctorProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cv' => 'nullable|file|max:255',
+            'photo' => 'nullable|image|max:255',
+            'address' => 'required|max:255',
+            'telephone' => 'max:10',
+            'services' => 'max:500'
         ];
     }
 }
