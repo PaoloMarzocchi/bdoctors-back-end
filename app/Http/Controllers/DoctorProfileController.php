@@ -13,7 +13,8 @@ class DoctorProfileController extends Controller
      */
     public function index()
     {
-        //
+        $doctorProfile = DoctorProfile::find(1);
+        return view('admin.doctorprofile.index', compact('doctorProfile'));
     }
 
     /**
@@ -21,7 +22,7 @@ class DoctorProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.doctorprofile.create');
     }
 
     /**
