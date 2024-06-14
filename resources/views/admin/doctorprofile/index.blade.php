@@ -5,7 +5,7 @@
         @include('partials.session-message')
         <div class="row text-center flex-column">
             @if ($doctorProfile)
-                <div class="col"><a href="">CV</a></div>
+                <div class="col"><img src="{{ $doctorProfile->cv }}" alt=""></div>
                 <div class="col"><img src="{{ $doctorProfile->photo }}" alt=""></div>
                 <div class="col">Address : {{ $doctorProfile->address }}</div>
                 <div class="col">Telephone : {{ $doctorProfile->telephone }}</div>

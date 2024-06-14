@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DoctorProfile;
 use App\Http\Requests\StoreDoctorProfileRequest;
 use App\Http\Requests\UpdateDoctorProfileRequest;
+use App\Models\Specialization;
 use Illuminate\Support\Facades\Storage;
 
 class DoctorProfileController extends Controller
@@ -23,7 +24,8 @@ class DoctorProfileController extends Controller
      */
     public function create()
     {
-        return view('admin.doctorprofile.create');
+        $specializations = Specialization::all();
+        return view('admin.doctorprofile.create', compact('specializations'));
     }
 
     /**
@@ -32,6 +34,9 @@ class DoctorProfileController extends Controller
     public function store(StoreDoctorProfileRequest $request)
     {
         $validatedRequest = $request->validated();
+        if ($request->has('cv')) {
+            $validatedRequest['cv'] = Storage::put('uploads', $validatedRequest['cv']);
+        }
         if ($request->has('photo')) {
             $validatedRequest['photo'] = Storage::put('uploads', $validatedRequest['photo']);
         }
