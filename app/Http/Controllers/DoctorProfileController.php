@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDoctorProfileRequest;
 use App\Http\Requests\UpdateDoctorProfileRequest;
 use App\Models\Specialization;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorProfileController extends Controller
 {
@@ -15,7 +16,7 @@ class DoctorProfileController extends Controller
      */
     public function index()
     {
-        $doctorProfile = DoctorProfile::find(1);
+        $doctorProfile = DoctorProfile::find(1); //HERE CHANGE THE FIND IN USER ID
         return view('admin.doctorprofile.index', compact('doctorProfile'));
     }
 
@@ -40,6 +41,7 @@ class DoctorProfileController extends Controller
         if ($request->has('photo')) {
             $validatedRequest['photo'] = Storage::put('uploads', $validatedRequest['photo']);
         }
+        $validatedRequest['user_id'] = Auth::id();
         $doctorProfile = DoctorProfile::create($validatedRequest);
         return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Add successfully your profile info');
     }
@@ -67,18 +69,12 @@ class DoctorProfileController extends Controller
     public function update(UpdateDoctorProfileRequest $request, DoctorProfile $doctorProfile)
     {
         $validated = $request->validated();
-
-        /* $slug = Str::slug($request->name, '-'); */
-        /* $validated['slug'] = $slug; */
-        //dd($validated);
         if ($request->has('photo')) {
 
             if ($doctorProfile->photo) {
                 Storage::delete($doctorProfile->photo);
             }
-
-            $photo_path = Storage::put('photo', $validated['photo']);
-            $validated['photo'] = $photo_path;
+            $validated['photo'] = Storage::put('photo', $validated['photo']);
         }
 
         if ($request->has('cv')) {

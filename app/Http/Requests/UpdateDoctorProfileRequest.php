@@ -26,7 +26,8 @@ class UpdateDoctorProfileRequest extends FormRequest
             'photo' => 'nullable|image|max:255',
             'address' => 'required|max:255',
             'telephone' => 'max:10',
-            'services' => 'max:500'
+            'services' => 'max:500',
+            'user_id' => 'exists:user,id'
         ];
     }
 }
