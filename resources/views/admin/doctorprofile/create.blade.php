@@ -6,10 +6,10 @@
         <form action="{{ route('admin.doctorProfile.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="cv" class="form-label">CV</label>
-                <input type="text" class="form-control @error('cv') is-invalid @enderror" name="cv" id="cv"
-                    aria-describedby="cvHelpId" placeholder="Your CV" value="{{ old('cv') }}" />
-                <small id="cvHelpId" class="form-text text-muted">Insert a Curriculum Vitae</small>
+                <label for="cv" class="form-label">Curriculum Vitae</label>
+                <input type="file" class="form-control @error('cv') is-invalid @enderror" name="cv" id="cv"
+                    aria-describedby="cvHelpId" placeholder="Your cv" value="" />
+                <small id="cvHelpId" class="form-text text-muted">Choose your CV</small>
                 @error('cv')
                     <div class="text-danger py-2">{{ $message }}</div>
                 @enderror
@@ -43,12 +43,26 @@
                     <div class="text-danger py-2">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="d-flex flex-wrap py-3">
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    @foreach ($specializations as $specialization)
+                        <input name="techs[]" type="checkbox" class="btn-check" id="tech-{{ $specialization->id }}"
+                            autocomplete="off" value="{{ $specialization->id }}"
+                            {{ in_array($specialization->id, old('techs', [])) ? 'checked' : '' }} />
+                        <label class="btn btn-outline-primary"
+                            for="tech-{{ $specialization->id }}">{{ $specialization->name }}</label>
+                    @endforeach
+                </div>
+                @error('specializzations')
+                    <div class="text-danger py-2">{{ $message }}</div>
+                @enderror
+            </div>
             <div class="mb-3">
                 <label for="services" class="form-label">Services</label>
-                <input type="text" class="form-control @error('services') is-invalid @enderror" name="services"
-                    id="services" aria-describedby="servicesHelpId" placeholder="Your Services"
-                    value="{{ old('services') }}" />
-                <small id="servicesHelpId" class="form-text text-muted">Choose a service</small>
+                <textarea rows="6" type="text-area" class="form-control @error('services') is-invalid @enderror" name="services"
+                    id="services" aria-describedby="servicesHelpId" placeholder="Describe what you offer to clients"
+                    value="{{ old('services') }}"></textarea>
+                <small id="servicesHelpId" class="form-text text-muted">Write your services</small>
                 @error('services')
                     <div class="text-danger py-2">{{ $message }}</div>
                 @enderror
