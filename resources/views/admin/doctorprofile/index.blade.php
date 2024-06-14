@@ -15,17 +15,6 @@
                     Nothing to show
                 </p>
             @endif
-            {{-- @forelse ($doctorProfile as $doctor)
-        <a href="">CV</a>
-        <img src="{{ $doctor->photo }}" alt="">
-        Address : {{ $doctor->address }}
-        Telephone : {{ $doctor->telephone }}
-        Services : {{ $doctor->services }}
-    @empty
-        <p>
-            Nothing to show
-        </p>
-    @endforelse --}}
         </div>
         <div class="row py-5 justify-content-center text-center">
             <div class="col">

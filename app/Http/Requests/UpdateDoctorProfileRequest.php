@@ -22,7 +22,11 @@ class UpdateDoctorProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cv' => 'nullable|file|max:255',
+            'photo' => 'nullable|image|max:255',
+            'address' => 'required|max:255',
+            'telephone' => 'max:10',
+            'services' => 'max:500'
         ];
     }
 }

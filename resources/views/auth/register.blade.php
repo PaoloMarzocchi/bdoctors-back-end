@@ -29,7 +29,8 @@
                 </div>
               </div>
 
-              {{-- <div class="mb-4 row">
+               <div class="mb-4 row">
+
                                 <label for="surname"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
 
@@ -44,7 +45,27 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div> --}}
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="address"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text" class="form-control" name="address" required
+                                        autocomplete="new-address">
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="specialization"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="specialization" type="text" class="form-control" name="specialization"
+                                        required autocomplete="new-specialization">
+                                </div>
+                            </div>
 
               <div class="mb-4 row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -85,30 +106,6 @@
                     autocomplete="new-password">
                 </div>
               </div>
-
-              <div class="mb-4 row">
-                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
-
-                <div class="col-md-6">
-                  <input id="address" type="text" class="form-control" name="address" required
-                    autocomplete="new-address">
-                </div>
-              </div>
-
-              <div class="mb-4 row">
-                <label for="services" class="col-md-4 col-form-label text-md-right">{{ __('Services') }}</label>
-
-                <div class="col-md-6">
-                  <input id="services" type="text" class="form-control" name="services" required
-                    autocomplete="new-services">
-                </div>
-              </div>
-
-              <div class="mb-4 row mb-0">
-                <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary">
-                    {{ __('Register') }}
-                  </button>
                 </div>
               </div>
             </form>
