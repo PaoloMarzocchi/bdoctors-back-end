@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\DoctorProfile;
 use Illuminate\Database\Seeder;
+use League\CommonMark\Util\SpecReader;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DoctorProfileSeeder::class,
             UserSeeder::class,
-            SpecializationSeeder::class
+            SpecializationSeeder::class,
         ]);
     }
 }

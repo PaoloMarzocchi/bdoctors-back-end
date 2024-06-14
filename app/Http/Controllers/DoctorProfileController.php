@@ -57,7 +57,8 @@ class DoctorProfileController extends Controller
      */
     public function edit(DoctorProfile $doctorProfile)
     {
-        //
+        /* dd($doctorProfile); */
+        return view('admin.doctorprofile.edit', compact('doctorProfile'));
     }
 
     /**
@@ -65,7 +66,34 @@ class DoctorProfileController extends Controller
      */
     public function update(UpdateDoctorProfileRequest $request, DoctorProfile $doctorProfile)
     {
-        //
+        $validated = $request->validated();
+
+        /* $slug = Str::slug($request->name, '-'); */
+        /* $validated['slug'] = $slug; */
+        //dd($validated);
+        if ($request->has('photo')) {
+
+            if ($doctorProfile->photo) {
+                Storage::delete($doctorProfile->photo);
+            }
+
+            $photo_path = Storage::put('photo', $validated['photo']);
+            $validated['photo'] = $photo_path;
+        }
+
+        if ($request->has('cv')) {
+
+            if ($doctorProfile->cv) {
+                Storage::delete($doctorProfile->cv);
+            }
+
+            $cv_path = Storage::put('cv', $validated['cv']);
+            $validated['cv'] = $cv_path;
+        }
+
+        $doctorProfile->update($validated);
+
+        return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Edit successfully your profile info');
     }
 
     /**
@@ -73,6 +101,15 @@ class DoctorProfileController extends Controller
      */
     public function destroy(DoctorProfile $doctorProfile)
     {
-        //
+        if ($doctorProfile->photo) {
+            Storage::delete($doctorProfile->preview);
+        }
+        if ($doctorProfile->cv) {
+            Storage::delete($doctorProfile->cv);
+        }
+
+        $doctorProfile->delete();
+
+        return to_route('admin.projects.index')->with('status', "Deleted successfully your profile");
     }
 }
