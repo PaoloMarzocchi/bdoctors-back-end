@@ -89,6 +89,10 @@ class DoctorProfileController extends Controller
 
         $doctorProfile->update($validated);
 
+        if ($request->has('specializations')) {
+            $doctorProfile->specializations()->sync($validated['specializations']);
+        }
+
         return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Edit successfully your profile info');
     }
 
@@ -98,7 +102,7 @@ class DoctorProfileController extends Controller
     public function destroy(DoctorProfile $doctorProfile)
     {
         if ($doctorProfile->photo) {
-            Storage::delete($doctorProfile->preview);
+            Storage::delete($doctorProfile->photo);
         }
         if ($doctorProfile->cv) {
             Storage::delete($doctorProfile->cv);
@@ -106,6 +110,6 @@ class DoctorProfileController extends Controller
 
         $doctorProfile->delete();
 
-        return to_route('admin.projects.index')->with('status', "Deleted successfully your profile");
+        return to_route('dashboard')->with('status', "Your Profile info was deleted successfully");
     }
 }
