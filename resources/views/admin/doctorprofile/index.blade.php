@@ -13,7 +13,8 @@
                 <div class="row py-5 justify-content-center text-center">
                     <div class="col">
                         <a class="btn btn-primary text-decoration-none"
-                            href="{{ route('admin.doctorProfile.create') }}">Edit your
+                            href="{{ route('admin.doctorProfile.create') }}">Edit
+                            your
                             profile</a>
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal"

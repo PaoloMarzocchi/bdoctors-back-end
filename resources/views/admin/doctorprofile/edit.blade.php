@@ -9,7 +9,7 @@
 
             <div class="mb-3">
                 <label for="cv" class="form-label">CV</label>
-                <input type="text" class="form-control @error('cv') is-invalid @enderror" name="cv" id="cv"
+                <input type="file" class="form-control @error('cv') is-invalid @enderror" name="cv" id="cv"
                     aria-describedby="cvHelpId" placeholder="Your CV" value="{{ old('cv', $doctorProfile->cv) }}" />
                 <small id="cvHelpId" class="form-text text-muted">Insert a Curriculum Vitae</small>
                 @error('cv')
