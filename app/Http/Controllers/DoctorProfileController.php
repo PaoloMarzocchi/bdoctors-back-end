@@ -16,7 +16,7 @@ class DoctorProfileController extends Controller
      */
     public function index()
     {
-        $doctorProfile = DoctorProfile::find(1); //HERE CHANGE THE FIND IN USER ID
+        $doctorProfile = DoctorProfile::find(Auth::id());
         return view('admin.doctorprofile.index', compact('doctorProfile'));
     }
 
