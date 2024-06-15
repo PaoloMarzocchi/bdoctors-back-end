@@ -70,14 +70,15 @@ class DoctorProfileController extends Controller
     {
         $validated = $request->validated();
         if ($request->has('photo')) {
-
+            /*  dd($doctorProfile->photo); */
             if ($doctorProfile->photo) {
+                /* dd('dovrebbe eliminarla'); */
                 Storage::delete($doctorProfile->photo);
             }
-            $validated['photo'] = Storage::put('photo', $validated['photo']);
+            $validated['photo'] = Storage::put('public', $validated['photo']);
         }
 
-        if ($request->has('cv')) {
+        if ($request->cv) {
 
             if ($doctorProfile->cv) {
                 Storage::delete($doctorProfile->cv);
@@ -92,8 +93,9 @@ class DoctorProfileController extends Controller
         if ($request->has('specializations')) {
             $doctorProfile->specializations()->sync($validated['specializations']);
         }
+        return to_route('profile.edit')->with('status', 'profile information updated');
 
-        return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Edit successfully your profile info');
+        /* return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Edit successfully your profile info'); */
     }
 
     /**

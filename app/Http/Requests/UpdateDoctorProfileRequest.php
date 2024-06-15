@@ -11,7 +11,7 @@ class UpdateDoctorProfileRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,7 @@ class UpdateDoctorProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'specializations' => 'exists:specializations,id',
             'cv' => 'nullable|file|max:255',
             'photo' => 'nullable|image|max:255',
             'address' => 'required|max:255',
