@@ -20,7 +20,7 @@
         <div class="card p-4 mb-4 bg-white shadow rounded-lg">
 
 
-            @include('profile.partials.create-doctor-profile-form')
+            @include('profile.partials.update-doctor-profile-form')
 
         </div>
 
