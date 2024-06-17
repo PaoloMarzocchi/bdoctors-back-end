@@ -76,7 +76,7 @@ class DoctorProfileController extends Controller
                 /* dd('dovrebbe eliminarla'); */
                 Storage::delete($doctorProfile->photo);
             }
-            $validated['photo'] = Storage::put('public', $validated['photo']);
+            $validated['photo'] = Storage::put('uploads', $validated['photo']);
         }
 
         if ($request->cv) {
