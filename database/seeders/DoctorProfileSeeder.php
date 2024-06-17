@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\DoctorProfile;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,8 @@ class DoctorProfileSeeder extends Seeder
         $doctors =
             [
                 [
+                    'user_id' => '1',
+                    'surname' => 'di Lauro',
                     'cv' => 'cv1',
                     'photo' => 'photo1',
                     'address' => 'Via Uno 1',
@@ -28,6 +31,8 @@ class DoctorProfileSeeder extends Seeder
                     'services' => 'Visita Base'
                 ],
                 [
+                    'user_id' => '2',
+                    'surname' => 'Cerri',
                     'cv' => 'cv2',
                     'photo' => 'photo2',
                     'address' => 'Via Due 2',
@@ -35,6 +40,8 @@ class DoctorProfileSeeder extends Seeder
                     'services' => 'Visita Premium'
                 ],
                 [
+                    'user_id' => '3',
+                    'surname' => 'Nolberto',
                     'cv' => 'cv3',
                     'photo' => 'photo3',
                     'address' => 'Via Tre 3',
@@ -42,6 +49,8 @@ class DoctorProfileSeeder extends Seeder
                     'services' => 'Visita PRO'
                 ],
                 [
+                    'user_id' => '4',
+                    'surname' => 'Strazzera',
                     'cv' => 'cv4',
                     'photo' => 'photo4',
                     'address' => 'Via Quattro 4',
@@ -49,6 +58,8 @@ class DoctorProfileSeeder extends Seeder
                     'services' => 'Visita MRI'
                 ],
                 [
+                    'user_id' => '5',
+                    'surname' => 'Marzocchi',
                     'cv' => 'cv5',
                     'photo' => 'photo5',
                     'address' => 'Via Cinque 5',
@@ -56,8 +67,10 @@ class DoctorProfileSeeder extends Seeder
                     'services' => 'Visita brutta'
                 ],
             ];
-        foreach ($doctors as $doctor) {
+        foreach ($doctors as $key => $doctor) {
             $newDoc = new DoctorProfile();
+            $newDoc->user_id = User::find($key + 1)->id;
+            $newDoc->surname = $doctor['surname'];
             $newDoc->cv = $doctor['cv'];
             $newDoc->photo = $doctor['photo'];
             $newDoc->address = $doctor['address'];
