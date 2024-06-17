@@ -13,16 +13,15 @@
                 </style>
             </div>
             <h1 class="display-5 fw-bold mb-5">
-                Welcome page not-registered user
+                Welcome to BDoctors, new User !
             </h1>
-            <a href="https://packagist.org/packages/pacificdev/laravel_9_preset" class="btn btn-primary btn-lg"
-                type="button">Documentation</a>
-        </div>
-    </div>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="col-2">
+                    <a class="btn text-warning btn-secondary py-3 px-3 fw-bold" href="{{ route('register') }}">Become a
+                        BDoctor</a>
+                </div>
+            </div>
 
-    <div class="content">
-        <div class="container">
-            <p></p>
         </div>
     </div>
 @endsection
