@@ -23,7 +23,7 @@ class StoreDoctorProfileRequest extends FormRequest
     {
         return [
             'surname' => 'required',
-            'cv' => 'nullable|file|max:255',
+            'cv' => 'nullable|file|max:2000',
             'photo' => 'nullable|image|max:255',
             'address' => 'required|max:255',
             'telephone' => 'max:10',
