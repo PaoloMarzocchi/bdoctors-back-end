@@ -29,7 +29,7 @@ class StoreDoctorProfileRequest extends FormRequest
             'telephone' => 'max:10',
             'services' => 'max:500',
             'user_id' => 'exists:user,id',
-            'specializations' => 'exists:specializations,id'
+            'specializations' => 'required|exists:specializations,id'
         ];
     }
 }

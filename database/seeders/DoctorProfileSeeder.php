@@ -6,6 +6,7 @@ use App\Models\DoctorProfile;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DoctorProfileSeeder extends Seeder
 {
@@ -71,6 +72,7 @@ class DoctorProfileSeeder extends Seeder
             $newDoc = new DoctorProfile();
             $newDoc->user_id = User::find($key + 1)->id;
             $newDoc->surname = $doctor['surname'];
+            $newDoc->slug = Str::of(User::find($key + 1)->name)->slug('-') . '-' . Str::of($newDoc->surname)->slug('-');
             $newDoc->cv = $doctor['cv'];
             $newDoc->photo = $doctor['photo'];
             $newDoc->address = $doctor['address'];
