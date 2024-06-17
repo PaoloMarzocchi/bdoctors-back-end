@@ -67,16 +67,16 @@
       @enderror
     </div>
 
-    {{-- <div class="mb-3">
-    <label for="services" class="form-label">Services</label>
-    <input type="text" class="form-control @error('services') is-invalid @enderror" name="services" id="services"
+    <div class="mb-3">
+      <label for="services" class="form-label">Services</label>
+      <input type="text" class="form-control @error('services') is-invalid @enderror" name="services" id="services"
         aria-describedby="servicesHelpId" placeholder="Your Services"
         value="{{ old('services', $doctorProfile->services) }}" />
-    <small id="servicesHelpId" class="form-text text-muted">Choose a service</small>
-    @error('services')
+      <small id="servicesHelpId" class="form-text text-muted">Insert the service you provide</small>
+      @error('services')
         <div class="text-danger py-2">{{ $message }}</div>
-    @enderror
-</div> --}}
+      @enderror
+    </div>
 
     @if ($errors->any())
       <div class="mb-3">
