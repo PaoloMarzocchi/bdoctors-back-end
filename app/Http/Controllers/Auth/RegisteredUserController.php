@@ -37,9 +37,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request, StoreDoctorProfileRequest $doctorRequest): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'name' => ['required', 'string', 'min:4', 'max:100'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'min:4', 'max:100', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
 
         $user = User::create([
