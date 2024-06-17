@@ -10,7 +10,7 @@ use App\Models\User;
 class DoctorProfile extends Model
 {
     use HasFactory;
-    protected $fillable = ['surname', 'cv', 'photo', 'address', 'telephone', 'services', 'user_id'];
+    protected $fillable = ['surname', 'slug', 'cv', 'photo', 'address', 'telephone', 'services', 'user_id'];
 
     public function specializations(): BelongsToMany
     {

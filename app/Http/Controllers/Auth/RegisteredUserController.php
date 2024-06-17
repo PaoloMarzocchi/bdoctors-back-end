@@ -15,6 +15,7 @@ use Illuminate\View\View;
 use App\Http\Requests\StoreDoctorProfileRequest;
 use App\Models\DoctorProfile;
 use App\Models\Specialization;
+use Illuminate\Support\Str;
 
 
 class RegisteredUserController extends Controller
@@ -53,6 +54,10 @@ class RegisteredUserController extends Controller
 
         $validatedRequest = $doctorRequest->validated();
         $validatedRequest['user_id'] = Auth::id();
+
+        $slug = Str::slug($request->name . '_' . $doctorRequest->surname);
+        $validatedRequest['slug'] = $slug;
+
         $doctorProfile = DoctorProfile::create($validatedRequest);
         if ($doctorRequest->has('specializations')) {
             $doctorProfile->specializations()->attach($validatedRequest['specializations']);
