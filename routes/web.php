@@ -36,7 +36,11 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', function () {
             return view('dashboard');
         });
-        Route::resource('/doctorProfile', DoctorProfileController::class);
+
+        Route::resource('/doctorProfile', DoctorProfileController::class)->parameters([
+
+            'doctor_profiles' => 'doctor_profile:slug',
+        ]);
     });
 
 require __DIR__ . '/auth.php';

@@ -69,6 +69,7 @@ class DoctorProfileController extends Controller
     public function update(UpdateDoctorProfileRequest $request, DoctorProfile $doctorProfile)
     {
         $validated = $request->validated();
+
         if ($request->has('photo')) {
             /*  dd($doctorProfile->photo); */
             if ($doctorProfile->photo) {

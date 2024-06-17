@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\UpdateDoctorProfileRequest;
 use App\Models\Specialization;
+use App\Models\DoctorProfile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +30,9 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request, UpdateDoctorProfileRequest $doctorRequest): RedirectResponse
     {
+        // Update user informations
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -38,7 +41,14 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'account-updated');
+        // Update doctor profile informations
+        $doctorProfile = DoctorProfile::find(Auth::id());
+        $validated = $doctorRequest->validated();
+        $validated['address'] = $doctorProfile->address;
+        $doctorProfile->update($validated);
+        // dd($doctorRequest->all(), $validated, $doctorProfile->address);
+
+        return Redirect::route('profile.edit')->with('status', 'Account-updated');
     }
 
     /**

@@ -15,8 +15,9 @@
                             @csrf
 
                             <div class="mb-4 row">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name *') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">
+                                    {{ __('Name *') }}
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -32,8 +33,9 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="surname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Surname *') }}</label>
+                                <label for="surname" class="col-md-4 col-form-label text-md-right">
+                                    {{ __('Surname *') }}
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
@@ -49,18 +51,20 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Address *') }}</label>
+                                <label for="address" class="col-md-4 col-form-label text-md-right">
+                                    {{ __('Address *') }}
+                                </label>
 
                                 <div class="col-md-6">
-                                    <input id="address" type="text" class="form-control" name="address" required
-                                        autocomplete="new-address">
+                                    <input id="address" type="text" class="form-control" name="address"
+                                        value="{{ old('address') }}" required autocomplete="new-address">
                                 </div>
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address *') }}</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">
+                                    {{ __('E-Mail Address *') }}
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -76,8 +80,9 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password *') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">
+                                    {{ __('Password *') }}
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -93,8 +98,9 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password *') }}</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
+                                    {{ __('Confirm Password *') }}
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -139,7 +145,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 @endsection
