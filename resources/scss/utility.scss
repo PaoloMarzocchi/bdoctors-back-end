@@ -1,4 +1,12 @@
+:root {
+    --primary: #f77b02;
+}
+
 .my_overflow {
     /* overflow: auto; */
     white-space: nowrap;
+}
+
+.my_primary {
+    color: var(--primary);
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateDoctorProfileRequest;
 use App\Models\Specialization;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DoctorProfileController extends Controller
 {
@@ -94,7 +95,7 @@ class DoctorProfileController extends Controller
         if ($request->has('specializations')) {
             $doctorProfile->specializations()->sync($validated['specializations']);
         }
-        return to_route('profile.edit')->with('status', 'profile information updated');
+        return to_route('admin.doctorProfile.index')->with('status', 'Profile information updated');
 
         /* return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Edit successfully your profile info'); */
     }
@@ -111,7 +112,7 @@ class DoctorProfileController extends Controller
             Storage::delete($doctorProfile->cv);
         }
 
-        $doctorProfile->delete();
+        $doctorProfile->update(['cv' => null, 'photo' => null, 'telephone' => null, 'services' => null]);
 
         return to_route('dashboard')->with('status', "Your Profile info was deleted successfully");
     }

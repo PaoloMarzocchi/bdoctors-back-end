@@ -6,7 +6,7 @@
             <div class="col-md-8">
 
                 <div class="card">
-                    <div class="card-header text-warning text-center">{{ __('Login') }}</div>
+                    <div class="card-header my_primary text-center">{{ __('Login') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -61,12 +61,12 @@
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn text-warning btn-secondary fw-bold">
+                                    <button type="submit" class="btn my_primary btn-secondary fw-bold">
                                         {{ __('Login') }}
                                     </button>
 
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link text-warning" href="{{ route('password.request') }}">
+                                        <a class="btn btn-link my_primary" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif

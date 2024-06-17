@@ -17,11 +17,10 @@
             </h1>
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <div class="col-2">
-                    <a class="btn text-warning btn-secondary py-3 px-3 fw-bold" href="{{ route('register') }}">Become a
+                    <a class="btn my_primary btn-secondary py-3 px-3 fw-bold" href="{{ route('register') }}">Become a
                         BDoctor</a>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

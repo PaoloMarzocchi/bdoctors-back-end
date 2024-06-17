@@ -60,10 +60,13 @@ class ProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
+        $doctorProfile = DoctorProfile::find(Auth::id());
+
         $user = $request->user();
 
         Auth::logout();
 
+        $doctorProfile->delete();
         $user->delete();
 
         $request->session()->invalidate();

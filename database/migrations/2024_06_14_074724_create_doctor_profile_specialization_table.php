@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('doctor_profile_id');
-            $table->foreign('doctor_profile_id')->references('id')->on('doctor_profiles');
+            $table->foreign('doctor_profile_id')->references('id')->on('doctor_profiles')->cascadeOnDelete();
 
             $table->unsignedBigInteger('specialization_id');
-            $table->foreign('specialization_id')->references('id')->on('specializations');
+            $table->foreign('specialization_id')->references('id')->on('specializations')->cascadeOnDelete();
 
 
             $table->timestamps();
