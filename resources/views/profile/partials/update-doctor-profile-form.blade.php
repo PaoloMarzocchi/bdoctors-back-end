@@ -12,39 +12,38 @@
     <form action="{{ route('admin.doctorProfile.update', $doctorProfile) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
-
-        <div class="mb-3">
-            <label for="cv" class="form-label">Curriculum Vitae</label>
-            <input type="file" class="form-control @error('cv') is-invalid @enderror" name="cv" id="cv"
-                aria-describedby="cvHelpId" placeholder="Your cv" value="" />
-            <small id="cvHelpId" class="form-text text-muted">Choose your CV</small>
-            @error('cv')
-                <div class="text-danger py-2">{{ $message }}</div>
-            @enderror
+        <div class="">
+            <div class="mb-3">
+                <label for="cv" class="form-label">Curriculum Vitae</label>
+                <input type="file" class="form-control @error('cv') is-invalid @enderror" name="cv"
+                    id="cv" aria-describedby="cvHelpId" placeholder="Your cv" value="" />
+                <small id="cvHelpId" class="form-text text-muted">Choose your CV</small>
+                @error('cv')
+                    <div class="text-danger py-2">{{ $message }}</div>
+                @enderror
+            </div>
+            {{-- <iframe width="100px" height="100px" src="{{ '/storage/' . $doctorProfile->cv }}" frameborder="0"></iframe> --}}
+            <object height="150" data="{{ 'http://127.0.0.1:8000/storage/' . $doctorProfile->cv }}"
+                type=""></object>
         </div>
 
-        <div class="mb-3">
-            {{-- @dd($doctorProfile->photo) --}}
-            {{-- @if ($doctorProfile->photo)
-                @if (Str::startsWith($doctorProfile->photo, 'https://'))
-                    <img width="200" loading="lazy" src="{{ $doctorProfile->photo }}" alt="">
-                @else
-                    <img width="200" loading="lazy" src="{{ asset("storage/$doctorProfile->photo") }}"
-                        alt="">
-                @endif
+        <div class="">
+            <div class="mb-3 flex-fill">
+                <label for="photo" class="form-label">Photo</label>
+                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
+                    id="photo" aria-describedby="photoHelpId" placeholder="Your Photo" value="" />
+                <small id="photoHelpId" class="form-text text-muted">Choose your photo</small>
+                @error('photo')
+                    <div class="text-danger py-2">{{ $message }}</div>
+                @enderror
+            </div>
+            @if ($doctorProfile->photo)
+                <div class="overflow-auto" style="height: 150px; width:300px">
+                    <object height="" width="300"
+                        data="{{ 'http://127.0.0.1:8000/storage/' . $doctorProfile->photo }}" type=""></object>
+                </div>
             @endif
-
-            <div> --}}
-            <label for="photo" class="form-label">Photo</label>
-            <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
-                id="photo" aria-describedby="photoHelpId" placeholder="Your Photo" value="" />
-            <small id="photoHelpId" class="form-text text-muted">Choose your photo</small>
-            @error('photo')
-                <div class="text-danger py-2">{{ $message }}</div>
-            @enderror
-
         </div>
-
         <div class="mb-3">
             <label for="address" class="form-label">Address</label>
             <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
@@ -113,11 +112,9 @@
         @endif
 
         <div class="d-flex">
-            <button type="submit" class="btn text-warning btn-dark fw-bold">
+            <button type="submit" class="btn my_primary btn-secondary fw-bold">
                 Save
             </button>
         </div>
-
-
     </form>
 </div>

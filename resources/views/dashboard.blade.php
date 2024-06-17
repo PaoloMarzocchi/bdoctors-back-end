@@ -22,11 +22,11 @@
                 </div>
             </div>
             <div class="col d-flex flex-column gap-2">
-                <a class="btn text-warning btn-secondary fw-bold" href="{{ route('admin.doctorProfile.index') }}">YOUR
+                <a class="btn my_primary btn-secondary fw-bold" href="{{ route('admin.doctorProfile.index') }}">YOUR
                     PROFILE</a>
-                <a class="btn text-warning btn-secondary fw-bold" href="">MY MESSAGES</a>
-                <a class="btn text-warning btn-secondary fw-bold" href="">MY REVIEWS</a>
-                <a class="btn text-warning btn-secondary fw-bold" href="">MY STATISTICS</a>
+                <a class="btn my_primary btn-secondary fw-bold" href="">MY MESSAGES</a>
+                <a class="btn my_primary btn-secondary fw-bold" href="">MY REVIEWS</a>
+                <a class="btn my_primary btn-secondary fw-bold" href="">MY STATISTICS</a>
             </div>
         </div>
     </div>

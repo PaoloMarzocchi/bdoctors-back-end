@@ -8,7 +8,7 @@
                 @include('partials.validation-message')
 
                 <div class="card">
-                    <div class="card-header text-warning text-center">{{ __('Register as a new BDoctor') }}</div>
+                    <div class="card-header my_primary text-center">{{ __('Register as a new BDoctor') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -135,7 +135,7 @@
 
                             <div class="row text-center">
                                 <div class="col-12">
-                                    <button type="submit" class="btn text-warning btn-secondary fw-bold">
+                                    <button type="submit" class="btn my_primary btn-secondary fw-bold">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
