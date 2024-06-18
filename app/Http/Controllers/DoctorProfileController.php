@@ -42,8 +42,11 @@ class DoctorProfileController extends Controller
         if ($request->has('photo')) {
             $validatedRequest['photo'] = Storage::put('uploads', $validatedRequest['photo']);
         }
+
         $validatedRequest['user_id'] = Auth::id();
+
         $doctorProfile = DoctorProfile::create($validatedRequest);
+
         return to_route('admin.doctorProfile.index', compact('doctorProfile'))->with('status', 'Add successfully your profile info');
     }
 
@@ -52,7 +55,6 @@ class DoctorProfileController extends Controller
      */
     public function show(DoctorProfile $doctorProfile)
     {
-        //
     }
 
     /**
