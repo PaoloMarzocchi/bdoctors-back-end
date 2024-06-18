@@ -1,0 +1,42 @@
+.inputWrapper {
+  position: relative;
+
+  .success,
+  .success:focus {
+    border: 1px solid #009327;
+    outline: 0;
+    box-shadow: 0 0 5px 0.1rem #0093272c;
+  }
+
+  .success:focus {
+    box-shadow: 0 0 0 0.25rem #0093272c;
+  }
+
+  .fa-circle-check {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #009327;
+  }
+
+  .fa-circle-exclamation {
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    transform: translateY(-50%);
+    color: #ff0000;
+  }
+
+  .error,
+  .error:focus {
+    border-color: #ff0000;
+    background-color: #fff0f0;
+    outline: 0;
+    box-shadow: 0 0 5px 0.1rem #ff000032;
+  }
+
+  .error:focus {
+    box-shadow: 0 0 0 0.25rem #ff000032;
+  }
+}
