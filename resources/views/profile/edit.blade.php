@@ -3,7 +3,7 @@
     <div class="container">
         <div class="d-flex justify-content-between my-4 align-items-center">
             <h2 class="fs-2 my_primary">
-                {{ __('Profile') }}
+                {{ __('Account') }}
             </h2>
             <a class="btn btn-dark my_primary" href="{{ route('admin.doctorProfile.index') }}">Show profile</a>
         </div>
@@ -20,10 +20,6 @@
 
         <div class="card p-4 mb-4 bg-white shadow rounded-lg">
             @include('profile.partials.update-profile-information-form')
-        </div>
-
-        <div class="card p-4 mb-4 bg-white shadow rounded-lg">
-            @include('profile.partials.update-doctor-profile-form')
         </div>
 
         <div class="card p-4 mb-4 bg-white shadow rounded-lg">
