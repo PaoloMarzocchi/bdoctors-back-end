@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="my_image_right_2 h-100">
+        <img src="/img/account-2.png" alt="">
+    </div>
+    <div class="my_image_left_2 h-100">
+        <img src="/img/account-1.png" alt="">
+    </div>
+    <div class="my_container">
         <div class="d-flex justify-content-between my-4 align-items-center">
             <h2 class="fs-2 my_primary">
                 {{ __('Account') }}
