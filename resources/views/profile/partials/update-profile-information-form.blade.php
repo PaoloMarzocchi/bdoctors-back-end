@@ -18,7 +18,7 @@
         @method('patch')
 
         <div class="mb-2">
-            <label for="name">{{ __('First name') }}</label>
+            <label for="name">{{ __('First name *') }}</label>
             <input class="form-control" type="text" name="name" id="name" autocomplete="name"
                 value="{{ old('name', $user->name) }}" required autofocus>
             @error('name')
@@ -29,7 +29,7 @@
         </div>
 
         <div class="mb-2">
-            <label for="surname">{{ __('Last name') }}</label>
+            <label for="surname">{{ __('Last name *') }}</label>
             <input class="form-control" type="text" name="surname" id="surname" autocomplete="surname"
                 value="{{ old('surname', $doctorProfile->surname) }}" required autofocus>
             @error('surname')
@@ -41,7 +41,7 @@
 
         <div class="mb-2">
             <label for="email">
-                {{ __('Email') }}
+                {{ __('Email *') }}
             </label>
 
             <input id="email" name="email" type="email" class="form-control"
@@ -70,6 +70,12 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div class="mb-4 row text-danger">
+            <p>
+                ( <span class="text-dark">*</span> ) Required fields.
+            </p>
         </div>
 
         <div class="d-flex align-items-center gap-4">

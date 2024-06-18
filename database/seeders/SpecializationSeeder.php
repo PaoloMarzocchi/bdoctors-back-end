@@ -16,33 +16,33 @@ class SpecializationSeeder extends Seeder
     {
         $specializations = [
             [
-                'name' => 'Allergologia',
-                'description' => 'La branca che si occupa degli effetti delle allergie stagionali, da contatto e ai medicinali'
+                'name' => 'Allergology',
+                'description' => 'The branch that deals with the effects of seasonal, contact, and medication allergies'
             ],
             [
-                'name' => 'Cardiologia',
-                'description' => 'La branca che si occupa del cuore e di tutto ciò che lo riguarda'
+                'name' => 'Cardiology',
+                'description' => 'The branch that deals with the heart and everything related to it'
             ],
             [
-                'name' => 'Dermatologia',
-                'description' => 'La branca che si prende cura della pelle delle persone'
+                'name' => 'Dermatology',
+                'description' => "The branch that takes care of people's skin"
             ],
             [
-                'name' => 'Chirurgia',
-                'description' => 'Questo è il campo più famoso della scienza medica, dove tutto converge sul piano pratico per salvare le vite'
+                'name' => 'Surgery',
+                'description' => 'This is the most famous field of medical science, where everything converges on the practical level to save lives'
             ],
             [
-                'name' => 'Gastroenterologia',
-                'description' => 'Quei dottori cui rivolgersi quando insorgono problemi gastro-intestinali'
+                'name' => 'Gastroenterology',
+                'description' => 'Those doctors to turn to when gastrointestinal problems arise'
             ],
             [
-                'name' => 'Medicina del lavoro',
-                'description' => 'È quella branca della medicina che si occupa della prevenzione, della diagnosi e della cura delle malattie causate dalle attività lavorative.'
+                'name' => 'Occupational Medicine',
+                'description' => 'It is the branch of medicine that deals with the prevention, diagnosis, and treatment of diseases caused by work activities.'
             ],
             [
-                'name' => 'Urologia',
-                'description' => "La branca specialistica medica e chirurgica che si occupa delle patologie a carico dell'apparato urinario maschile e femminile e degli organi genitali maschili esterni."
-            ],
+                'name' => 'Urology',
+                'description' => 'The medical and surgical specialty that deals with diseases of the male and female urinary tract and the male external genital organs.'
+            ]
         ];
 
         foreach ($specializations as $specialization) {

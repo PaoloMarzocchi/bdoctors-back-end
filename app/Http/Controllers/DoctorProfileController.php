@@ -61,7 +61,8 @@ class DoctorProfileController extends Controller
     public function edit(DoctorProfile $doctorProfile)
     {
         /* dd($doctorProfile); */
-        return view('admin.doctorprofile.edit', compact('doctorProfile'));
+        $specializations = Specialization::all();
+        return view('admin.doctorprofile.edit', compact('doctorProfile', 'specializations'));
     }
 
     /**

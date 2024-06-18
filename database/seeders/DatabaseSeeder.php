@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DoctorProfileSeeder::class,
             SpecializationSeeder::class,
+            SponsorshipSeeder::class,
         ]);
     }
 }
