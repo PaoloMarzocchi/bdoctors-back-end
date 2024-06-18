@@ -14,7 +14,7 @@
         @method('put')
 
         <div class="mb-2">
-            <label for="current_password">{{ __('Current Password') }}</label>
+            <label for="current_password">{{ __('Current Password *') }}</label>
             <input class="mt-1 form-control" type="password" name="current_password" id="current_password"
                 autocomplete="current-password">
             @error('current_password')
@@ -25,7 +25,7 @@
         </div>
 
         <div class="mb-2">
-            <label for="password">{{ __('New Password') }}</label>
+            <label for="password">{{ __('New Password *') }}</label>
             <input class="mt-1 form-control" type="password" name="password" id="password" autocomplete="new-password">
             @error('password')
                 <span class="invalid-feedback mt-2" role="alert">
@@ -36,7 +36,7 @@
 
         <div class="mb-2">
 
-            <label for="password_confirmation">{{ __('Confirm Password') }}</label>
+            <label for="password_confirmation">{{ __('Confirm Password *') }}</label>
             <input class="mt-2 form-control" type="password" name="password_confirmation" id="password_confirmation"
                 autocomplete="new-password">
             @error('password_confirmation')
@@ -44,6 +44,12 @@
                     <strong>{{ $errors->updatePassword->get('password_confirmation') }}</strong>
                 </span>
             @enderror
+        </div>
+
+        <div class="mb-4 row text-danger">
+            <p>
+                ( <span class="text-dark">*</span> ) Required fields.
+            </p>
         </div>
 
         <div class="d-flex align-items-center gap-4">

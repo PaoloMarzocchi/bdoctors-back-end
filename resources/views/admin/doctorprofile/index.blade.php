@@ -12,49 +12,10 @@
 
                 <div class="col justify-content-end d-flex align-items-center gap-3">
 
-                    <a class="btn btn-secondary my_primary text-decoration-none" href="{{ route('profile.edit') }}">
+                    <a class="btn btn-secondary my_primary text-decoration-none"
+                        href="{{ route('admin.doctorProfile.edit', $doctorProfile) }}">
                         Edit your profile
                     </a>
-                    <!-- Modal trigger button -->
-                    <button type="button" class="btn btn-danger btn-md text-dark" data-bs-toggle="modal"
-                        data-bs-target="#modalId">
-                        Delete Profile info
-                    </button>
-                    <!-- Modal Body -->
-                    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-                        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalTitleId">
-                                        Deleting profile informations
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Attention! You are deleting your profile info, this action is
-                                    irreversible. Do you
-                                    want to
-                                    continue?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                        No, go back
-                                    </button>
-                                    <form action="{{ route('admin.doctorProfile.destroy', $doctorProfile) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('delete')
-
-                                        <button class="btn btn-danger" type="submit">Yes, delete
-                                            it</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
