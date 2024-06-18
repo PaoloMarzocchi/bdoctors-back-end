@@ -2,10 +2,16 @@
 
 @section('content')
     <section>
-        <div class="container py-5">
+        <div class="my_image_right h-100">
+            <img src="/img/informations-right.png" alt="">
+        </div>
+        <div class="my_image_left h-100">
+            <img src="/img/informations-left.png" alt="">
+        </div>
+        <div class="my_container py-5">
             <div class="card p-4 mb-4 bg-white shadow rounded-lg">
                 <header>
-                    <h2 class="text-lg font-medium text-gray-900">
+                    <h2 class="text-lg font-medium text-gray-900 my_primary">
                         {{ __('Profile Information') }}
                     </h2>
 
@@ -76,9 +82,9 @@
 
                     <div class="mb-3">
                         <label for="services" class="form-label">Services</label>
-                        <input type="text" class="form-control @error('services') is-invalid @enderror" name="services"
-                            id="services" aria-describedby="servicesHelpId" placeholder="Your Services"
-                            value="{{ old('services', $doctorProfile->services) }}" />
+                        <textarea class="form-control rounded-end-0 h-100 @error('services') is-invalid @enderror" name="services"
+                            id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">
+                                                </textarea>
                         <small id="servicesHelpId" class="form-text text-muted">Insert the service you provide</small>
                         @error('services')
                             <div class="text-danger py-2">{{ $message }}</div>
@@ -103,7 +109,7 @@
                             @enderror
                         </div>
                     @else
-                        <div class="mb-3 py-3 border-top">
+                        <div class="mb-3 py-3">
                             <div class="mb-2">Select your specializations *</div>
 
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -133,6 +139,5 @@
                 </form>
             </div>
         </div>
-
     </section>
 @endsection

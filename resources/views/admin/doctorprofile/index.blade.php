@@ -32,13 +32,16 @@
                 </div>
                 <div class="col-6 text-center">
                     <div class="card h-100 shadow">
-                        <div class="card-body d-flex flex-column justify-content-evenly">
+                        <div class="card-body d-flex flex-column justify-content-end">
+                            <div class="card-img-top my_background h-100 image-fluid">
+                                {{-- <img src="/img/doctor-profile.png" alt=""> --}}
+                            </div>
                             {{-- address --}}
-                            <div class="py-3">
+                            <div class="pb-2">
                                 <strong>Address :</strong> {{ $doctorProfile->address }}
                             </div>
                             {{-- telephone --}}
-                            <div class="py-3">
+                            <div class="pb-2">
                                 <strong>Telephone : </strong>
                                 @if ($doctorProfile->telephone)
                                     (+39) {{ $doctorProfile->telephone }}
@@ -49,10 +52,10 @@
                             {{-- specializations --}}
 
                             @if (count($doctorProfile->specializations) != 0)
-                                <div class="py-3">
-                                    <span class="mb-4"><strong>Specializations:</strong></span> <br>
+                                <div class="pb-2">
+                                    <span class=""><strong>Specializations:</strong></span> <br>
                                     @foreach ($doctorProfile->specializations as $specialization)
-                                        <span class="badge bg-dark my_primary mt-4">{{ $specialization->name }}</span>
+                                        <span class="badge bg-dark my_primary">{{ $specialization->name }}</span>
                                     @endforeach
                                 </div>
                             @else
@@ -61,22 +64,22 @@
                                 </div>
                             @endif
                             {{-- services --}}
-                            <div class="py-3">
-                                <span class="mb-4"><strong>Services :</strong></span> <br>
+                            <div class="pb-2">
+                                <span class=""><strong>Services :</strong></span> <br>
                                 @if ($doctorProfile->services)
-                                    <span class="mb-4">{{ $doctorProfile->services }}</span>
+                                    <span class="">{{ $doctorProfile->services }}</span>
                                 @else
-                                    <form class="mt-4" action="{{ route('admin.doctorProfile.update', $doctorProfile) }}"
+                                    <form class="" action="{{ route('admin.doctorProfile.update', $doctorProfile) }}"
                                         method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('put')
-                                        <div class="input-group mb-3">
-                                            <input type="text"
-                                                class="form-control @error('services') is-invalid @enderror" name="services"
-                                                id="services" aria-describedby="servicesHelpId" placeholder="Your Services"
-                                                value="{{ old('services', $doctorProfile->services) }}" />
-
-                                            <button type="submit" class="btn btn-secondary my_primary">
+                                        <div class="d-flex">
+                                            <div class=" w-100">
+                                                <textarea class="form-control rounded-end-0 h-100 @error('services') is-invalid @enderror" name="services"
+                                                    id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">
+                                                </textarea>
+                                            </div>
+                                            <button type="submit" class="btn rounded-start-0 btn-secondary my_primary">
                                                 Submit
                                             </button>
                                         </div>
@@ -87,7 +90,7 @@
                                 @endif
                             </div>
                             {{-- cv --}}
-                            <div class="py-3">
+                            <div class="pb-2">
                                 <strong>Curriculum :</strong>
                                 @if ($doctorProfile->cv)
                                     <a target="_blank" rel="noopener noreferrer"
@@ -95,7 +98,7 @@
                                         Apri
                                     </a>
                                 @else
-                                    <form class="mt-4" action="{{ route('admin.doctorProfile.update', $doctorProfile) }}"
+                                    <form class="" action="{{ route('admin.doctorProfile.update', $doctorProfile) }}"
                                         method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('put')
@@ -122,6 +125,4 @@
                 </p>
         @endif
     </div>
-
-
 @endsection
