@@ -24,8 +24,16 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4|max:100',
-            'email' => 'required|unique|min:4|max:100',
-            'password' => 'required'
+            'email' => 'required|unique:users|min:4|max:100',
+            'password' => 'required',
+            'surname' => 'required',
+            'cv' => 'nullable|file|max:2000',
+            'photo' => 'nullable|image|max:255',
+            'address' => 'required|max:255',
+            'telephone' => 'max:10',
+            'services' => 'max:500',
+            'user_id' => 'exists:user,id',
+            'specializations' => 'required|exists:specializations,id'
         ];
 
         /* ToDo:

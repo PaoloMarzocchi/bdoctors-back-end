@@ -11,7 +11,7 @@
           <div class="card-header my_primary text-center">{{ __('Register as a new BDoctor') }}</div>
 
           <div class="card-body">
-            <form method="POST" action="{{ route('register') }}">
+            <form id="registrationForm" method="POST" action="{{ route('register') }}">
               @csrf
 
               <div class="mb-4 row">
@@ -20,9 +20,13 @@
                 </label>
 
                 <div class="col-md-6">
-                  <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                    name="name" value="{{ old('name') }}" placeholder="es.: Mario" required autocomplete="name"
-                    autofocus>
+                  <div class="inputWrapper">
+                    <input id="name" type="text" class="pe-5 form-control @error('name') is-invalid @enderror"
+                      name="name" value="{{ old('name') }}" placeholder="es.: Mario" autocomplete="name" autofocus>
+                    <i class="fa-solid fa-circle-check d-none"></i>
+                    <i class="fa-solid fa-circle-exclamation d-none"></i>
+                    <small class="text-danger"></small>
+                  </div>
 
                   @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -38,9 +42,15 @@
                 </label>
 
                 <div class="col-md-6">
-                  <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror"
-                    name="surname" value="{{ old('surname') }}" placeholder="es.: Rossi" required autocomplete="surname"
-                    autofocus>
+
+                  <div class="inputWrapper">
+                    <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror"
+                      name="surname" value="{{ old('surname') }}" placeholder="es.: Rossi" autocomplete="surname"
+                      autofocus>
+                    <i class="fa-solid fa-circle-check d-none"></i>
+                    <i class="fa-solid fa-circle-exclamation d-none"></i>
+                    <small class="text-danger"></small>
+                  </div>
 
                   @error('surname')
                     <span class="invalid-feedback" role="alert">
@@ -56,8 +66,20 @@
                 </label>
 
                 <div class="col-md-6">
-                  <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}"
-                    placeholder="es.: Via Roma 4" required autocomplete="new-address">
+                  <div class="inputWrapper">
+                    <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
+                      name="address" value="{{ old('address') }}" placeholder="es.: Via Roma 4"
+                      autocomplete="new-address">
+                    <i class="fa-solid fa-circle-check d-none"></i>
+                    <i class="fa-solid fa-circle-exclamation d-none"></i>
+                    <small class="text-danger"></small>
+                  </div>
+
+                  @error('address')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
                 </div>
               </div>
 
@@ -67,9 +89,14 @@
                 </label>
 
                 <div class="col-md-6">
-                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                    name="email" value="{{ old('email') }}" placeholder="es.: mariorossi@example.it" required
-                    autocomplete="email">
+                  <div class="inputWrapper">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                      name="email" value="{{ old('email') }}" placeholder="es.: mariorossi@example.it"
+                      autocomplete="email">
+                    <i class="fa-solid fa-circle-check d-none"></i>
+                    <i class="fa-solid fa-circle-exclamation d-none"></i>
+                    <small class="text-danger"></small>
+                  </div>
 
                   @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -85,8 +112,13 @@
                 </label>
 
                 <div class="col-md-6">
-                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                    name="password" required autocomplete="password">
+                  <div class="inputWrapper">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                      name="password" autocomplete="password">
+                    <i class="fa-solid fa-circle-check d-none"></i>
+                    <i class="fa-solid fa-circle-exclamation d-none"></i>
+                    <small class="text-danger"></small>
+                  </div>
 
                   @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -94,16 +126,15 @@
                     </span>
                   @enderror
 
-                  <div class="mt-2 p-2 border rounded border-secondary-subtle bg-secondary bg-opacity-10">
-                    <small>
-                      Password must contain at least:
-                      <ul>
-                        <li>8 characters</li>
-                        <li>One lowercase and one uppercase letter (A-z)</li>
-                        <li>One number (0-9)</li>
-                        <li>One symbol ('@', '$', '!', '%', '*', '?', '&')</li>
-                      </ul>
-                    </small>
+                  <div id="passwordRules"
+                    class="d-none mt-2 p-2 border rounded border-secondary-subtle bg-secondary bg-opacity-10">
+                    <span> Password must contain at least: </span>
+                    <ul>
+                      <li>8 characters</li>
+                      <li>One lowercase and one uppercase letter (A-z)</li>
+                      <li>One number (0-9)</li>
+                      <li>One symbol ('@', '$', '!', '%', '*', '?', '&')</li>
+                    </ul>
                   </div>
 
                 </div>
@@ -115,25 +146,33 @@
                 </label>
 
                 <div class="col-md-6">
-                  <input id="password_confirmation" type="password" class="form-control" name="password_confirmation"
-                    required autocomplete="password_confirmation">
+                  <div class="inputWrapper">
+                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation"
+                      autocomplete="password_confirmation">
+                    <i class="fa-solid fa-circle-check d-none"></i>
+                    <i class="fa-solid fa-circle-exclamation d-none"></i>
+                    <small class="text-danger"></small>
+                  </div>
                 </div>
               </div>
 
               <div class="mb-4 row">
-                <label for="spacializations[]" class="col-md-4 col-form-label text-md-right mb-2">
+                <label for="specializations[]" class="col-md-4 col-form-label text-md-right mb-2">
                   {{ __('Choose your specializations *') }}
                 </label>
                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                   @foreach ($specializations as $specialization)
                     <input name="specializations[]" type="checkbox" class="btn-check"
-                      id="specialization-{{ $specialization->id }}" autocomplete="off" value="{{ $specialization->id }}"
+                      id="specialization-{{ $specialization->id }}" autocomplete="off"
+                      value="{{ $specialization->id }}"
                       {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }} />
+
                     <label class="btn btn-outline-warning text-dark my_overflow"
                       for="specialization-{{ $specialization->id }}">{{ $specialization->name }}</label>
                   @endforeach
                 </div>
-                @error('specializzations')
+                <small class="text-danger"></small>
+                @error('specializations')
                   <div class="text-danger py-2">{{ $message }}</div>
                 @enderror
               </div>
@@ -146,7 +185,7 @@
 
               <div class="row text-center">
                 <div class="col-12">
-                  <button type="submit" class="btn my_primary btn-secondary fw-bold">
+                  <button id="submitButton" type="submit" class="btn my_primary btn-secondary fw-bold">
                     {{ __('Register') }}
                   </button>
                 </div>
