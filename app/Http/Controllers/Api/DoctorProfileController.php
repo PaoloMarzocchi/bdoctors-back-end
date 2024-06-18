@@ -36,4 +36,14 @@ class DoctorProfileController extends Controller
             );
         }
     }
+
+    public function sponsored()
+    {
+        $sponsoredDoctors = DoctorProfile::with('specializations', 'sponsorships', 'user')->whereHas('sponsorships')->get();
+
+        return response()->json([
+            'success' => true,
+            'sponsoredDoctors' => $sponsoredDoctors,
+        ]);
+    }
 }
