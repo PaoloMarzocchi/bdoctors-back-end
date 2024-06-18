@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Http\Requests\StoreDoctorProfileRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\DoctorProfile;
 use App\Models\Specialization;
 use Illuminate\Support\Str;
@@ -34,41 +35,27 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, StoreDoctorProfileRequest $doctorRequest): RedirectResponse
+    public function store(StoreUserRequest $request, StoreDoctorProfileRequest $doctorRequest): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:4', 'max:100'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'min:4', 'max:100', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::min(8)->mixedCase()->numbers()->symbols()]
+        $userValidatedRequest = $request->validated();
 
-            /*
-            Password validation rules:
-                - At least 8 characters
-                - At least one lowercase and one uppercase letter (A-z)
-                - At least one number (0-9)
-                - At least one symbol ('@', '$', '!', '%', '*', '?', '&')
-            */
-        ]);
+        $userValidatedRequest['password'] = Hash::make($userValidatedRequest['password']);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = User::create($userValidatedRequest);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        $validatedRequest = $doctorRequest->validated();
-        $validatedRequest['user_id'] = Auth::id();
+        $doctorValidatedRequest = $doctorRequest->validated();
+        $doctorValidatedRequest['user_id'] = Auth::id();
 
         $slug = Str::slug($request->name . '_' . $doctorRequest->surname);
-        $validatedRequest['slug'] = $slug;
+        $doctorValidatedRequest['slug'] = $slug;
 
-        $doctorProfile = DoctorProfile::create($validatedRequest);
+        $doctorProfile = DoctorProfile::create($doctorValidatedRequest);
         if ($doctorRequest->has('specializations')) {
-            $doctorProfile->specializations()->attach($validatedRequest['specializations']);
+            $doctorProfile->specializations()->attach($doctorValidatedRequest['specializations']);
         }
 
         return redirect(RouteServiceProvider::HOME);
