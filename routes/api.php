@@ -23,5 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('doctors', [DoctorProfileController::class, 'index']);
 Route::get('doctors/{doctor}', [DoctorProfileController::class, 'show']);
 
-
+Route::get('research/{specialization}', [DoctorProfileController::class, 'advancedSearch']);
 Route::get('sponsoredDoctors', [DoctorProfileController::class, 'sponsored']);

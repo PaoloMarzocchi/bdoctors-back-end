@@ -46,4 +46,11 @@ class DoctorProfileController extends Controller
             'sponsoredDoctors' => $sponsoredDoctors,
         ]);
     }
+
+    public function advancedSearch($name)
+    {
+        // $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user')->whereRelation('specializations', 'specialization_id', '=', $id)->get();
+        $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user')->whereRelation('specializations', 'name', '=', $name)->get();
+        return response()->json(['success' => true, 'searchResults' => $searchResults]);
+    }
 }
