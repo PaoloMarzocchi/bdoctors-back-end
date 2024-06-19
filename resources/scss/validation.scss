@@ -12,6 +12,11 @@
     box-shadow: 0 0 0 0.25rem #0093272c;
   }
 
+  .errorMessage {
+    display: block;
+    height: 20px;
+  }
+
   .fa-circle-check {
     position: absolute;
     right: 10px;
@@ -39,4 +44,37 @@
   .error:focus {
     box-shadow: 0 0 0 0.25rem #ff000032;
   }
+
+  .passwordCheck,
+  .passwordError {
+    position: absolute;
+    right: 11%;
+    top: 33.5%;
+    transform: translateY(-50%);
+  }
+
+  .showPassword,
+  .showConfirmedPassword {
+    position: absolute;
+    right: 10px;
+    top: 33.5%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: #adadad;
+  }
+}
+
+.passwordRulesDanger {
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 5px 0.1rem #ff000032;
+  background-color: #fff0f0;
+  color: #ff0000;
+}
+
+.passwordRulesSuccess {
+  border: 1px solid #009327;
+  box-shadow: 0 0 5px 0.1rem #0093272c;
+  background-color: #f2fff0;
+  color: #009327;
 }
