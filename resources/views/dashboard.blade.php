@@ -23,14 +23,14 @@
                             </div>
                         @endif
                         <div class="row flex-column">
+                            {{--
+                            ################################################
+                            REMEMBER TO PUT HERE THE NAME OF CURRENT USER !!
+                            ################################################ 
+                            --}}
                             <div class="col-8 align-self-start">
                                 <textarea rows="25" disabled placeholder="Try to ask me, '-statistics'.." class="form-control" name=""
                                     id="" rows="3">{{ __("Welcome BDoctor ! I'm your AI, Docty.") }}
-                                    {{--
-                                    ################################################
-                                    REMEMBER TO PUT HERE THE NAME OF CURRENT USER !!
-                                    ################################################ 
-                                    --}}
                                 </textarea>
                             </div>
                             <br>
@@ -40,6 +40,47 @@
                                     Try to ask '-statistics'..
                                 </textarea>
                             </div>
+                            {{-- <div class="chat_main dflex">
+                                <div class="current_chat">
+                                    @foreach (currentChat . messages as singleMessage)
+                                        <div class="dflex spacing"
+                                            :class="singleMessage.status === 'sent' ? 'mine_message' : 'enemy_message'">
+                                            <div class="text">
+                                                <p>
+                                                    {{ singleMessage . message }}
+                                                </p>
+                                            </div>
+                                            <div class="text_info dflex">
+                                                <div class="check">
+
+                                                    <ul class="secret_option">
+                                                        <li>
+                                                            <a href="#">
+                                                                Cancella messaggio
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                Rimuovi dalla tua vita
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                "Fai come ti pare" cit.
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- /.check -->
+                                                <div class="msg_hours">
+                                                    {{ singleMessage . date }}
+                                                </div>
+                                                <!-- /.msg_hours -->
+                                            </div>
+                                    @endforeach
+                                </div>
+                            </div> 
+                        </div> --}}
                         </div>
                     </div>
                 </div>
