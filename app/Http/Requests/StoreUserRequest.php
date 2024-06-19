@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|min:4|max:100',
             'email' => 'required|unique:users|min:4|max:100',
-            'password' => 'required',
+            'password' => ['required', min(8)->mixedCase()->numbers()->symbols()],
             'surname' => 'required',
             'cv' => 'nullable|file|max:2000',
             'photo' => 'nullable|image|max:255',
@@ -36,16 +36,11 @@ class StoreUserRequest extends FormRequest
             'specializations' => 'required|exists:specializations,id'
         ];
 
-        /* ToDo:
-        
-            - Add regex rule for password validation when form in completed:
-                English uppercase characters (A – Z)
-                English lowercase characters (a – z)
-                Base 10 digits (0 – 9)
-                Non-alphanumeric (For example: !, $, #, or %)
-                'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!$#%]).*$/'
-
-            - Add password docnfirmation rule when form is completed
+        /* Password rules:
+            - At least one lowercase letter (a – z)
+            - At least one uppercase letter (A – Z)
+            - At least one number (0 – 9)
+            - At least one symbol (@, $, !, %, *, ?, &, ^, #)
         */
     }
 }
