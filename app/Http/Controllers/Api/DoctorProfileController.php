@@ -19,9 +19,9 @@ class DoctorProfileController extends Controller
         );
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $doctor = DoctorProfile::with('specializations', 'sponsorships', 'user')->where('id', $id)->first();
+        $doctor = DoctorProfile::with('specializations', 'sponsorships', 'user')->where('slug', $slug)->first();
         if ($doctor) {
             return response()->json([
                 'success' => true,
@@ -46,6 +46,7 @@ class DoctorProfileController extends Controller
             'sponsoredDoctors' => $sponsoredDoctors,
         ]);
     }
+
 
     public function advancedSearch($name)
     {

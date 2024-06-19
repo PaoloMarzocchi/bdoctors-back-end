@@ -15,18 +15,13 @@ class DoctorProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        /* $doctorprofilecvs = ['cv1', 'cv2', 'cv3', 'cv4', 'cv5'];
-        $doctorprofilephotos = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5'];
-        $doctorprofileaddress = ['Via Uno 1', 'Via Due 2', 'Via Tre 3', 'Via Quattro 4', 'Via Cinque 5',];
-        $doctorprofiletelephones = ['1234567890', '1234567890', '1234567890', '1234567890', '1234567890',];
-        $doctorprofileservices = ['Visita base', 'Visita Premium', 'Visita MRI', 'Visita PRO', 'Visita brutta']; */
         $doctors =
             [
                 [
                     'user_id' => '1',
                     'surname' => 'di Lauro',
-                    'cv' => 'cv1',
-                    'photo' => 'photo1',
+                    'cv' => null,
+                    'photo' => null,
                     'address' => 'Via Uno 1',
                     'telephone' => '1234567890',
                     'services' => 'Visita Base'
@@ -34,8 +29,8 @@ class DoctorProfileSeeder extends Seeder
                 [
                     'user_id' => '2',
                     'surname' => 'Cerri',
-                    'cv' => 'cv2',
-                    'photo' => 'photo2',
+                    'cv' => null,
+                    'photo' => null,
                     'address' => 'Via Due 2',
                     'telephone' => '1234567890',
                     'services' => 'Visita Premium'
@@ -43,8 +38,8 @@ class DoctorProfileSeeder extends Seeder
                 [
                     'user_id' => '3',
                     'surname' => 'Nolberto',
-                    'cv' => 'cv3',
-                    'photo' => 'photo3',
+                    'cv' => null,
+                    'photo' => null,
                     'address' => 'Via Tre 3',
                     'telephone' => '1234567890',
                     'services' => 'Visita PRO'
@@ -52,8 +47,8 @@ class DoctorProfileSeeder extends Seeder
                 [
                     'user_id' => '4',
                     'surname' => 'Strazzera',
-                    'cv' => 'cv4',
-                    'photo' => 'photo4',
+                    'cv' => null,
+                    'photo' => null,
                     'address' => 'Via Quattro 4',
                     'telephone' => '1234567890',
                     'services' => 'Visita MRI'
@@ -61,8 +56,8 @@ class DoctorProfileSeeder extends Seeder
                 [
                     'user_id' => '5',
                     'surname' => 'Marzocchi',
-                    'cv' => 'cv5',
-                    'photo' => 'photo5',
+                    'cv' => null,
+                    'photo' => null,
                     'address' => 'Via Cinque 5',
                     'telephone' => '1234567890',
                     'services' => 'Visita brutta'
