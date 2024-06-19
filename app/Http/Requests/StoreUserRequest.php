@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|min:4|max:100',
             'email' => 'required|unique:users|min:4|max:100',
-            'password' => ['required', min(8)->mixedCase()->numbers()->symbols()],
+            'password' => ['required', Password::min(8)->mixedCase()->numbers()->symbols()],
             'surname' => 'required',
             'cv' => 'nullable|file|max:2000',
             'photo' => 'nullable|image|max:255',
