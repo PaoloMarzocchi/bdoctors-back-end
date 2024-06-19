@@ -317,6 +317,7 @@ function checkPassword() {
     showSuccess(passwordEl);
     passwordRules.classList.add('passwordRulesSuccess');
 
+    valid = true;
   }
 
   return valid;
@@ -438,30 +439,6 @@ form.addEventListener('input', function (e) {
       break;
   }
 
-
-  /*   switch (true) {
-      case e.target.id === 'name':
-        checkName();
-        break;
-      case e.target.id === 'surname':
-        checkSurname();
-        break;
-      case e.target.id === 'email':
-        checkEmail();
-        break;
-      case e.target.id === 'password':
-        checkPassword();
-        break;
-      case e.target.id === 'password_confirmation':
-        checkConfirmPassword();
-        break;
-      case e.target.id.includes('specialization-'):
-             checkSpecializations();
-            break; 
-    } */
-
-
-
 })
 
 form.addEventListener('submit', function (e) {
@@ -484,7 +461,12 @@ form.addEventListener('submit', function (e) {
     isPasswordValid &&
     isConfirmPasswordValid;
   // isSpecializationValid;
-
+  console.log(isNameValid,
+    isSurnameValid,
+    isAddressValid,
+    isEmailValid,
+    isPasswordValid,
+    isConfirmPasswordValid)
   const submitButton = document.getElementById('submitButton');
   // submit to the server if the form is valid
   console.log(isFormValid);
