@@ -211,4 +211,5 @@
       </div>
     </div>
   </div>
+  @vite(['resources/js/validation.js'])
 @endsection
