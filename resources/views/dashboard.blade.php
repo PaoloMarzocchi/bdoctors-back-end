@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="fs-2 my_primary my-4 d-flex align-items-center justify-content-center">
-            <p class="bg-dark rounded px-2 py-1 text-center">
+            <p class="bg-secondary rounded px-2 py-1 text-center shadow">
                 {{ __('Dashboard') }}
             </p>
         </div>

@@ -7,17 +7,18 @@
         @if ($doctorProfile)
             <div class="row justify-content-between">
                 <div class="col-6 align-self-center">
-                    <h1 class="col-6 bg-dark rounded text-center my_primary py-1">
+                    <h1 class="col-6 bg-secondary rounded text-center my_primary py-1 shadow">
                         Dr. {{ $doctorProfile->user->name }} {{ $doctorProfile->surname }}
                     </h1>
                 </div>
 
                 <div class="col-6 justify-content-end d-flex align-items-center gap-3">
-                    <a class="btn btn-secondary my_primary text-decoration-none"
+                    <a class="btn btn-secondary my_primary text-decoration-none shadow"
                         href="{{ route('admin.doctorProfile.edit', $doctorProfile) }}">
                         Edit your profile
                     </a>
-                    <a class="btn btn-secondary my_primary text-decoration-none" target="_blank" rel="noopener noreferrer"
+                    <a class="btn btn-secondary my_primary text-decoration-none shadow" target="_blank"
+                        rel="noopener noreferrer"
                         href="http://localhost:5173/doctor-profile/{{ $doctorProfile->slug }}?source=back-end">
                         UI VIEW
                     </a>
@@ -60,7 +61,7 @@
                                 <div class="pb-2">
                                     <span class=""><strong>Specializations:</strong></span> <br>
                                     @foreach ($doctorProfile->specializations as $specialization)
-                                        <span class="badge bg-dark my_primary">{{ $specialization->name }}</span>
+                                        <span class="badge bg-dark my_primary shadow">{{ $specialization->name }}</span>
                                     @endforeach
                                 </div>
                             @else

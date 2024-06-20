@@ -8,10 +8,10 @@
     </div>
     <div class="my_container">
         <div class="d-flex justify-content-between my-4 align-items-center">
-            <h2 class="fs-2 my_primary z-3 bg-dark rounded px-2 py-1 text-center">
+            <h2 class="fs-2 my_primary z-3 bg-secondary rounded px-2 py-1 text-center shadow">
                 {{ __('Account') }}
             </h2>
-            <a class="btn btn-secondary my_primary" href="{{ route('admin.doctorProfile.index') }}">Show profile</a>
+            <a class="btn btn-secondary my_primary shadow" href="{{ route('admin.doctorProfile.index') }}">Show profile</a>
         </div>
 
 
