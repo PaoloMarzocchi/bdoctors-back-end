@@ -83,11 +83,14 @@
                     <div class="mb-3">
                         <label for="services" class="form-label">Services</label>
                         <textarea class="form-control rounded-end-0 h-100 @error('services') is-invalid @enderror" name="services"
-                            id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">
-                                                </textarea>
-                        <small id="servicesHelpId" class="form-text text-muted">Insert the service you provide</small>
+                            id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">{{ old('services', $doctorProfile->services) }}</textarea>
+                        <small id="servicesHelpId" class="form-text text-muted">
+                            Insert the service you provide
+                        </small>
                         @error('services')
-                            <div class="text-danger py-2">{{ $message }}</div>
+                            <div class="text-danger py-2">{{ $message }}
+
+                            </div>
                         @enderror
                     </div>
 
