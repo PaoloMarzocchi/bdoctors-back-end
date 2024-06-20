@@ -15,9 +15,9 @@
                         href="{{ route('admin.doctorProfile.edit', $doctorProfile) }}">
                         Edit your profile
                     </a>
-                    <a class="nav-link" target="_blank" rel="noopener noreferrer"
+                    <a class="btn btn-secondary my_primary text-decoration-none" target="_blank" rel="noopener noreferrer"
                         href="http://localhost:5173/doctor-profile/{{ $doctorProfile->slug }}">
-                        FRONT
+                        UI VIEW
                     </a>
                 </div>
             </div>

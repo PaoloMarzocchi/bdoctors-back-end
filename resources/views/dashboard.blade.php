@@ -2,14 +2,16 @@
 
 @section('content')
     <div class="container">
-        <h2 class="fs-2 my_primary my-4 text-center">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="fs-2 my_primary my-4 d-flex align-items-center justify-content-center">
+            <p class="bg-dark rounded px-2 py-1 text-center">
+                {{ __('Dashboard') }}
+            </p>
+        </div>
         <div class="row justify-content-center">
             <div class="col-6">
                 <div class="card h-100 border-0">
                     <div class="card-header rounded-5 text-center my_primary">
-                        {{ __('Docty') }}
+                        Docty &copy;
                     </div>
                     {{--
                     ################################################
@@ -36,9 +38,7 @@
                             <br>
                             <div class="col-8 align-self-end">
                                 <textarea rows="25" class="form-control text-end" name="" id="" rows="3"
-                                    placeholder="Here ?">
-                                    Try to ask '-statistics'..
-                                </textarea>
+                                    placeholder="Try to ask '-statistics'.."></textarea>
                             </div>
                             {{-- <div class="chat_main dflex">
                                 <div class="current_chat">
