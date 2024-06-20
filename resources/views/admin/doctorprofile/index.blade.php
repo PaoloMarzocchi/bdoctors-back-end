@@ -18,7 +18,7 @@
                         Edit your profile
                     </a>
                     <a class="btn btn-secondary my_primary text-decoration-none" target="_blank" rel="noopener noreferrer"
-                        href="http://localhost:5173/doctor-profile/{{ $doctorProfile->slug }}">
+                        href="http://localhost:5173/doctor-profile/{{ $doctorProfile->slug }}?source=back-end">
                         UI VIEW
                     </a>
                 </div>
