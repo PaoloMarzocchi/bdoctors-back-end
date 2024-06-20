@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.chat {
+  height: 500px;
+
+  .messageReceived {
+    color: #2e2e2e;
+    border-radius: 16px 16px 16px 3px;
+    max-width: 55%;
+    align-self: flex-start;
+    background-color: #ffcf3c;
+  }
+}
+
+.input_message {
+  background-color: lightgray;
+  align-items: center;
+
+  i {
+    color: grey;
+    padding: 0 1.5rem;
+  }
+
+  input[type=text] {
+    height: 45px;
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+}
