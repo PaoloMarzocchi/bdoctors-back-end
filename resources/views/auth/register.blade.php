@@ -174,25 +174,36 @@
                   {{ __('Choose your specializations *') }}
                 </label>
 
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+
+                <div class="specialization_wrapper d-flex rounded flex-wrap gap-2"
+                  @error('technologies') is-invalid @enderror">
+
                   @foreach ($specializations as $specialization)
                     <input name="specializations[]" type="checkbox" class="btn-check"
                       id="specialization-{{ $specialization->id }}" autocomplete="off"
                       value="{{ $specialization->id }}"
                       {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }} />
 
-                    <label class="btn btn-outline-warning text-dark my_overflow"
-                      for="specialization-{{ $specialization->id }}">{{ $specialization->name }}</label>
+                    <label class="specialization_label" for="specialization-{{ $specialization->id }}">
+                      <i class=" me-2 fa-solid text-warning {{ $specialization->icon }}"></i>
+                      <span>{{ $specialization->name }}</span>
+                    </label>
                   @endforeach
                 </div>
-                <small class="errorMessage "></small>
+                <small class="specialization_error_message text-danger "></small>
+
+
                 @error('specializations')
-                  <div class="errorMessage  py-2">{{ $message }}</div>
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
                 @enderror
+
+
               </div>
 
 
-              <div class="col-mn-12 mt-3 row text-danger">
+              <div class="col-mn-12 mt-5 row text-danger">
                 <p>
                   ( <span class="text-dark">*</span> ) Required fields.
                 </p>
