@@ -11,10 +11,13 @@
                 </div>
 
                 <div class="col justify-content-end d-flex align-items-center gap-3">
-
                     <a class="btn btn-secondary my_primary text-decoration-none"
                         href="{{ route('admin.doctorProfile.edit', $doctorProfile) }}">
                         Edit your profile
+                    </a>
+                    <a class="nav-link" target="_blank" rel="noopener noreferrer"
+                        href="http://localhost:5173/doctor-profile/{{ $doctorProfile->slug }}">
+                        FRONT
                     </a>
                 </div>
             </div>
@@ -76,8 +79,7 @@
                                         <div class="d-flex">
                                             <div class=" w-100">
                                                 <textarea class="form-control rounded-end-0 h-100 @error('services') is-invalid @enderror" name="services"
-                                                    id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">
-                                                </textarea>
+                                                    id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">{{ old('services', $doctorProfile->services) }}</textarea>
                                             </div>
                                             <button type="submit" class="btn rounded-start-0 btn-secondary my_primary">
                                                 Submit
