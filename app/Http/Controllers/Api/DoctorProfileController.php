@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DoctorProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorProfileController extends Controller
 {
@@ -15,17 +16,20 @@ class DoctorProfileController extends Controller
             [
                 'succcess' => true,
                 'doctors' => $doctors,
+                //what if we pass Auth / User
             ]
         );
     }
 
     public function show($slug)
     {
+        $user = Auth::user();
         $doctor = DoctorProfile::with('specializations', 'sponsorships', 'user')->where('slug', $slug)->first();
         if ($doctor) {
             return response()->json([
                 'success' => true,
                 'doctor' => $doctor,
+                'user' => $user,
             ]);
         } else {
             return response()->json(

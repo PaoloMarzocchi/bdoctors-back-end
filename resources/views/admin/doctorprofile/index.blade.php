@@ -5,25 +5,30 @@
         @include('partials.session-message')
         @include('partials.validation-message')
         @if ($doctorProfile)
-            <div class="row">
-                <div class="col">
-                    <h1>Dr. {{ $doctorProfile->user->name }} {{ $doctorProfile->surname }}</h1>
+            <div class="row justify-content-between">
+                <div class="col-6 align-self-center">
+                    <h1 class="col-6 bg-dark rounded text-center my_primary py-1">
+                        Dr. {{ $doctorProfile->user->name }} {{ $doctorProfile->surname }}
+                    </h1>
                 </div>
 
-                <div class="col justify-content-end d-flex align-items-center gap-3">
-
+                <div class="col-6 justify-content-end d-flex align-items-center gap-3">
                     <a class="btn btn-secondary my_primary text-decoration-none"
                         href="{{ route('admin.doctorProfile.edit', $doctorProfile) }}">
                         Edit your profile
                     </a>
+                    <a class="btn btn-secondary my_primary text-decoration-none" target="_blank" rel="noopener noreferrer"
+                        href="http://localhost:5173/doctor-profile/{{ $doctorProfile->slug }}">
+                        UI VIEW
+                    </a>
                 </div>
             </div>
 
-            <div class="row py-5 vh-100">
+            <div class="row py-5 vh-100 justify-content-between">
                 {{-- photo --}}
                 <div class="col-6">
                     @if ($doctorProfile->photo)
-                        <img width="600" style="object-fit: fill" class="img-fluid rounded h-100 border shadow"
+                        <img width="" style="object-fit: fill" class="img-fluid rounded h-100 border shadow"
                             loading="lazy" src="{{ asset('storage/' . $doctorProfile->photo) }}" alt="">
                     @else
                         <img width="600" style="object-fit: fill" class="img-fluid rounded h-100 border shadow"
@@ -76,8 +81,7 @@
                                         <div class="d-flex">
                                             <div class=" w-100">
                                                 <textarea class="form-control rounded-end-0 h-100 @error('services') is-invalid @enderror" name="services"
-                                                    id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">
-                                                </textarea>
+                                                    id="services" aria-describedby="servicesHelpId" placeholder="Your Services" value="" rows="6">{{ old('services', $doctorProfile->services) }}</textarea>
                                             </div>
                                             <button type="submit" class="btn rounded-start-0 btn-secondary my_primary">
                                                 Submit
