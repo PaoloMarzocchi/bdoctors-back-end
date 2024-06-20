@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
+
         Route::get('/', function () {
             return view('dashboard');
         });
