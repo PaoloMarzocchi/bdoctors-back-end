@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Account Information') }}
+            {{ __("Account's Information") }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
@@ -79,7 +79,9 @@
         </div>
 
         <div class="d-flex align-items-center gap-4">
-            <button class="btn my_primary btn-secondary fw-bold" type="submit">{{ __('Save') }}</button>
+            <button class="btn my_primary btn-secondary fw-bold shadow" type="submit">
+                {{ __('Save') }}
+            </button>
 
             @if (session('status') === 'profile-updated')
                 <script>
