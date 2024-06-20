@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Marino",
+    "email": "marinodilauro@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Simone",
+    "email": "simonecerri@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Simone",
+    "email": "simonenolberto@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Matteo",
+    "email": "matteostrazzera@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Paolo",
+    "email": "paolomarzocchi@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Anna",
+    "email": "annarossetti@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Luca",
+    "email": "lucamartini@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Giulia",
+    "email": "giulianeri@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Marco",
+    "email": "marcoferrari@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Sara",
+    "email": "saraverdi@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Francesco",
+    "email": "francescobianchi@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Chiara",
+    "email": "chiararossi@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Andrea",
+    "email": "andreapini@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Paola",
+    "email": "paolalombardi@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Matteo",
+    "email": "matteoneri@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Elena",
+    "email": "elenaricci@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Simone",
+    "email": "simonemoretti@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Laura",
+    "email": "lauramarini@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Davide",
+    "email": "davidegalli@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Alessia",
+    "email": "alessiasarti@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Stefano",
+    "email": "stefanofontana@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Federica",
+    "email": "federicacosta@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Alberto",
+    "email": "albertomonti@email.it",
+    "password": "password"
+  },
+  {
+    "name": "Marta",
+    "email": "martarizzo@email.it",
+    "password": "password"
+  }
+]

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class UserSeeder extends Seeder
 {
@@ -14,36 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users =
-            [
-                [
-                    'name' => 'Marino',
-                    'email' => 'marinodilauro@email.it',
-                    'password' => 'password',
-                ],
-                [
-                    'name' => 'Simone',
-                    'email' => 'simonecerri@email.it',
-                    'password' => 'password',
-
-                ],
-                [
-                    'name' => 'Simone',
-                    'email' => 'simonenolberto@email.it',
-                    'password' => 'password'
-                ],
-                [
-                    'name' => 'Matteo',
-                    'email' => 'matteostrazzera@email.it',
-                    'password' => 'password'
-                ],
-                [
-                    'name' => 'Paolo',
-                    'email' => 'paolomarzocchi@email.it',
-                    'password' => 'password'
-
-                ],
-            ];
+        $json = File::get('database/json/users.json');
+        $users = json_decode($json, true);
 
         foreach ($users as $user) {
             $newUser = new User();

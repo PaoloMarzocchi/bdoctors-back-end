@@ -6,6 +6,7 @@ use App\Models\DoctorProfile;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class DoctorProfileSeeder extends Seeder
@@ -15,54 +16,9 @@ class DoctorProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        $doctors =
-            [
-                [
-                    'user_id' => '1',
-                    'surname' => 'di Lauro',
-                    'cv' => null,
-                    'photo' => null,
-                    'address' => 'Via Uno 1',
-                    'telephone' => '1234567890',
-                    'services' => 'Visita Base'
-                ],
-                [
-                    'user_id' => '2',
-                    'surname' => 'Cerri',
-                    'cv' => null,
-                    'photo' => null,
-                    'address' => 'Via Due 2',
-                    'telephone' => '1234567890',
-                    'services' => 'Visita Premium'
-                ],
-                [
-                    'user_id' => '3',
-                    'surname' => 'Nolberto',
-                    'cv' => null,
-                    'photo' => null,
-                    'address' => 'Via Tre 3',
-                    'telephone' => '1234567890',
-                    'services' => 'Visita PRO'
-                ],
-                [
-                    'user_id' => '4',
-                    'surname' => 'Strazzera',
-                    'cv' => null,
-                    'photo' => null,
-                    'address' => 'Via Quattro 4',
-                    'telephone' => '1234567890',
-                    'services' => 'Visita MRI'
-                ],
-                [
-                    'user_id' => '5',
-                    'surname' => 'Marzocchi',
-                    'cv' => null,
-                    'photo' => null,
-                    'address' => 'Via Cinque 5',
-                    'telephone' => '1234567890',
-                    'services' => 'Visita brutta'
-                ],
-            ];
+        $json = File::get('database/json/doctorProfiles.json');
+        $doctors = json_decode($json, true);
+
         foreach ($doctors as $key => $doctor) {
             $newDoc = new DoctorProfile();
             $newDoc->user_id = User::find($key + 1)->id;
