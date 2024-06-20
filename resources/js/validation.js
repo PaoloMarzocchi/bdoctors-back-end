@@ -37,37 +37,6 @@ function isEmailValid(email) {
   return regex.test(email);
 };
 
-/* function isPasswordSecure(password) {
-   const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@?$%&*])(?=.{8,})");
-   return regex.test(password);
-
-  password = passwordEl.value;
-
-  const min = 8;
-
-  const regexWeak = /[a-z]/g;
-  const regexMedium = /[A-Z]/g;
-  const regexStrong = /[0-9]/g;
-  const regexStronger = /.[@, $, !, %, *, ?, &, ^, #]/g;
-
-  let passwordStrenght = 0;
-  let regex = '';
-
-  if (isBetween(password.trim().length, min)) {
-    passwordStrenght++;
-  } else if (regexWeak.test(password)) {
-    passwordStrenght++;
-  } else if (regexMedium.test(password)) {
-    passwordStrenght++;
-  } else if (regexStrong.test(password)) {
-    passwordStrenght++;
-  } else if (regexStronger.test(password)) {
-    passwordStrenght++;
-  }
-
-  console.log(passwordStrenght);
-  return passwordStrenght;
-}; */
 
 function showError(input, message) {
 
@@ -108,6 +77,30 @@ function showSuccess(input) {
   // hide the error message
   const error = formField.querySelector('small');
   error.textContent = '';
+}
+
+function showSpecializationError(message) {
+  // get the form-field element
+  const input = document.querySelector('.specialization_wrapper');
+
+  // add error class 
+  input.classList.add('specError');
+
+  // show the error message
+  const error = document.querySelector('.specialization_error_message');
+  error.innerHTML = message;
+}
+
+function removeSpecializationError() {
+  // get the form-field element
+  const input = document.querySelector('.specialization_wrapper');
+
+  // remove error class 
+  input.classList.remove('specError');
+
+  // hide the error message
+  const error = document.querySelector('.specialization_error_message');
+  error.innerHTML = '';
 }
 
 function checkName() {
@@ -172,84 +165,6 @@ function checkEmail() {
   }
   return valid;
 }
-
-/* function checkPassword() {
-  let valid = false;
-
-  const passwordRules = document.getElementById('passwordRules');
-  const password = passwordEl.value.trim();
-
-  const min = 8;
-
-  const regexWeak = /[a-z]/;
-  const regexMedium = /[A-Z]/;
-  const regexStrong = /[0-9]/;
-  const regexStronger = /[@$!%*?&^#]/;
-
-  console.log(isBetween(password.length, min, Infinity));
-  console.log(regexWeak.test(password));
-  console.log(regexMedium.test(password));
-  console.log(regexStrong.test(password));
-  console.log(regexStronger.test(password));
-
-  const weakRule = document.getElementById('weak');
-  const weakIcon = weakRule.querySelector('.weakIcon');
-
-  const mediumRule = document.getElementById('medium');
-  const mediumIcon = mediumRule.querySelector('.mediumIcon');
-
-  const strongRule = document.getElementById('strong');
-  const strongIcon = strongRule.querySelector('.strongIcon');
-
-  const strongerRule = document.getElementById('stronger');
-  const strongerIcon = strongerRule.querySelector('.strongerIcon');
-
-  const strongestRule = document.getElementById('strongest');
-  const strongestIcon = strongestRule.querySelector('.strongestIcon');
-
-  if (!isRequired(password)) {
-    showError(passwordEl, 'Password cannot be blank.');
-  } else if (!isBetween(password.length, min, Infinity)) {
-    showError(passwordEl);
-    weakIcon.classList.add('fa-triangle-exclamation');
-    weakIcon.classList.remove('fa-circle-check', 'text-success');
-    passwordRules.classList.remove('d-none');
-  } else if (!regexWeak.test(password)) {
-    showError(passwordEl);
-    mediumIcon.classList.add('fa-triangle-exclamation');
-    mediumIcon.classList.remove('fa-circle-check', 'text-success');
-  } else if (!regexMedium.test(password)) {
-    showError(passwordEl);
-    strongIcon.classList.add('fa-triangle-exclamation');
-    strongIcon.classList.remove('fa-circle-check', 'text-success');
-  } else if (!regexStrong.test(password)) {
-    showError(passwordEl);
-    strongerIcon.classList.add('fa-triangle-exclamation');
-    strongerIcon.classList.remove('fa-circle-check', 'text-success');
-  } else if (!regexStronger.test(password)) {
-    showError(passwordEl);
-    strongestIcon.classList.add('fa-triangle-exclamation');
-    strongestIcon.classList.remove('fa-circle-check', 'text-success');
-  } else {
-    weakIcon.classList.remove('fa-triangle-exclamation');
-    mediumIcon.classList.remove('fa-triangle-exclamation');
-    strongIcon.classList.remove('fa-triangle-exclamation');
-    strongerIcon.classList.remove('fa-triangle-exclamation');
-    strongestIcon.classList.remove('fa-triangle-exclamation');
-
-    weakIcon.classList.add('fa-circle-check', 'text-success');
-    mediumIcon.classList.add('fa-circle-check', 'text-success');
-    strongIcon.classList.add('fa-circle-check', 'text-success');
-    strongerIcon.classList.add('fa-circle-check', 'text-success');
-    strongestIcon.classList.add('fa-circle-check', 'text-success');
-
-    showSuccess(passwordEl);
-    passwordRules.classList.add('passwordRulesSuccess');
-    valid = true;
-  }
-
-  return valid;
-} */
 
 function toggleIcon(icon, isValid) {
   if (isValid) {
@@ -380,22 +295,31 @@ showConfirmedPasswordButton.addEventListener('click', function () {
   }
 })
 
-/* function checkSpecializations() {
+function checkSpecializations() {
   let valid = false;
-  console.log(specializationEl);
 
-  specializationEl.forEach(element => {
-    if (!element.classList.contains('checked')) {
-      showError(specializationEl, 'Name cannot be blank.');
-    } else {
-      // showSuccess(specializationEl);
-      showError(specializationEl, 'Name cannot be blank.');
-      valid = true;
-    }
-  });
+  // console.log(specializationEl);
+
+  // Convert the nodelist in array
+  const specializationArray = Array.from(specializationEl);
+
+  // Check if at least one element has the "checked" property
+  const hasChecked = specializationArray.some(element => element.checked);
+
+  // console.log(hasChecked);
+
+  if (!hasChecked) {
+    // console.log('error');
+    showSpecializationError('Select at least one specialization.');
+  } else {
+    // console.log('success');
+    removeSpecializationError()
+    valid = true;
+  }
+
 
   return valid;
-} */
+}
 
 function debounce(fn, delay = 500) {
 
@@ -413,7 +337,13 @@ function debounce(fn, delay = 500) {
   };
 };
 
-form.addEventListener('input', function (e) {
+Array.from(specializationEl).forEach(element => {
+  element.addEventListener('click', function (e) {
+    checkSpecializations()
+  })
+});
+
+form.addEventListener('input', debounce(function (e) {
   // prevent the form from submitting
   e.preventDefault();
 
@@ -439,10 +369,12 @@ form.addEventListener('input', function (e) {
       break;
   }
 
-})
+}))
 
 form.addEventListener('submit', function (e) {
 
+
+  checkSpecializations();
 
   // validate forms
   let isNameValid = checkName();
@@ -451,7 +383,7 @@ form.addEventListener('submit', function (e) {
   let isEmailValid = checkEmail();
   let isPasswordValid = checkPassword();
   let isConfirmPasswordValid = checkConfirmPassword();
-  // let isSpecializationValid = checkSpecializations();
+  let isSpecializationValid = checkSpecializations();
 
 
   let isFormValid = isNameValid &&
@@ -459,18 +391,22 @@ form.addEventListener('submit', function (e) {
     isAddressValid &&
     isEmailValid &&
     isPasswordValid &&
-    isConfirmPasswordValid;
-  // isSpecializationValid;
+    isConfirmPasswordValid &&
+    isSpecializationValid;
+
   console.log(isNameValid,
     isSurnameValid,
     isAddressValid,
     isEmailValid,
     isPasswordValid,
-    isConfirmPasswordValid)
-  const submitButton = document.getElementById('submitButton');
+    isConfirmPasswordValid,
+    isSpecializationValid)
+
   // submit to the server if the form is valid
   console.log(isFormValid);
+
   if (!isFormValid) {
+
     // prevent the form from submitting
     e.preventDefault();
   }

@@ -1,3 +1,5 @@
+/* #region :::: VALIDATION :::: */
+
 .inputWrapper {
   position: relative;
 
@@ -78,3 +80,13 @@
   background-color: #f2fff0;
   color: #009327;
 }
+
+.specError {
+  padding: 12px;
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 5px 0.1rem #ff000032;
+  background-color: #fff0f0;
+  color: #ff0000;
+}
+
+/* #endregion :::: VALIDATION :::: */

@@ -2,6 +2,10 @@
     --primary: #f77b02;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .my_overflow {
     /* overflow: auto; */
     white-space: nowrap;
@@ -101,3 +105,45 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+/* #region :::: SPECIALIZATIONS :::: */
+
+
+.btn-check {
+
+    &:checked {
+        +.specialization_label {
+            border-color: #009327;
+            color: #009327;
+
+            span::after {
+                content: "\f00c";
+                font-family: "Font Awesome\ 5 Free";
+                font-weight: 900;
+                color: #009327;
+                margin-left: 6px;
+            }
+        }
+    }
+}
+
+.specialization_label {
+    font-size: 0.9rem;
+    color: #2e2e2e;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 8px;
+    height: 32px;
+    border: 1px solid #b5b5b5;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+        border-color: #f77b02;
+    }
+}
+
+
+/* #endregion :::: SPECIALIZATIONS :::: */
