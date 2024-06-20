@@ -14,7 +14,7 @@ class DoctorSponsorshipSeeder extends Seeder
      */
     public function run(): void
     {
-        $doctors = DoctorProfile::all();
+        $doctors = DoctorProfile::all()->random(6);
 
         foreach ($doctors as $doc) {
             $doc->sponsorships()->attach(
