@@ -51,7 +51,7 @@
                                 </span>
                             @enderror
 
-                            <button type="submit" class="btn btn-danger btn-md text-dark">
+                            <button type="submit" class="btn btn-danger btn-md text-dark shadow">
                                 {{ __('Delete Account') }}
                             </button>
                             <!--  -->
