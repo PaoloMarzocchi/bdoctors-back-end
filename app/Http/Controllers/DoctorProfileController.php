@@ -97,6 +97,8 @@ class DoctorProfileController extends Controller
 
         if ($request->has('specializations')) {
             $doctorProfile->specializations()->sync($validated['specializations']);
+        } else {
+            $doctorProfile->specializations()->sync([]);
         }
         return to_route('admin.doctorProfile.index')->with('status', 'Profile information updated');
 
