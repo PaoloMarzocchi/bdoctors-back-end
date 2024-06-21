@@ -162,7 +162,7 @@
             </div>
           @endif
 
-          <div class="mb-4 row text-danger">
+          <div class="col-md-12 my-5 row text-danger">
             <p>
               ( <span class="text-dark">*</span> ) Required fields.
             </p>
