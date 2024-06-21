@@ -35,6 +35,22 @@
     color: #ff0000;
   }
 
+  #address+.fa-circle-check {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #009327;
+  }
+
+  .fa-circle-check+.fa-circle-exclamation {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff0000;
+  }
+
   .error,
   .error:focus {
     border-color: #ff0000;

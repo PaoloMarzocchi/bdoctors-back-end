@@ -94,9 +94,6 @@
                 @enderror
               </div>
 
-
-
-
               <div class="col-md-6">
                 <label for="password" class="col-form-label">
                   {{ __('Password *') }}
@@ -203,7 +200,7 @@
               </div>
 
 
-              <div class="col-mn-12 mt-5 row text-danger">
+              <div class="col-md-12 mt-5 row text-danger">
                 <p>
                   ( <span class="text-dark">*</span> ) Required fields.
                 </p>
@@ -222,5 +219,5 @@
       </div>
     </div>
   </div>
-  @vite(['resources/js/validation.js'])
+  @vite(['resources/js/validationRegister.js'])
 @endsection
