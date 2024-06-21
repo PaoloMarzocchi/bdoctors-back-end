@@ -40,8 +40,10 @@ class DatabaseSeeder extends Seeder
             SponsorshipSeeder::class,
             DoctorSpecializationSeeder::class,
             DoctorSponsorshipSeeder::class,
+            MessageSeeder::class,
             VoteSeeder::class,
             DoctorVoteSeeder::class,
+
         ]);
     }
 }

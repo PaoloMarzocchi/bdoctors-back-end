@@ -90,7 +90,7 @@
                             </div> 
                         </div> --}}
                         </div>
-
+                        
                         <div class="input_message rounded p-2 mt-3 d-flex">
                             <a href="#"><i class="hide_sm fa-regular fa-xl fa-face-smile"></i></a>
                             <input type="text" placeholder="Scrivi un messaggio" v-model.trim="newMessage.message"
@@ -101,6 +101,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-6">
                 <div class="row">
                     {{--
@@ -119,7 +120,9 @@
                         </a>
                     </div>
                     <div class="col-6 p-0 align-self-end d-flex align-items-center p-3">
-                        <a class="text-decoration-none" href="">
+
+                        <a class="text-decoration-none" href="{{ route('admin.messages.index') }}">
+
                             <div class="my_square shadow">
                                 <img class="rounded-5 my_edge_photo" src="/img/messages.png" alt="">
                                 <span>
@@ -149,6 +152,7 @@
                         </a>
                     </div>
                     <div class="col-6 p-0 align-self-start d-flex align-items-center p-3">
+
                         <a class="text-decoration-none" href="">
                             <div class="my_square shadow">
                                 <img class="rounded-5" src="/img/statistics.png" alt="">
