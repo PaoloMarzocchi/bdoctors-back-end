@@ -3,6 +3,7 @@
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +45,10 @@ Route::middleware(['auth', 'verified'])
             'doctor_profiles' => 'doctor_profile:slug',
         ]);
 
+
         Route::resource('/messages', MessageController::class);
+        Route::resource('/vote', VoteController::class);
+
     });
 
 require __DIR__ . '/auth.php';
