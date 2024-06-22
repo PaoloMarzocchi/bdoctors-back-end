@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             VoteSeeder::class,
             DoctorVoteSeeder::class,
-
+            ReviewSeeder::class
         ]);
     }
 }
