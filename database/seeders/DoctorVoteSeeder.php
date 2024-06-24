@@ -14,15 +14,17 @@ class DoctorVoteSeeder extends Seeder
      */
     public function run(): void
     {
-        $doctors = DoctorProfile::all()->random(10);
+        $doctors = DoctorProfile::all()->random(20);
 
         foreach ($doctors as $doc) {
-            $doc->votes()->attach(
-                Vote::inRandomOrder()->take(rand(1, 3))->pluck('id'),
-                [
-                    'created_at' => date('Y-m-d')
-                ]
-            );
+            for ($i = 0; $i < 30; $i++) {
+                $doc->votes()->attach(
+                    Vote::inRandomOrder()->take(rand(1, 5))->pluck('id'),
+                    [
+                        'created_at' => date('Y-m-d')
+                    ]
+                );
+            }
         }
     }
 }

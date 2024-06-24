@@ -30,6 +30,7 @@ class ReviewController extends Controller
                 'errors' => $val_data->errors()
             ]);
         }
+
         Review::create($data);
 
         // return the response
