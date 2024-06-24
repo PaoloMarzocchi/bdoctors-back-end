@@ -10,7 +10,7 @@ class Vote extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_vote'];
+    protected $fillable = ['doctor_profile_id', 'vote_id'];
 
     /**
      * The doctordetails that belong to the Sponsorship

@@ -6,6 +6,7 @@ use App\Models\Vote;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\DoctorProfile;
 
 
 class VoteController extends Controller
@@ -17,7 +18,8 @@ class VoteController extends Controller
         $validatedData = Validator::make(
             $data,
             [
-                'customer_vote' => 'min:0|max:5',
+                'doctor_profile_id' => 'exists:doctor_profiles,id',
+                'vote_id' => 'exists:votes,id',
             ]
         );
 
@@ -28,7 +30,11 @@ class VoteController extends Controller
             ]);
         }
 
-        $newVote = Vote::create($data);
+        //$newVote = Vote::create($data);
         //$newVote = Vote::create($data['customer_vote']);
+        $doctors = DoctorProfile::all();
+        $doctor = $doctors->find($data['doctor_profile_id']);
+
+        $doctor->votes()->attach($data);
     }
 }
