@@ -11,7 +11,7 @@ class StoreVoteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,7 +22,6 @@ class StoreVoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vote' => 'integer|min:1|max:5'
-        ];
+            /* 'customer_vote' => 'integer|min:0|max:5' */];
     }
 }
