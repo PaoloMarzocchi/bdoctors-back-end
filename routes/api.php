@@ -4,6 +4,7 @@ use App\Models\DoctorProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DoctorProfileController;
+use App\Http\Controllers\API\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('doctors/{doctor}', [DoctorProfileController::class, 'show']);
 
 Route::get('research/{specialization}', [DoctorProfileController::class, 'advancedSearch']);
 Route::get('sponsoredDoctors', [DoctorProfileController::class, 'sponsored']);
+
+Route::post('contacts', [MessageController::class, 'store']);
