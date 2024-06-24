@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\DoctorProfile;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DoctorProfileController extends Controller
 {
@@ -43,7 +45,7 @@ class DoctorProfileController extends Controller
 
     public function sponsored()
     {
-        $sponsoredDoctors = DoctorProfile::with('specializations', 'sponsorships', 'user')->whereHas('sponsorships')->get();
+        $sponsoredDoctors = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes')->whereHas('sponsorships')->get();
 
         return response()->json([
             'success' => true,
@@ -52,10 +54,17 @@ class DoctorProfileController extends Controller
     }
 
 
-    public function advancedSearch($name)
+    public function specializationSearch($name)
     {
         // $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user')->whereRelation('specializations', 'specialization_id', '=', $id)->get();
-        $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user')->whereRelation('specializations', 'name', '=', $name)->get();
+
+
+        //SELEZIONATI PER SPECIALIZZAZIONE ORDINATI PER SPONSORSHIP
+        $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes')->whereRelation('specializations', 'name', '=', $name)->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
+            ->select('doctor_profiles.*', DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'))
+            ->orderBy('has_sponsorship', 'desc')
+            ->get();
+
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
 }
