@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DoctorProfileController;
 use App\Http\Controllers\API\MessageController;
+use App\Http\Controllers\Api\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::get('research/{specialization}', [DoctorProfileController::class, 'advanc
 Route::get('sponsoredDoctors', [DoctorProfileController::class, 'sponsored']);
 
 Route::post('contacts', [MessageController::class, 'store']);
+Route::post('votes', [VoteController::class, 'store']);
