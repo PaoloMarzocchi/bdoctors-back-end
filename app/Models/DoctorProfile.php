@@ -33,12 +33,22 @@ class DoctorProfile extends Model
     }
 
     /**
-     * The sponsorships that belong to the DoctorProfile
+     * The vote that belong to the DoctorProfile
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function votes(): BelongsToMany
     {
         return $this->belongsToMany(Vote::class);
+    }
+
+    /**
+     * The review that belong to the DoctorProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function reviews(): BelongsToMany
+    {
+        return $this->belongsToMany(Review::class);
     }
 }
