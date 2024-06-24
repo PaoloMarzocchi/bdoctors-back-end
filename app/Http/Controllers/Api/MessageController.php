@@ -26,11 +26,16 @@ class MessageController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'errors' => $validator->errors(),
-                'data' => $data,
+                'errors' => $validator->errors()
             ]);
         };
 
-        $newMessage = Message::create($data);
+        Message::create($data);
+
+        // return the response
+        return response()->json([
+            'success' => true,
+            'message' => 'Message sent!'
+        ]);
     }
 }
