@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,10 @@ Route::middleware(['auth', 'verified'])
         ]);
 
         Route::resource('/vote', VoteController::class);
+        Route::resource('/sponsorship', SponsorshipController::class)->parameters([
+
+            'sponsorhips' => 'sponsorhip:slug',
+        ]);
     });
 
 require __DIR__ . '/auth.php';

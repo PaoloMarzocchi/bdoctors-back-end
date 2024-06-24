@@ -158,6 +158,16 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-6 p-0 align-self-start d-flex align-items-center p-3">
+                        <a class="text-decoration-none" href="{{ route('admin.sponsorship.index') }}">
+                            <div class="my_square shadow">
+                                <img class="rounded-5" src="/img/statistics.png" alt="">
+                                <span>
+                                    SPONSORSHIPS
+                                </span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
