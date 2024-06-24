@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DoctorProfile extends Model
 {
@@ -45,10 +47,10 @@ class DoctorProfile extends Model
     /**
      * The review that belong to the DoctorProfile
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function reviews(): BelongsToMany
+    public function reviews(): HasMany
     {
-        return $this->belongsToMany(Review::class);
+        return $this->hasMany(Review::class);
     }
 }
