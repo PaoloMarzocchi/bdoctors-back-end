@@ -3,6 +3,7 @@
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +50,11 @@ Route::middleware(['auth', 'verified'])
 
         Route::resource('/messages', MessageController::class);
         Route::resource('/vote', VoteController::class);
+
+        Route::resource('/sponsorship', SponsorshipController::class);
+
         Route::resource('/reviews', ReviewController::class);
+
     });
 
 require __DIR__ . '/auth.php';
