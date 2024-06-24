@@ -16,8 +16,8 @@ class MessageController extends Controller
         $validator = Validator::make($data, [
 
             'doctor_profile_id' => 'required',
-            'sender_first_name' => 'required',
-            'sender_last_name' => 'required',
+            'sender_first_name' => 'required|min:2',
+            'sender_last_name' => 'required|min:5',
             'email' => 'required|email',
             'message_text' => 'required'
 
