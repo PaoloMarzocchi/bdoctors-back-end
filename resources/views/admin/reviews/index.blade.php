@@ -1,11 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-  <div class="container py-5">
+  <div class="container my-4">
     @include('partials.session-message')
     @include('partials.validation-message')
     @if ($reviews)
       <div class="container">
+
+        <h2 class="display-5 fw-bold my_primary my-5">Your reviews</h2>
+
         <div class="row">
 
           <div class="col">

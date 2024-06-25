@@ -4,6 +4,152 @@
   box-sizing: border-box;
 }
 
+/* #region :::: DASHBOARD :::: */
+
+.dashboard_container {
+  height: 100vh;
+  overflow-y: hidden;
+
+  .view {
+    overflow-y: auto;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 260px;
+    min-width: 60px;
+    flex-shrink: 0;
+    background-color: var(--light-3);
+
+    .nav-pills {
+
+      .nav-item {
+        transition: background-color ease-in-out 0.3s;
+        border-radius: 8px;
+
+        &:hover {
+          background-color: var(--secondary);
+          cursor: pointer;
+        }
+
+        i {
+          color: var(--primary);
+        }
+
+        &.active {
+          color: var(--light-2);
+          background-color: var(--primary-hover);
+
+          i {
+            color: var(--light-2);
+          }
+        }
+
+        .nav-link.active {
+          color: var(--light-2);
+          background-color: var(--primary-hover);
+        }
+
+        a {
+          text-decoration: none;
+          color: var(--dark-3);
+        }
+
+      }
+
+      .dropdown {
+
+        .dropdown-toggle:hover {
+          cursor: pointer;
+        }
+
+        .dropdown-menu {
+          background-color: var(--light-3);
+
+          .dropdown-item {
+            transition: background-color ease-in-out 0.3s;
+            border-radius: 8px;
+
+            &:hover {
+              background-color: var(--secondary);
+              cursor: pointer;
+            }
+
+            color: var(--dark-3);
+
+            i {
+              color: var(--primary);
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  /* VIEW */
+  .section_title {
+    text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.7)
+  }
+
+  .messages {
+    background-image: url('/img/messages_green.png');
+    background-position: bottom -700px right -235px;
+  }
+
+  .reviews {
+    background-image: url('/img/reviews_green.png');
+    background-position: bottom -150px right -95px;
+  }
+
+  .votes {
+    background-image: url('/img/votes_green.png');
+    background-position: bottom -335px right -185px;
+  }
+
+  .sponsorships {
+    background-image: url('/img/sponsorship_green.png');
+    background-position: bottom -150px right -195px;
+  }
+
+  .messages,
+  .reviews,
+  .votes,
+  .sponsorships {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+  }
+
+  .message,
+  .review,
+  .vote,
+  .sponsorship {
+    background: rgba(162, 160, 164, 0.51);
+    border-radius: 16px;
+    backdrop-filter: blur(6.5px);
+    border: 1px solid rgba(162, 160, 164, 0.5);
+
+    .name {
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .email {
+      font-size: 0.9rem;
+    }
+
+    .date {
+      font-size: 0.7rem;
+    }
+  }
+
+  .sponsorship_list {
+    margin-bottom: 4rem
+  }
+}
+
+/* #endregion :::: DASHBOARD :::: */
 .chat {
   height: 500px;
 
