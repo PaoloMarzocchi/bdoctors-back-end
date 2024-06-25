@@ -1,8 +1,8 @@
 <div class="sidebar rounded-3 shadow d-flex flex-column flex-shrink-0 p-3 m-2">
 
   {{-- BDoctors Logo --}}
-  <a href="{{ url('/') }}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-    <img width="50" src="../img/BDoctors_transparent.png" class="rounded-circle align-self-center">
+  <a href="{{ url('/') }}" class="d-flex align-items-center link-body-emphasis text-decoration-none gap-3">
+    <img width="60" src="/img/BDoctors_transparent.png" class="rounded-circle align-self-center">
     <span class="fs-4">BDoctors</span>
   </a>
 
@@ -81,11 +81,10 @@
     <a class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
       data-bs-toggle="dropdown" aria-expanded="false">
       @if ($doctorProfile->photo)
-        <img width="32" height="32" style="object-fit: fill" class="img-fluid rounded-circle me-2" loading="lazy"
+        <img class="profile_img img-fluid rounded-circle me-2" loading="lazy"
           src="{{ asset('storage/' . $doctorProfile->photo) }}" alt="">
       @else
-        <img width="32" height="32" style="object-fit: fill" class="img-fluid rounded-circle me-2" loading="lazy"
-          src="/img/no-image.jpg" alt="">
+        <img class="profile_img img-fluid rounded-circle me-2" loading="lazy" src="/img/no-image.jpg" alt="">
       @endif
 
       {{ Auth::user()->name . ' ' . $doctorProfile->surname }}

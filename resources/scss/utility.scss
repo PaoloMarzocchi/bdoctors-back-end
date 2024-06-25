@@ -8,6 +8,14 @@ body {
     font-style: normal;
 }
 
+.bg_primary {
+    background-color: var(--primary);
+}
+
+.bg_secondary {
+    background-color: var(--secondary);
+}
+
 .my_overflow {
     /* overflow: auto; */
     white-space: nowrap;
@@ -70,25 +78,48 @@ body {
     height: 100vh;
 }
 
-.my_image_right {
+.edit_image_right {
     position: relative;
 
     img {
         position: absolute;
         right: 5vw;
-        top: -15vh;
+        top: 0vh;
         max-width: 600px;
     }
 }
 
-.my_image_left {
+.edit_image_left {
     position: relative;
 
     img {
         position: absolute;
-        left: 5vw;
-        top: 30vh;
-        max-width: 1000px;
+        left: -2vw;
+        top: 13vh;
+        width: 800px;
+        transform: scaleX(-1);
+    }
+}
+
+.image_right {
+    position: relative;
+
+    img {
+        position: absolute;
+        right: -8vw;
+        top: 7vh;
+        max-width: 800px;
+    }
+}
+
+.image_left {
+    position: relative;
+
+    img {
+        position: absolute;
+        left: -9vw;
+        top: 7vh;
+        width: 600px;
         transform: scaleX(-1);
     }
 }
@@ -126,6 +157,13 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.wrapper {
+    background: rgba(230, 230, 230, 0.5);
+    border-radius: 16px;
+    backdrop-filter: blur(6.5px);
+    border: 1px solid rgba(162, 160, 164, 0.5);
 }
 
 /* #region :::: SPECIALIZATIONS :::: */
