@@ -1,5 +1,16 @@
 :root {
-    --primary: #f77b02;
+    --primary: #186143;
+    --primary-hover: #307558;
+    --primary-active: #1E4837;
+    --secondary: #a0cabf;
+    --secondary-hover: #85a79e;
+    --secondary-active: #78a89c;
+    --background-light-1: #fff;
+    --background-light-2: #f5eefa;
+    --background-dark-1: #79747e;
+    --background-dark-2: #322f37;
+    --background-dark-3: #1d1a22;
+    --background-dark-4: #000;
 }
 
 * {
@@ -13,6 +24,26 @@
 
 .my_primary {
     color: var(--primary);
+}
+
+.my_btn_primary {
+    background-color: var(--primary);
+    color: #fff;
+
+    &:hover {
+        color: #fff;
+        background-color: var(--primary-hover);
+    }
+}
+
+.my_btn_secondary {
+    background-color: var(--secondary);
+    color: #fff;
+
+    &:hover {
+        color: #fff;
+        background-color: var(--secondary-hover);
+    }
 }
 
 .my_square {
@@ -129,21 +160,89 @@
 
 .specialization_label {
     font-size: 0.9rem;
-    color: #2e2e2e;
+    color: #2d2d2d;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 6px 8px;
     height: 32px;
-    border: 1px solid #b5b5b5;
+    border: 1px solid #2d2d2d;
     border-radius: 8px;
 
     &:hover {
         cursor: pointer;
-        border-color: #f77b02;
+        border-color: var(--primary);
+        background-color: var(--secondary);
     }
 }
 
 
 /* #endregion :::: SPECIALIZATIONS :::: */
+
+
+/* #region :::: LOGIN FORM :::: */
+
+.login_form {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 4rem;
+
+    &::before {
+        position: absolute;
+        left: -45%;
+        top: 4%;
+        content: "";
+        width: 450px;
+        height: 500px;
+        background-color: var(--secondary);
+        transform: rotate(45deg);
+        z-index: 1;
+        border-radius: 30px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.082);
+    }
+
+    .form_body {
+        position: relative;
+        z-index: 2;
+
+        .form_title {
+            color: #2d2d2d;
+        }
+    }
+}
+
+/* #endregion :::: LOGIN FORM :::: */
+
+/* #region :::: REGISTRATION FORM :::: */
+
+.registration_form {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 4.5rem;
+
+    &::before {
+        position: absolute;
+        left: -47%;
+        top: -28%;
+        content: "";
+        width: 800px;
+        height: 900px;
+        background-color: var(--secondary);
+        transform: rotate(45deg);
+        z-index: 1;
+        border-radius: 30px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.082);
+    }
+
+    .form_body {
+        position: relative;
+        z-index: 2;
+
+        .form_title {
+            color: #2d2d2d;
+        }
+    }
+}
+
+/* #endregion :::: REGISTRATION FORM :::: */

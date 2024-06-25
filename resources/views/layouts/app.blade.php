@@ -10,7 +10,7 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title>Bdoctors</title>
-    <link rel="icon" href="/img/logo.png">
+    <link rel="icon" href="/img/BDoctors_transparent.png">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

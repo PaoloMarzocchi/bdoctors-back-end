@@ -26,7 +26,12 @@ class DoctorProfileController extends Controller
     public function show($slug)
     {
         $user = Auth::user();
-        $doctor = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes')->where('slug', $slug)->first();
+
+        $doctor = DoctorProfile::with(['specializations', 'sponsorships', 'reviews' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }, 'user', 'votes'])
+            ->where('slug', $slug)->first();
+
         if ($doctor) {
             return response()->json([
                 'success' => true,
@@ -84,10 +89,9 @@ class DoctorProfileController extends Controller
             ->select('doctor_profiles.*', DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'))
             ->orderBy('has_sponsorship', 'desc')
             ->distinct()
-            ->get(); */ //questa è quella corretta!!
+            ->get(); */
 
-
-        /* Questa funziona come URL ma dà CORS policy error se si filtrano i risultati*/
+        /* IT FINALLY WORKS */
         $searchResults =
             DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes')
             ->join('users', 'doctor_profiles.user_id', '=', 'users.id')

@@ -6,21 +6,11 @@
         @include('partials.validation-message')
         @if ($messages)
             <div class="container">
+                <h3 class="text-center mb-4">Hi dr. {{ $doctor->surname }}, here are the messages from your patients</h3>
                 <div class="row">
-                    {{-- <div class="col">
-                        You got new messages:
-                        @foreach ($messages as $message)
-                            <div class="card">
-                                <span><strong>from: </strong> {{ $message->sender_first_name }}
-                                    {{ $message->sender_last_name }}</span>
-                                <span><strong>at:</strong> {{ $message->created_at }}</span>
-                                <span><strong>message:</strong> {{ $message->message_text }}</span>
-                            </div>
-                        @endforeach
-                    </div> --}}
                     <div class="col">
                         <div class="table-responsive">
-                            <table class="table table-light border border-2 table-striped table-bordered text-center">
+                            <table class="table border table-light table-striped table-bordered text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col">Sender</th>
@@ -30,7 +20,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($messages as $message)
+                                    @foreach ($messages as $message)
                                         <tr class="">
                                             <td scope="row">{{ $message->sender_first_name }}
                                                 {{ $message->sender_last_name }}</td>
@@ -45,7 +35,7 @@
                                             </td>
 
                                             <td>
-                                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                     data-bs-target="#modalId-{{ $message->id }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </button>
@@ -89,14 +79,11 @@
                                             </td>
 
                                         </tr>
-
-                                    @empty
-                                    @endforelse
-
+                                    @endforeach
                                 </tbody>
-
-
                             </table>
+                            {{ $messages->links() }}
+
                         </div>
                     </div>
                 </div>

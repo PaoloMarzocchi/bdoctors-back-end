@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DoctorProfile;
 
 class ReviewController extends Controller
 {
@@ -14,8 +15,12 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
-        return view('admin.reviews.index', compact('reviews'));
+        $reviews = Review::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->paginate(5);
+        $reviewsNumber = count($reviews);
+        $doctor = DoctorProfile::find(Auth::id());
+        // dd($reviews);
+
+        return view('admin.reviews.index', compact('reviews', 'reviewsNumber', 'doctor'));
     }
 
     /**

@@ -15,6 +15,7 @@ class VoteController extends Controller
      */
     public function index()
     {
+
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
         $votes = $user->doctorProfile->votes;
@@ -26,7 +27,7 @@ class VoteController extends Controller
         }
         $average = $sum / $numberVotes;
 
-        return view('admin.vote.index', compact('votes', 'average', 'doctorProfile'));
+        return view('admin.vote.index', compact('votes', 'average', 'doctorProfile', 'numberVotes'));
     }
 
     /**
