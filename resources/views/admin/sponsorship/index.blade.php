@@ -1,16 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-  <div class="container my-4">
 
-    <div class=" my-5">
-      <h2 class="display-5 fw-bold my_primary">Our sponsorships</h2>
+    <div class="container py-4">
+        <h2 class="mx-auto rounded text-center my_primary py-3 shadow">
+            Our Sponsorhips
+        </h2>
+        <p class="text-center py-2 text-secondary">
+            Purchase one or more types of sponsorship to appear among the first results in searches
+        </p>
 
-      <p class="py-2 text-secondary">
-        Purchase one or more types of sponsorship to appear among the first results in searches
-      </p>
-
-    </div>
 
     @include('partials.session-message')
     <div class="row row-cols-3 my-5">

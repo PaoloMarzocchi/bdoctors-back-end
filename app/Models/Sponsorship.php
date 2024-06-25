@@ -39,3 +39,16 @@ class Sponsorship extends Model
         ];
     }
 }
+
+
+/* 
+
+## CUMULATIVE TIME ##
+
+- When an User add one more Sponsorship , in pivot-table (doctor_profile_sponsorship) the column "expirationData" will have added the time of the selected sponsorship (ex. "2005-07-18 00:00:00" + 24 hours)
+
+## PAYMENT ##
+
+- Using the library/framework Braintree, select the payment method, insert and test fake card to pay the selected Sponsorship
+
+*/

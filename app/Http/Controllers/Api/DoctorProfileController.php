@@ -50,7 +50,7 @@ class DoctorProfileController extends Controller
 
     public function sponsored()
     {
-        $sponsoredDoctors = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes')->whereHas('sponsorships')->get();
+        $sponsoredDoctors = DoctorProfile::with('specializations', 'sponsorships', 'user', 'reviews', 'votes')->whereHas('sponsorships')->get();
 
         return response()->json([
             'success' => true,
@@ -65,7 +65,7 @@ class DoctorProfileController extends Controller
 
 
         //SELEZIONATI PER SPECIALIZZAZIONE ORDINATI PER SPONSORSHIP
-        $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes')
+        $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
             ->whereRelation('specializations', 'name', '=', $name)
             ->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
             ->select('doctor_profiles.*', DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'))
@@ -93,7 +93,7 @@ class DoctorProfileController extends Controller
 
         /* IT FINALLY WORKS */
         $searchResults =
-            DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes')
+            DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
             ->join('users', 'doctor_profiles.user_id', '=', 'users.id')
             ->join('doctor_profile_specialization', 'doctor_profiles.id', '=', 'doctor_profile_specialization.doctor_profile_id')
             ->join('specializations', 'doctor_profile_specialization.specialization_id', '=', 'specializations.id')

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use App\Models\DoctorProfile;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 
 class MessageController extends Controller
@@ -15,8 +17,12 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
-        return view('admin.messages.index', compact('messages'));
+        $messages = Message::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->paginate(8);
+        $messageNumber = count($messages);
+        $doctor = DoctorProfile::find(Auth::id());
+        // dd($messages);
+
+        return view('admin.messages.index', compact('messages', 'messageNumber', 'doctor'));
     }
 
     /**
