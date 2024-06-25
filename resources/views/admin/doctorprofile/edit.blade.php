@@ -1,24 +1,21 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
   <section>
-    <div class="my_image_right h-100">
+
+    <div class="edit_image_right h-100">
       <img src="/img/informations-right.png" alt="">
     </div>
-    <div class="my_image_left h-100">
+    <div class="edit_image_left h-100">
       <img src="/img/informations-left.png" alt="">
     </div>
+
     <div class="my_container py-5">
-      <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+      <div class="wrapper p-4 mb-4  shadow rounded-lg">
         <header class="d-flex justify-content-between align-items-center pb-4">
           <h2 class="text-lg font-medium text-gray-900 my_primary">
             {{ __("Doctor's Information") }}
           </h2>
-
-          <a class="btn btn-secondary my_primary fw-bold shadow"
-            href="{{ route('admin.doctorProfile.index', $doctorProfile) }}">
-            Back
-          </a>
         </header>
 
         <form id="editForm" action="{{ route('admin.doctorProfile.update', $doctorProfile) }}" method="post"

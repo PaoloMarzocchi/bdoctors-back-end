@@ -57,33 +57,40 @@
 
       }
 
-      .dropdown {
+    }
 
-        .dropdown-toggle:hover {
-          cursor: pointer;
-        }
+    .dropdown {
 
-        .dropdown-menu {
-          background-color: var(--light-3);
+      .dropdown-toggle:hover {
+        cursor: pointer;
+      }
 
-          .dropdown-item {
-            transition: background-color ease-in-out 0.3s;
-            border-radius: 8px;
+      .dropdown-menu {
+        background-color: var(--light-3);
 
-            &:hover {
-              background-color: var(--secondary);
-              cursor: pointer;
-            }
+        .dropdown-item {
+          transition: background-color ease-in-out 0.3s;
+          border-radius: 8px;
 
-            color: var(--dark-3);
-
-            i {
-              color: var(--primary);
-            }
+          &:hover {
+            background-color: var(--secondary);
+            cursor: pointer;
           }
 
+          color: var(--dark-3);
+
+          i {
+            color: var(--primary);
+          }
         }
+
       }
+    }
+
+    .profile_img {
+      width: 40px;
+      aspect-ratio: 1;
+      object-fit: cover;
     }
   }
 
@@ -112,10 +119,21 @@
     background-position: bottom -150px right -195px;
   }
 
+  .overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background-color: rgba(250, 250, 250, 0.4);
+  }
+
   .messages,
   .reviews,
   .votes,
   .sponsorships {
+    position: relative;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 16px;
@@ -150,6 +168,7 @@
 }
 
 /* #endregion :::: DASHBOARD :::: */
+
 .chat {
   height: 500px;
 
