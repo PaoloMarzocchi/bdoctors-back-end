@@ -178,3 +178,37 @@
 
 
 /* #endregion :::: SPECIALIZATIONS :::: */
+
+
+/* #region :::: LOGIN FORM :::: */
+
+.login_form {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem;
+
+    &::before {
+        position: absolute;
+        left: -45%;
+        top: 4%;
+        content: "";
+        width: 450px;
+        height: 500px;
+        background-color: var(--secondary);
+        transform: rotate(45deg);
+        z-index: 1;
+        border-radius: 30px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.082);
+    }
+
+    .form_body {
+        position: relative;
+        z-index: 2;
+
+        .form_title {
+            color: #2d2d2d;
+        }
+    }
+}
+
+/* #endregion :::: LOGIN FORM :::: */

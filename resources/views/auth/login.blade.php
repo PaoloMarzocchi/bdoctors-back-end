@@ -3,17 +3,19 @@
 @section('content')
   <div class="container mt-4">
     <div class="row justify-content-center">
-      <div class=" col-12 col-md-4">
+      <div class="col-12 col-md-4">
 
-        <div class="card">
-          <div class="card-header my_primary text-center">{{ __('Login') }}</div>
+        <div class="login_form shadow mt-4">
 
-          <div class="card-body">
+          <div class="form_body">
+
+            <h1 class="form_title text-center display-4 fw-bold mb-5">{{ __('Login') }}</h1>
+
             <form method="POST" action="{{ route('login') }}">
               @csrf
 
               <div class="col-12">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <label for="email" class="form-label text-md-right">{{ __('E-Mail Address') }}</label>
                 <div class="mb-4 inputWrapper">
 
                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -30,7 +32,7 @@
               </div>
 
               <div class="col-12 ">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                <label for="password" class="form-label text-md-right">{{ __('Password') }}</label>
 
                 <div class="inputWrapper">
 
@@ -71,9 +73,9 @@
                 </div>
               </div>
 
-              <div class="mb-4 row mb-0">
-                <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn my_btn_primary px-4 rounded-pill">
+              <div class="col-12">
+                <div class="mb-4">
+                  <button type="submit" class="btn my_btn_primary px-4 rounded-pill w-100">
                     {{ __('Login') }}
                   </button>
 
