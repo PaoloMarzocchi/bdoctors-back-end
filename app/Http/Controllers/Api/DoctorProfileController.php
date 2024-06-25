@@ -96,11 +96,13 @@ class DoctorProfileController extends Controller
             ->leftJoin('doctor_profile_vote', 'doctor_profiles.id', '=', 'doctor_profile_vote.doctor_profile_id')
             ->leftJoin('votes', 'doctor_profile_vote.vote_id', '=', 'votes.id')
             ->leftJoin('reviews', 'doctor_profiles.id', '=', 'reviews.doctor_profile_id')
-            ->select('doctor_profiles.*', DB::raw('AVG(votes.vote) as average_vote'), DB::raw('COUNT(reviews.id) as review_count'))
+            ->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
+            ->select('doctor_profiles.*', DB::raw('AVG(votes.vote) as average_vote'), DB::raw('COUNT(reviews.id) as review_count'), DB::raw('IF(doctor_profile_sponsorship.doctor_profile_id IS NOT NULL, 1, 0) as has_sponsorship'))
             ->where('specializations.name', $specialization)
             ->groupBy('doctor_profiles.id')
             ->having('average_vote', '>=', $minAverageVote)
             ->having('review_count', '>=', $minTotalReviews)
+            ->orderBy('has_sponsorship', 'desc')
             ->get();
 
 
