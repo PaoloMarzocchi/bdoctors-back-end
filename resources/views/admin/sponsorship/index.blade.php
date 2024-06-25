@@ -35,14 +35,16 @@
                                     {{ $sponsorship->price }} €
                                 </li>
                             </ul>
-                            {{-- @dd($sponsorship) --}}
 
-                            <button class="btn btn-success text-warning" type="submit">Get this Sponsorship</button>
+                            <a href="{{ route('token', $sponsorship) }}" class="btn btn-success text-warning"
+                                type="submit">
+                                Get this
+                                Sponsorship
+                            </a>
                         </form>
                     </div>
                 </div>
             @endforeach
         </div>
-
     </div>
 @endsection

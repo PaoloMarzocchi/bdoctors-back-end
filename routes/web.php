@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\VoteController;
@@ -54,7 +55,9 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/sponsorship', SponsorshipController::class);
 
         Route::resource('/reviews', ReviewController::class);
-
     });
 
 require __DIR__ . '/auth.php';
+
+
+Route::any('/payment/{sponsorship}', [PaymentController::class, 'token'])->name('token')->middleware('auth');
