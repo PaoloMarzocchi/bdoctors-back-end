@@ -7,10 +7,12 @@
 
         @include('partials.validation-message')
 
-        <div class="card">
-          <div class="card-header my_primary text-center">{{ __('Register as a new BDoctor') }}</div>
+        <div class="registration_form login_form shadow">
 
-          <div class="card-body">
+          <div class="form_body">
+
+            <div class="form_title text-center display-4 fw-bold mb-5">{{ __('Register as a new BDoctor') }}</div>
+
             <form class="row g-3" id="registrationForm" method="POST" action="{{ route('register') }}">
               @csrf
 
@@ -182,7 +184,7 @@
                       {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }} />
 
                     <label class="specialization_label" for="specialization-{{ $specialization->id }}">
-                      <i class=" me-2 fa-solid text-warning {{ $specialization->icon }}"></i>
+                      <i class="me-2 fa-solid my_primary {{ $specialization->icon }}"></i>
                       <span>{{ $specialization->name }}</span>
                     </label>
                   @endforeach
@@ -208,7 +210,7 @@
 
 
               <div class="col-12">
-                <button id="submitButton" type="submit" class="btn my_primary btn-secondary fw-bold">
+                <button id="submitButton" type="submit" class="btn my_btn_primary px-4 rounded-pill ">
                   {{ __('Register') }}
                 </button>
               </div>
