@@ -1,5 +1,16 @@
 :root {
-    --primary: #f77b02;
+    --primary: #186143;
+    --primary-hover: #307558;
+    --primary-active: #1E4837;
+    --secondary: #a0cabf;
+    --secondary-hover: #85a79e;
+    --secondary-active: #78a89c;
+    --background-light-1: #fff;
+    --background-light-2: #f5eefa;
+    --background-dark-1: #79747e;
+    --background-dark-2: #322f37;
+    --background-dark-3: #1d1a22;
+    --background-dark-4: #000;
 }
 
 * {
@@ -13,6 +24,26 @@
 
 .my_primary {
     color: var(--primary);
+}
+
+.my_btn_primary {
+    background-color: var(--primary);
+    color: #fff;
+
+    &:hover {
+        color: #fff;
+        background-color: var(--primary-hover);
+    }
+}
+
+.my_btn_secondary {
+    background-color: var(--secondary);
+    color: #fff;
+
+    &:hover {
+        color: #fff;
+        background-color: var(--secondary-hover);
+    }
 }
 
 .my_square {
