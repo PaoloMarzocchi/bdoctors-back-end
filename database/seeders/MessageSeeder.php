@@ -16,7 +16,7 @@ class MessageSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 60; $i++) {
             $message = new Message();
 
             $message->doctor_profile_id = $faker->numberBetween(1, 5);
