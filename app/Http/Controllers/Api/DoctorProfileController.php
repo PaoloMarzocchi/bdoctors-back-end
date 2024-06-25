@@ -95,9 +95,24 @@ class DoctorProfileController extends Controller
             ->join('specializations', 'doctor_profile_specialization.specialization_id', '=', 'specializations.id')
             ->leftJoin('doctor_profile_vote', 'doctor_profiles.id', '=', 'doctor_profile_vote.doctor_profile_id')
             ->leftJoin('votes', 'doctor_profile_vote.vote_id', '=', 'votes.id')
-            ->leftJoin('reviews', 'doctor_profiles.id', '=', 'reviews.doctor_profile_id')
-            ->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
-            ->select('doctor_profiles.*', DB::raw('AVG(votes.vote) as average_vote'), DB::raw('COUNT(reviews.id) as review_count'), DB::raw('IF(doctor_profile_sponsorship.doctor_profile_id IS NOT NULL, 1, 0) as has_sponsorship'))
+            ->leftJoin(
+                'doctor_profile_sponsorship',
+                'doctor_profiles.id',
+                '=',
+                'doctor_profile_sponsorship.doctor_profile_id'
+            )
+            ->leftJoin(
+                'reviews',
+                'doctor_profiles.id',
+                '=',
+                'reviews.doctor_profile_id'
+            )
+            ->select(
+                'doctor_profiles.*',
+                DB::raw('(SELECT AVG(votes.vote) FROM votes JOIN doctor_profile_vote ON votes.id = doctor_profile_vote.vote_id WHERE doctor_profile_vote.doctor_profile_id = doctor_profiles.id) as average_vote'),
+                DB::raw('(SELECT COUNT(*) FROM reviews WHERE reviews.doctor_profile_id = doctor_profiles.id) as review_count'),
+                DB::raw('IF(doctor_profile_sponsorship.doctor_profile_id IS NOT NULL, 1, 0) as has_sponsorship')
+            )
             ->where('specializations.name', $specialization)
             ->groupBy('doctor_profiles.id')
             ->having('average_vote', '>=', $minAverageVote)
