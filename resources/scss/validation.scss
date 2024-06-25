@@ -38,18 +38,18 @@
   #address+.fa-circle-check {
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 32.5%;
     transform: translateY(-50%);
     color: #009327;
   }
 
-  .fa-circle-check+.fa-circle-exclamation {
+  /*   .fa-circle-exclamation+.fa-circle-check {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     color: #ff0000;
-  }
+  } */
 
   .error,
   .error:focus {
@@ -76,6 +76,16 @@
     position: absolute;
     right: 10px;
     top: 33.5%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: #adadad;
+  }
+
+  #password+.showPassword {
+    position: absolute;
+    right: 10px;
+    top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
     border: none;

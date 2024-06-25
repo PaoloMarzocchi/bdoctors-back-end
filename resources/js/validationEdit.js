@@ -10,7 +10,8 @@ const isRequired = value => value === '' ? false : true;
 
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
-console.log(addressEl);
+// console.log(addressEl);
+
 function showError(input, message) {
 
   // get the form-field element and icons

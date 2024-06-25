@@ -10,7 +10,7 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title>Bdoctors</title>
-    <link rel="icon" href="/img/logo.png">
+    <link rel="icon" href="/img/BDoctors_transparent.png">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,7 +33,7 @@
           <div class="container">
             <a class="navbar-brand d-flex align-items-center p-0 m-0" href="{{ url('/') }}">
               <div class="logo_laravel">
-                <img width="80px" src="/img/logo.png" alt="">
+                <img width="80px" src="/img/BDoctors_transparent.png" alt="">
               </div>
               {{-- config('app.name', 'Laravel') --}}
             </a>
