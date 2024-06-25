@@ -1,4 +1,6 @@
-@extends('layouts.app')
+
+@extends('layouts.admin');
+
 
 @section('content')
     <div class="container py-5">
@@ -38,5 +40,35 @@
             </div>
 
         </div>
+      </div>
+      <div class="col-6 mx-auto">
+        <div class="table-responsive">
+          <table class="table table-warning">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">Vote</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              @foreach ($votes as $vote)
+                <tr class="text-center">
+                  <td scope="row">
+                    @for ($i = 1; $i <= 5; $i++)
+                      @if ($i <= $vote->vote)
+                        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                      @else
+                        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+                      @endif
+                    @endfor
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+
+      </div>
     </div>
+  </div>
 @endsection

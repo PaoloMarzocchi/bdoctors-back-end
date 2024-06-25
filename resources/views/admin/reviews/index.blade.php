@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container py-5">
@@ -91,6 +91,7 @@
 
 
                             </table>
+
 
 
                         </div>

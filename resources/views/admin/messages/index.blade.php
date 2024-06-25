@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
+
     <div class="container py-5">
         @include('partials.session-message')
         @include('partials.validation-message')
@@ -84,13 +85,28 @@
                             </table>
                             {{ $messages->links() }}
 
+
                         </div>
-                    </div>
-                </div>
-            @else
-                <p>
-                    Nothing to show
-                </p>
-        @endif
-    </div>
+
+
+                      </td>
+
+                    </tr>
+
+                  @empty
+                  @endforelse
+
+                </tbody>
+
+
+              </table>
+            </div>
+          </div>
+        </div>
+      @else
+        <p>
+          Nothing to show
+        </p>
+    @endif
+  </div>
 @endsection
