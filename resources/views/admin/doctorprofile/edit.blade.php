@@ -3,10 +3,10 @@
 @section('content')
   <section>
 
-    <div class="edit_image_right h-100">
+    <div class="edit_image_right positon-relative z-n1">
       <img src="/img/informations-right.png" alt="">
     </div>
-    <div class="edit_image_left h-100">
+    <div class="edit_image_left positon-relative z-n1">
       <img src="/img/informations-left.png" alt="">
     </div>
 

@@ -22,20 +22,21 @@ class Sponsorship extends Model
         return $this->belongsToMany(DoctorProfile::class);
     }
 
-    public function timeRemaining($startDate)
+    public function timeRemaining()
     {
-        // Get the expiration date
-        $expiryDate = $startDate->addHours($this->period);
+        $createdAt = $this->created_at; // Assume che created_at sia un oggetto Carbon
 
-        // Get the remaining time in seconds
-        // $secondsRemaining = $expiryDate->diffInSeconds(Carbon::now());
+        // Calcola la data di scadenza aggiungendo le ore di durata della sponsorship
+        $expiryDate = $createdAt->copy()->addHours($this->period);
+
+        // Calcola il tempo rimanente
         $diff = $expiryDate->diff(Carbon::now());
 
-        // return max(0, $secondsRemaining);
         return [
             'hours' => $diff->h,
             'minutes' => $diff->i,
             'seconds' => $diff->s,
+            'total_seconds' => $expiryDate->diffInSeconds(Carbon::now())
         ];
     }
 }

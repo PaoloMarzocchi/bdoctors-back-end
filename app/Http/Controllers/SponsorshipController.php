@@ -23,6 +23,8 @@ class SponsorshipController extends Controller
         $sponsorships = Sponsorship::all();
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
+        $activeSponsorships = $doctorProfile->sponsorships;
+
 
         $expirationDates = DB::table('doctor_profile_sponsorship')
             ->where('doctor_profile_id', $user->doctorProfile->id)
@@ -38,7 +40,9 @@ class SponsorshipController extends Controller
         $remainingHours = $now->diffInHours($expirationDate, false);
 
         return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'expirationDates', 'remainingHours'));
+
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="py-5">
         <div class="d-flex justify-content-center">
             <div class="card w-25 bg-body-secondary">
@@ -82,11 +83,13 @@
                                                 .nonce)
                                             $('#checkout-message').html(
                                                 `<h1 class="text-success">Success !</h1>
+
                                             <p>Congratulation, you add a sponsorship to your profile !</p>
                                             <p>Add more time to your existing sponsorship </p>
                                             <a class="btn btn-dark my_primary my-2" href="{{ route('admin.sponsorship.index') }}">
                                                 Sponsorships
                                             </a>`
+
                                             );
                                         },
                                         error: function(data) {
@@ -103,6 +106,7 @@
                 });
         </script>
     </div>
+
 @endsection
 
 {{-- 

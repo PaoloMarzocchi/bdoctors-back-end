@@ -2,58 +2,57 @@
 
 @section('content')
 
-  <div class="container my-3">
 
 
-    {{--         <div class="card p-3 border-0">
+  {{--         <div class="card p-3 border-0">
           <div class="card-header rounded-5 text-center my_primary">
             DoctyAI &copy;
           </div> --}}
-    {{--
+  {{--
                     ################################################
                     ########### FAKE AI AREA BIGGER !! #############
                     ################################################ 
                     --}}
 
-    {{--           <div class="card-body p-0">
+  {{--           <div class="card-body p-0">
             @if (session('status'))
-              <div class="alert alert-success" role="alert">
+            <div class="alert alert-success" role="alert">
                 {{ session('status') }}
               </div>
-            @endif
-            <div class="row flex-column chat mt-3 px-4 gy-3">
+              @endif
+              <div class="row flex-column chat mt-3 px-4 gy-3">
+                
+                <div class="messageReceived p-2">
+                  Welcome {{ Auth::user()->name . ' ' . $doctorProfile->surname }}. I'm your AI, Docty.
+                </div>
+                <div class="messageReceived p-2">
+                  Type something like "statistics" and I will try to help!😊
+                </div> --}}
 
-              <div class="messageReceived p-2">
-                Welcome {{ Auth::user()->name . ' ' . $doctorProfile->surname }}. I'm your AI, Docty.
-              </div>
-              <div class="messageReceived p-2">
-                Type something like "statistics" and I will try to help!😊
-              </div> --}}
-
-    {{--
+  {{--
                             ################################################
                             REMEMBER TO PUT HERE THE NAME OF CURRENT USER !!
                             ################################################ 
                             --}}
-    {{--               <div class="col-8 align-self-start">
+  {{--               <div class="col-8 align-self-start">
                 <textarea rows="2" disabled placeholder="Try to ask me, '-statistics'.." class="form-control" name=""
                   id="">{{ __("Welcome BDoctor ! I'm your AI, Docty.") }}
-                                </textarea>
+                </textarea>
               </div>
               <br>
               <div class="col-8 align-self-end">
                 <textarea rows="1" class="form-control text-end" name="" id=""
-                  placeholder="Try to ask '-statistics'.."></textarea>
+                placeholder="Try to ask '-statistics'.."></textarea>
               </div> --}}
-    {{-- <div class="chat_main dflex">
+  {{-- <div class="chat_main dflex">
                                 <div class="current_chat">
                                     @foreach (currentChat . messages as singleMessage)
                                         <div class="dflex spacing"
                                             :class="singleMessage.status === 'sent' ? 'mine_message' : 'enemy_message'">
                                             <div class="text">
-                                                <p>
-                                                    {{ singleMessage . message }}
-                                                </p>
+                                              <p>
+                                                {{ singleMessage . message }}
+                                              </p>
                                             </div>
                                             <div class="text_info dflex">
                                                 <div class="check">
@@ -63,19 +62,19 @@
                                                             <a href="#">
                                                                 Cancella messaggio
                                                             </a>
-                                                        </li>
+                                                          </li>
                                                         <li>
                                                             <a href="#">
-                                                                Rimuovi dalla tua vita
+                                                              Rimuovi dalla tua vita
                                                             </a>
-                                                        </li>
+                                                          </li>
                                                         <li>
                                                             <a href="#">
                                                                 "Fai come ti pare" cit.
-                                                            </a>
+                                                              </a>
                                                         </li>
                                                     </ul>
-                                                </div>
+                                                  </div>
                                                 <!-- /.check -->
                                                 <div class="msg_hours">
                                                     {{ singleMessage . date }}
@@ -83,20 +82,21 @@
                                                 <!-- /.msg_hours -->
                                             </div>
                                     @endforeach
-                                </div>
+                                  </div>
                             </div> 
                         </div> --}}
-    {{--             </div>
+  {{--             </div>
 
                         <div class="input_message rounded p-2 mt-3 d-flex">
                             <a href="#"><i class="hide_sm fa-regular fa-xl fa-face-smile"></i></a>
                             <input type="text" placeholder="Scrivi un messaggio" v-model.trim="newMessage.message"
                                 @keydown.enter="addMessage(activeContact)" @keyup.enter="replyMessage(activeContact)">
                             <a href="#"><i class="hide_sm fa-solid fa-xl fa-microphone"></i></a>
+                          </div>
+                          
                         </div>
-
-          </div>
-        </div> --}}
+                      </div> --}}
+  <div class="container my-3">
 
     <div class="messages mb-4 border">
       <div class="container-fluid py-2 overlay">
@@ -115,7 +115,7 @@
 
               </div>
             @empty
-              <h4>You don't have any message for now.</h4>
+              <h4>You don't have any message for now</h4>
             @endforelse
           </div>
 
@@ -146,7 +146,7 @@
 
                 </div>
               @empty
-                <h4>You don't have any message for now.</h4>
+                <h4>You don't have any message for now</h4>
               @endforelse
             </div>
 
@@ -193,20 +193,33 @@
             <div class="sponsorship_list d-flex flex-column gap-2">
 
               @forelse ($doctorProfile->sponsorships as $sponsorship)
+                @php
+                  $time_remaining = $sponsorship->time_remaining;
+                @endphp
+
                 <div class="sponsorship shadow px-2 py-3">
+
                   <div class="name mb-2">
                     {{ $sponsorship->name }}:
                   </div>
-                  <div id="countdown">Your {{ strtolower($sponsorship->name) }} will expire in:
 
-                    <span id="hours">{{ $sponsorship->timeRemaining($sponsorship->created_at)['hours'] }}</span>
-                    <span id="minutes">{{ $sponsorship->timeRemaining($sponsorship->created_at)['minutes'] }}:</span>
-                    <span id="seconds">{{ $sponsorship->timeRemaining($sponsorship->created_at)['seconds'] }}</span>
+                  <div id="countdown-{{ $sponsorship->id }}" class="countdown"
+                    data-seconds-remaining="{{ $time_remaining['total_seconds'] }}">Your
+                    {{ strtolower($sponsorship->name) }}
+                    will
+                    expire in:
+
+                    <span id="hours-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['hours'] }}</span>:
+                    <span id="minutes-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['minutes'] }}</span>:
+                    <span id="seconds-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['seconds'] }}</span>
+
 
                   </div>
+
                 </div>
+
               @empty
-                <h4>You don't have any message for now.</h4>
+                <h4>You don't have any active sponsowrhip for now</h4>
               @endforelse
 
             </div>
@@ -225,6 +238,7 @@
 
 
     </div>
+  </div>
 
-    @vite(['resources/js/sponsorshipCountDown.js'])
-  @endsection
+  @vite(['resources/js/sponsorshipCountDown.js'])
+@endsection
