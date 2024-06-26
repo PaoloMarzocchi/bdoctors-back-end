@@ -3,10 +3,10 @@
 @section('content')
     <div class="container py-4">
 
-        <div class="image_right">
+        <div class="image_right z-n1">
             <img src="/img/sponsorship_green.png" alt="">
         </div>
-        <div class="image_left">
+        <div class="image_left z-n1">
             <img src="/img/informations-right.png" alt="">
         </div>
 

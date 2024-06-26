@@ -33,11 +33,11 @@ class PaymentController extends Controller
                     'submitForSettlement' => True
                 ]
             ]);
+            $user->doctorProfile->sponsorships()->attach($sponsorship);
             //return view('dashboard');
         }
 
         $clientToken = $gateway->clientToken()->generate();
-        $user->doctorProfile->sponsorships()->attach($sponsorship);
 
         return view('admin.sponsorship.payment', ['token' => $clientToken, 'sponsorship' => $sponsorship]);
     }
