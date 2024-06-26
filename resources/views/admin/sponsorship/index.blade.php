@@ -82,7 +82,7 @@
                                     </input>
 
                                     <a href="{{ route('admin.token', $sponsorship) }}"
-                                        class="btn my_btn_primary px-4 rounded-pill mx-auto" type="submit">
+                                        class="btn my_btn_primary px-4 rounded-pill mx-auto">
                                         Get this
                                         Sponsorship
                                     </a>
