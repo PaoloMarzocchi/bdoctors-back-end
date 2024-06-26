@@ -32,7 +32,7 @@
                                 });
                                 $.ajax({
                                     type: "POST",
-                                    url: "{{ route('token', $sponsorship) }}",
+                                    url: "{{ route('admin.token', $sponsorship) }}",
                                     data: {
                                         nonce: payload.nonce
                                     },

@@ -87,10 +87,10 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/reviews', ReviewController::class);
 
         Route::resource('/statistics', StatisticController::class);
+        Route::any('/payment/{sponsorship}', [PaymentController::class, 'token'])->name('token');
     });
 
 require __DIR__ . '/auth.php';
 
 
-Route::any('/payment/{sponsorship}', [PaymentController::class, 'token'])->name('token')->middleware('auth');
 /* ->parameters(['sponsorship' => 'sponsorship:slug']) */
