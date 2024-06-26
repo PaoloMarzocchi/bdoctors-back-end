@@ -36,16 +36,22 @@ Route::get('/dashboard', function () {
     $messages = Message::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->take(3)->get();
     $reviews = Review::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->take(3)->get();
     $votes = $doctorProfile->votes;
+    $average = 0;
+    $numberVotes = 0;
 
-    $sum = 0;
-    $numberVotes = count($votes);
-    foreach ($votes as $vote) {
-        $sum += $vote->vote;
+    if (count($votes) > 0) {
+        $sum = 0;
+
+        $numberVotes = count($votes);
+        foreach ($votes as $vote) {
+            $sum += $vote->vote;
+        }
+
+        $average = $sum / $numberVotes;
     }
 
-    $average = $sum / $numberVotes;
 
-    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average'));
+    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

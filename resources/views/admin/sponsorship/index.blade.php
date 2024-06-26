@@ -4,7 +4,7 @@
   <div class="container py-4">
 
     <div class="image_right">
-      <img src="/img/votes_green.png" alt="">
+      <img src="/img/sponsorship_green.png" alt="">
     </div>
     <div class="image_left">
       <img src="/img/informations-right.png" alt="">

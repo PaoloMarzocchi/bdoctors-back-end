@@ -19,13 +19,19 @@ class VoteController extends Controller
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
         $votes = $user->doctorProfile->votes;
+        $average = 0;
+        $numberVotes = 0;
 
-        $sum = 0;
-        $numberVotes = count($votes);
-        foreach ($votes as $vote) {
-            $sum += $vote->vote;
+        if (count($votes) > 0) {
+            $sum = 0;
+
+            $numberVotes = count($votes);
+            foreach ($votes as $vote) {
+                $sum += $vote->vote;
+            }
+
+            $average = $sum / $numberVotes;
         }
-        $average = $sum / $numberVotes;
 
         return view('admin.vote.index', compact('votes', 'average', 'doctorProfile', 'numberVotes'));
     }
