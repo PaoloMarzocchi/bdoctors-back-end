@@ -18,7 +18,17 @@
 
             <div class="sponsorship_list d-flex flex-column gap-2">
 
-                @forelse ($doctorProfile->sponsorships as $sponsorship)
+                @if ($doctorProfile->sponsorships)
+                    Expire in : {{ $expirationDates }}
+                    <br>
+                    Countdown : {{ timeRemaining($remainingHours) }}
+                @else
+                    <span>
+                        You don't have any active sponsorship for now .
+                    </span>
+                @endif
+
+                {{-- @forelse ($doctorProfile->sponsorships as $sponsorship)
                     <div class="bg_dark_transparent shadow px-2 py-3 rounded-4">
                         <div class="fw-bold mb-2 my_primary">
                             {{ $sponsorship->name }}:
@@ -35,7 +45,7 @@
                     </div>
                 @empty
                     <h4>You don't have any message for now.</h4>
-                @endforelse
+                @endforelse --}}
 
             </div>
 
@@ -50,7 +60,6 @@
                     to the next level with our promotion options
                 </p>
             </div>
-
 
             @include('partials.session-message')
             <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -98,9 +107,6 @@
 
             </div>
         </div>
-    </div>
-
-    </div>
     </div>
     @vite(['resources/js/sponsorshipCountDown.js'])
 @endsection

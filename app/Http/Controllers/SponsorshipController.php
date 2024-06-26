@@ -10,6 +10,8 @@ use DateInterval;
 use DateTime;
 use DateTimeInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class SponsorshipController extends Controller
 {
@@ -22,7 +24,20 @@ class SponsorshipController extends Controller
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
 
-        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile'));
+        $expirationDates = DB::table('doctor_profile_sponsorship')
+            ->where('doctor_profile_id', $user->doctorProfile->id)
+            ->pluck('expirationDate')
+            ->last();
+
+        /* $remainingHours = strtotime('-' . (Carbon::now()) . 'hours', strtotime($expirationDates)); */
+
+        $expirationDate = Carbon::parse($expirationDates);
+
+        $now = Carbon::now();
+
+        $remainingHours = $now->diffInHours($expirationDate, false);
+
+        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'expirationDates', 'remainingHours'));
     }
 
     /**

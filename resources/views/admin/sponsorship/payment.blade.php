@@ -32,8 +32,8 @@
                     vaultManager: true,
                     paypal: {
                         flow: 'checkout',
-                        amount: '10.00',
-                        currency: 'USD',
+                        amount: {{ $sponsorship->price }},
+                        currency: 'EUR',
                         buttonStyle: {
                             color: 'blue',
                             shape: 'rect',
@@ -43,13 +43,13 @@
                         }
                     },
                     googlePay: {
-                        /* googleMerchantId: 'merchant-id-from-google', */
+                        googleMerchantId: 'merchant-id-from-google',
                         googlePayVersion: 2,
                         transactionInfo: {
-                            currencyCode: "USD",
-                            countryCode: "US",
+                            currencyCode: "EUR",
+                            countryCode: "IT",
                             totalPriceStatus: "FINAL",
-                            totalPrice: "12.00",
+                            totalPrice: {{ $sponsorship->price }},
                             checkoutOption: "COMPLETE_IMMEDIATE_PURCHASE"
                         },
                         button: {
