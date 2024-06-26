@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-  <div class="container py-5">
+    <div class="container py-5">
+
 
     <div class="image_right positon-relative z-n1">
       <img src="/img/reviews_green.png" alt="">
@@ -91,24 +92,35 @@
 
                 </td>
 
-              </tr>
-
-            @empty
-              <tr class="">
-                <td scope="row" colspan="6">You don't have any review yet.</td>
-              </tr>
-            @endforelse
-
-          </tbody>
 
 
-        </table>
 
-      </div>
+
+                                </tr>
+
+                            @empty
+                            @endforelse
+
+                        </tbody>
+
+
+                    </table>
+
+
+
+                </div>
+                {{ $reviews->links() }}
+            @else
+                <h4>You don't have any review yet.</h4>
+            @endif
+        </div>
+
 
       {{ $reviews->links('pagination::bootstrap-5') }}
 
     </div>
 
+
   </div>
+
 @endsection
