@@ -1,16 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12">
+    <div class="py-5">
         <div class="d-flex justify-content-center">
-            {{ $sponsorship->price }}
+            <div class="card w-25 bg-body-secondary">
+                @csrf
+                <div class="card-body">
+                    <div id="dropin-wrapper">
+                        <div id="checkout-message"></div>
+                        <div id="dropin-container"></div>
+                        <div class="d-flex justify-content-between align-items-center my-2">
+                            <button id="submit-button" type="submit" class="btn btn-dark text-success">
+                                Submit
+                                payment
+                            </button>
+                            <div class="card-title">
+                                Checkout:
+                                <span class="text-success">{{ $sponsorship->price }} €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        @csrf
-        <div id="dropin-wrapper" style="width: 20%" class="container">
-            <div id="checkout-message"></div>
-            <div id="dropin-container"></div>
-            <button id="submit-button" type="submit" class="btn btn-dark text-success">Submit payment</button>
-        </div>
+
         <script>
             var button = document.querySelector('#submit-button');
             braintree.dropin.create({
@@ -30,7 +43,7 @@
                         }
                     },
                     googlePay: {
-                        googleMerchantId: 'merchant-id-from-google',
+                        /* googleMerchantId: 'merchant-id-from-google', */
                         googlePayVersion: 2,
                         transactionInfo: {
                             currencyCode: "USD",
@@ -70,8 +83,8 @@
                                             $('#checkout-message').html(
                                                 `<h1 class="text-success">Success !</h1>
                                             <p>Congratulation, you add a sponsorship to your profile !</p>
-                                            <p>👇 Add more time to your existing sponsorship </p>
-                                            <a class="btn btn-dark my_primary" href="{{ route('admin.sponsorship.index') }}">
+                                            <p>Add more time to your existing sponsorship </p>
+                                            <a class="btn btn-dark my_primary my-2" href="{{ route('admin.sponsorship.index') }}">
                                                 Sponsorships
                                             </a>`
                                             );
