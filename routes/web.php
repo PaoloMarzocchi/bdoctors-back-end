@@ -7,7 +7,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\ReviewController;
+
+use App\Http\Controllers\StatisticController;
+
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 use App\Models\DoctorProfile;
 use App\Models\Message;
@@ -36,16 +40,22 @@ Route::get('/dashboard', function () {
     $messages = Message::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->take(3)->get();
     $reviews = Review::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->take(3)->get();
     $votes = $doctorProfile->votes;
+    $average = 0;
+    $numberVotes = 0;
 
-    $sum = 0;
-    $numberVotes = count($votes);
-    foreach ($votes as $vote) {
-        $sum += $vote->vote;
+    if (count($votes) > 0) {
+        $sum = 0;
+
+        $numberVotes = count($votes);
+        foreach ($votes as $vote) {
+            $sum += $vote->vote;
+        }
+
+        $average = $sum / $numberVotes;
     }
 
-    $average = $sum / $numberVotes;
 
-    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average'));
+    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -75,6 +85,8 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/sponsorship', SponsorshipController::class);
 
         Route::resource('/reviews', ReviewController::class);
+
+        Route::resource('/statistics', StatisticController::class);
     });
 
 require __DIR__ . '/auth.php';
