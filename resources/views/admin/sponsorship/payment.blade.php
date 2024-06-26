@@ -2,12 +2,17 @@
 
 @section('content')
     <div class="py-12">
-        {{ $sponsorship->price }}
+        <div class="d-flex justify-content-center">
+            {{ $sponsorship->price }}
+        </div>
         @csrf
         <div id="dropin-wrapper" style="width: 20%" class="container">
             <div id="checkout-message"></div>
             <div id="dropin-container"></div>
-            <button id="submit-button" class="btn btn-dark text-success">Submit payment</button>
+            {{-- <form action="{{ route('admin.sponsorship.store') }}" method="post">
+                @csrf
+            </form> --}}
+            <button id="submit-button" type="submit" class="btn btn-dark text-success">Submit payment</button>
         </div>
         <script>
             var button = document.querySelector('#submit-button');
