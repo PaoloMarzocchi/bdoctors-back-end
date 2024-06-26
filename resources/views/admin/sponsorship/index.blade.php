@@ -14,14 +14,24 @@
 
         <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
 
-            <h3 class="display-5 fw-bold my_primary">Your sponsorship</h3>
+            <h3 class="display-5 fw-bold my_primary pb-3">Your sponsorship</h3>
 
             <div class="sponsorship_list d-flex flex-column gap-2">
 
                 @if ($doctorProfile->sponsorships)
-                    Expire in : {{ $expirationDates }}
-                    <br>
-                    Countdown : {{ timeRemaining($remainingHours) }}
+                    <div class="bg_dark_transparent shadow px-4 py-3 rounded-4">
+
+                        <div id="countdown" class="d-flex justify-content-between align-items-center">
+
+                            <div>
+                                <span class="fw-bold">Your sponsorization time will expire in:</span>
+                                <br>
+                                <span id="remainingTime" class="fw-bold text-danger fs-5">{{ $remainingTime }}</span>
+                            </div>
+                            <a class="btn btn-dark text-warning" href="{{ route('admin.') }}">Payment history</a>
+
+                        </div>
+                    </div>
                 @else
                     <span>
                         You don't have any active sponsorship for now .
@@ -66,9 +76,7 @@
                 @foreach ($sponsorships as $sponsorship)
                     <div class="col">
                         <div class="card mb-4 rounded-4 shadow-sm border-0">
-                            <form action="{{ route('admin.sponsorship.store') }}" method="post">
-                                @csrf
-
+                            <div>
                                 <div class="card-header bg_secondary py-3 rounded-top-4">
                                     <input type="hidden" style="background-color: inherit; width:100px" class="border-0"
                                         name="name-{{ $sponsorship->id }}" id="name-{{ $sponsorship->id }}" placeholder=""
@@ -100,7 +108,7 @@
                                     </a>
 
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -109,4 +117,5 @@
         </div>
     </div>
     @vite(['resources/js/sponsorshipCountDown.js'])
+    {{-- <script src="resources/js/sponsorshipCountDown.js"></script> --}}
 @endsection

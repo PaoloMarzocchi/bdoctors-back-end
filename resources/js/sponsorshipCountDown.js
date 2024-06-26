@@ -1,8 +1,65 @@
+// Ottieni il valore di $remainingTime dal backend
+let remainingTime = document.getElementById('remainingTime').innerHTML;
+
+// Funzione per aggiornare il countdown
+function updateCountdown() {
+  let timeElement = document.getElementById('remainingTime');
+  // console.log(timeElement);
+  let timeParts = remainingTime.split(' ');
+
+  // Estrai giorni, ore, minuti e secondi dall'array
+  let days = parseInt(timeParts[0]);
+  let hours = parseInt(timeParts[2]);
+  let minutes = parseInt(timeParts[4]);
+  let seconds = parseInt(timeParts[6]);
+
+  // Aggiorna il countdown decrementando il tempo
+  if (seconds > 0) {
+    seconds--;
+
+  } else {
+    seconds = 59;
+    if (minutes > 0) {
+      minutes--;
+    } else {
+      minutes = 59;
+      if (hours > 0) {
+        hours--;
+      } else {
+        hours = 23;
+        if (days > 0) {
+          days--;
+        } else {
+          // Se il countdown è terminato, puoi gestire l'output qui
+          clearInterval(countdownInterval);
+          timeElement.innerText = "Expired";
+          return;
+        }
+      }
+    }
+  }
+
+  // Formatta il tempo rimanente
+  remainingTime = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds";
+  timeElement.innerText = remainingTime;
+}
+
+// Aggiorna il countdown ogni secondo
+let countdownInterval = setInterval(updateCountdown, 1000);
+
+
+
+
+
+
+/* ############## BEFORE ##################### */
+
+
 // Oggetto per tenere traccia degli intervalli per ciascun countdown
-let intervals = {};
+/* let intervals = {}; */
 
 // Funzione per aggiornare il countdown per un dato ID
-function updateCountdown(id) {
+/* function updateCountdown(id) {
   let countdownElement = document.getElementById('countdown-' + id);
   let secondsRemaining = parseInt(countdownElement.dataset.secondsRemaining);
 
@@ -29,9 +86,9 @@ function updateCountdown(id) {
     countdownElement.dataset.secondsRemaining = secondsRemaining;
   }
 }
-
+ */
 // Funzione per inizializzare i countdown all'avvio della pagina
-function initializeCountdowns() {
+/* function initializeCountdowns() {
 
   let countdownElements = document.querySelectorAll('.countdown');
 
@@ -45,11 +102,11 @@ function initializeCountdowns() {
 
   });
 }
-
+ */
 // Esegui l'inizializzazione dei countdown quando la pagina è completamente caricata
-document.addEventListener('DOMContentLoaded', function () {
+/* document.addEventListener('DOMContentLoaded', function () {
   initializeCountdowns();
-});
+}); */
 
 // Esegui l'aggiornamento dinamico del countdown all'avvio
 /* $(document).ready(function () {

@@ -91,8 +91,8 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/messages', MessageController::class);
         Route::resource('/vote', VoteController::class);
 
+        Route::get('/sponsorship/history', [SponsorshipController::class, 'history']);
         Route::resource('/sponsorship', SponsorshipController::class);
-
         Route::resource('/reviews', ReviewController::class);
 
         Route::resource('/statistics', StatisticController::class);

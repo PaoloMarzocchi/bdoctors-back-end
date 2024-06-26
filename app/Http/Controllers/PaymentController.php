@@ -46,6 +46,7 @@ class PaymentController extends Controller
                 if ($sponsorship->period == $sponsor->period && $sponsorship->price == $sponsor->price && $sponsorship->name == $sponsor->name) {
                     date_default_timezone_set('Europe/Rome');
                     $startDate = date('Y-m-d H:i:s');
+                    $today = date('Y-m-d H:i:s');
 
 
 
@@ -64,7 +65,7 @@ class PaymentController extends Controller
 
                     $expirationDate = date('Y-m-d H:i:s', strtotime('+' . $sponsorship->period . ' hours', strtotime($startDate)));
 
-                    $user->doctorProfile->sponsorships()->attach($sponsorship, ['expirationDate' => $expirationDate]);
+                    $user->doctorProfile->sponsorships()->attach($sponsorship, ['expirationDate' => $expirationDate, 'created_at' => $today]);
                 }
             }
 
