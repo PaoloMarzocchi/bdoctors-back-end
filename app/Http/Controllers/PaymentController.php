@@ -68,11 +68,11 @@ class PaymentController extends Controller
                 }
             }
 
+
             //return view('dashboard');
         }
 
         $clientToken = $gateway->clientToken()->generate();
-
 
         return view('admin.sponsorship.payment', ['token' => $clientToken, 'sponsorship' => $sponsorship]);
     }
