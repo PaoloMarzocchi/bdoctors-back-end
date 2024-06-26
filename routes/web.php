@@ -58,6 +58,8 @@ Route::get('/dashboard', function () {
     return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/admin/statistics/index2', [StatisticController::class, 'index2'])->name('admin.statistics.index2');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

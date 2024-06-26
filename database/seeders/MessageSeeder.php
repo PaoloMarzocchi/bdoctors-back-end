@@ -16,7 +16,7 @@ class MessageSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 60; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $message = new Message();
 
             $message->doctor_profile_id = $faker->numberBetween(1, 5);
@@ -24,6 +24,17 @@ class MessageSeeder extends Seeder
             $message->sender_last_name = $faker->lastName();
             $message->email = $faker->email();
             $message->message_text = $faker->text();
+
+            // Generate a random faker date
+            $randomDateTime = $faker->dateTimeBetween('-1 year', 'now');
+
+            // Format the date in "YYYY-MM-DD hh:mm:ss"
+            $formattedDateTime = $randomDateTime->format('Y-m-d H:i:s');
+
+            // Set created_at and updated_at 
+            $message->created_at = $formattedDateTime;
+            $message->updated_at = $formattedDateTime;
+
             $message->save();
         }
     }
