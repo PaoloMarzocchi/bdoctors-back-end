@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'verified'])
 
         Route::resource('/reviews', ReviewController::class);
 
+        Route::resource('/statistics', StatisticController::class);
     });
 
 require __DIR__ . '/auth.php';
