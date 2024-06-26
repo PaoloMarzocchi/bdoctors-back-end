@@ -1,34 +1,81 @@
-function updateCountdown() {
-  var hoursElement = document.getElementById('hours');
-  var minutesElement = document.getElementById('minutes');
-  var secondsElement = document.getElementById('seconds');
+// Oggetto per tenere traccia degli intervalli per ciascun countdown
+let intervals = {};
 
-  var hours = parseInt(hoursElement.innerText);
-  var minutes = parseInt(minutesElement.innerText);
-  var seconds = parseInt(secondsElement.innerText);
+// Funzione per aggiornare il countdown per un dato ID
+function updateCountdown(id) {
+  let countdownElement = document.getElementById('countdown-' + id);
+  let secondsRemaining = parseInt(countdownElement.dataset.secondsRemaining);
 
-  if (hours === 0 && minutes === 0 && seconds === 0) {
-    clearInterval(interval);
-    document.getElementById('countdown').innerText = 'Sponsorship expired';
-    return;
-  }
+  console.log(secondsRemaining);
 
-  if (seconds === 0) {
-    if (minutes === 0) {
-      hours--;
-      minutes = 59;
-    } else {
-      minutes--;
-    }
-    seconds = 59;
+  let hours = Math.floor(secondsRemaining / 3600);
+  let minutes = Math.floor((secondsRemaining % 3600) / 60);
+  let seconds = secondsRemaining % 60;
+
+  let formattedHours = ('0' + hours).slice(-3);
+  let formattedMinutes = ('0' + minutes).slice(-2);
+  let formattedSeconds = ('0' + seconds).slice(-2);
+
+  document.getElementById('hours-' + id).innerText = formattedHours;
+  document.getElementById('minutes-' + id).innerText = formattedMinutes;
+  document.getElementById('seconds-' + id).innerText = formattedSeconds;
+
+  secondsRemaining--;
+
+  if (secondsRemaining < 0) {
+    clearInterval(intervals[id]);
+    countdownElement.innerText = 'Sponsorship expired';
   } else {
-    seconds--;
+    countdownElement.dataset.secondsRemaining = secondsRemaining;
   }
-
-  hoursElement.innerText = ('0' + hours).slice(-2) + ' hours ';
-  minutesElement.innerText = ('0' + minutes).slice(-2) + ' minutes ';
-  secondsElement.innerText = ('0' + seconds).slice(-2) + ' seconds';
 }
 
-// Esegui l'aggiornamento del countdown ogni secondo
-var interval = setInterval(updateCountdown, 1000);
+// Funzione per inizializzare i countdown all'avvio della pagina
+function initializeCountdowns() {
+
+  let countdownElements = document.querySelectorAll('.countdown');
+
+  countdownElements.forEach(function (countdownElement) {
+
+    let id = countdownElement.id.replace('countdown-', '');
+
+    intervals[id] = setInterval(function () { updateCountdown(id); }, 1000);
+
+    updateCountdown(id); // Inizializza il countdown all'avvio
+
+  });
+}
+
+// Esegui l'inizializzazione dei countdown quando la pagina è completamente caricata
+document.addEventListener('DOMContentLoaded', function () {
+  initializeCountdowns();
+});
+
+// Esegui l'aggiornamento dinamico del countdown all'avvio
+/* $(document).ready(function () {
+  initializeCountdowns()
+});; */
+/* // Rileva l'URL dell'endpoint API dall'attributo data
+var apiSponsorshipsUrl = apiSponsorshipsUrl || '';
+
+// Funzione per aggiornare il countdown dinamicamente tramite AJAX
+function updateCountdownsDynamic() {
+  $.ajax({
+    url: apiSponsorshipsUrl, // Utilizza l'URL dell'endpoint API
+    type: 'GET',
+    success: function (data) {
+
+      var countdownElement = document.getElementById('countdown-' + data.id);
+      console.log(countdownElement)
+      console.log(data)
+      countdownElement.dataset.secondsRemaining = data.time_remaining.total_seconds;
+      updateCountdown(data.id);
+
+    },
+    complete: function () {
+      // Richiama la funzione ogni secondo
+      setTimeout(updateCountdownsDynamic, 1000);
+    }
+  });
+}
+*/

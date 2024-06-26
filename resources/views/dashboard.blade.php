@@ -115,7 +115,7 @@
 
               </div>
             @empty
-              <h4>You don't have any message for now.</h4>
+              <h4>You don't have any message for now</h4>
             @endforelse
           </div>
 
@@ -146,7 +146,7 @@
 
                 </div>
               @empty
-                <h4>You don't have any message for now.</h4>
+                <h4>You don't have any message for now</h4>
               @endforelse
             </div>
 
@@ -206,7 +206,7 @@
                   </div>
                 </div>
               @empty
-                <h4>You don't have any message for now.</h4>
+                <h4>You don't have any active sponsowrhip for now</h4>
               @endforelse
 
             </div>

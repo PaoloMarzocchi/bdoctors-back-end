@@ -19,15 +19,22 @@
       <div class="sponsorship_list d-flex flex-column gap-2">
 
         @forelse ($doctorProfile->sponsorships as $sponsorship)
+          @php
+            $time_remaining = $sponsorship->time_remaining;
+          @endphp
+
           <div class="bg_dark_transparent shadow px-2 py-3 rounded-4">
             <div class="fw-bold mb-2 my_primary">
               {{ $sponsorship->name }}:
             </div>
-            <div id="countdown">Your {{ strtolower($sponsorship->name) }} will expire in:
+            <div id="countdown-{{ $sponsorship->id }}" class="countdown"
+              data-seconds-remaining="{{ $time_remaining['total_seconds'] }}">Your {{ strtolower($sponsorship->name) }}
+              will
+              expire in:
 
-              <span id="hours">{{ $sponsorship->timeRemaining($sponsorship->created_at)['hours'] }}</span>
-              <span id="minutes">{{ $sponsorship->timeRemaining($sponsorship->created_at)['minutes'] }}:</span>
-              <span id="seconds">{{ $sponsorship->timeRemaining($sponsorship->created_at)['seconds'] }}</span>
+              <span id="hours-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['hours'] }}</span>:
+              <span id="minutes-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['minutes'] }}</span>:
+              <span id="seconds-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['seconds'] }}</span>
 
             </div>
           </div>
@@ -50,56 +57,53 @@
       </div>
 
 
-            @include('partials.session-message')
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                @foreach ($sponsorships as $sponsorship)
-                    <div class="col">
-                        <div class="card mb-4 rounded-4 shadow-sm border-0">
-                            <form action="{{ route('admin.sponsorship.store') }}" method="post">
-                                @csrf
+      @include('partials.session-message')
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        @foreach ($sponsorships as $sponsorship)
+          <div class="col">
+            <div class="card mb-4 rounded-4 shadow-sm border-0">
+              <form action="{{ route('admin.sponsorship.store') }}" method="post">
+                @csrf
 
-                                <div class="card-header bg_secondary py-3 rounded-top-4">
-                                    <input type="hidden" style="background-color: inherit; width:100px" class="border-0"
-                                        name="name-{{ $sponsorship->id }}" id="name-{{ $sponsorship->id }}" placeholder=""
-                                        value="{{ $sponsorship->name }} " />
-                                    <h4 class="my-0 fw-bold">{{ $sponsorship->name }}</h4>
-                                </div>
+                <div class="card-header bg_secondary py-3 rounded-top-4">
+                  <input type="hidden" style="background-color: inherit; width:100px" class="border-0"
+                    name="name-{{ $sponsorship->id }}" id="name-{{ $sponsorship->id }}" placeholder=""
+                    value="{{ $sponsorship->name }} " />
+                  <h4 class="my-0 fw-bold">{{ $sponsorship->name }}</h4>
+                </div>
 
-                                <div class="card-body d-flex flex-column gap-2">
-                                    <h1 class="card-title pricing-card-title my_primary">
-                                        <input type="hidden" style="background-color: inherit; width:100px"
-                                            class="border-0" name="price-{{ $sponsorship->id }}"
-                                            id="price-{{ $sponsorship->id }}" placeholder=""
-                                            value="{{ $sponsorship->price }}" />
-                                        {{ $sponsorship->price }} €
-                                    </h1>
+                <div class="card-body d-flex flex-column gap-2">
+                  <h1 class="card-title pricing-card-title my_primary">
+                    <input type="hidden" style="background-color: inherit; width:100px" class="border-0"
+                      name="price-{{ $sponsorship->id }}" id="price-{{ $sponsorship->id }}" placeholder=""
+                      value="{{ $sponsorship->price }}" />
+                    {{ $sponsorship->price }} €
+                  </h1>
 
-                                    <input type="hidden" style="background-color: inherit; width:100px" class="border-0"
-                                        name="period-{{ $sponsorship->id }}" id="period-{{ $sponsorship->id }}"
-                                        placeholder="" value="{{ $sponsorship->period }} ">
-                                    <span>Highligt your profile for</span>
-                                    <strong class="fs-2 my_primary">{{ $sponsorship->period }}</strong>
-                                    <span>hours!</span>
-                                    </input>
+                  <input type="hidden" style="background-color: inherit; width:100px" class="border-0"
+                    name="period-{{ $sponsorship->id }}" id="period-{{ $sponsorship->id }}" placeholder=""
+                    value="{{ $sponsorship->period }} ">
+                  <span>Highligt your profile for</span>
+                  <strong class="fs-2 my_primary">{{ $sponsorship->period }}</strong>
+                  <span>hours!</span>
+                  </input>
 
-                                    <a href="{{ route('admin.token', $sponsorship) }}"
-                                        class="btn my_btn_primary px-4 rounded-pill mx-auto">
-                                        Get this
-                                        Sponsorship
-                                    </a>
+                  <a href="{{ route('admin.token', $sponsorship) }}"
+                    class="btn my_btn_primary px-4 rounded-pill mx-auto">
+                    Get this
+                    Sponsorship
+                  </a>
 
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                @endforeach
-
+                </div>
+              </form>
             </div>
           </div>
         @endforeach
-      </div>
 
+      </div>
     </div>
+
+  </div>
   </div>
   @vite(['resources/js/sponsorshipCountDown.js'])
 @endsection

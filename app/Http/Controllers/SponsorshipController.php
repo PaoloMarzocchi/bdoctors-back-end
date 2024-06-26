@@ -21,9 +21,16 @@ class SponsorshipController extends Controller
         $sponsorships = Sponsorship::all();
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
+        $activeSponsorships = $doctorProfile->sponsorships;
 
-        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile'));
+        // Calcola il tempo rimanente per ciascuna sponsorship
+        foreach ($activeSponsorships as $sponsorship) {
+            $sponsorship->time_remaining = $sponsorship->timeRemaining();
+        }
+
+        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'activeSponsorships'));
     }
+
 
     /**
      * Show the form for creating a new resource.
