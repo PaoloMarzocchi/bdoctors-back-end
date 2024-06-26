@@ -193,15 +193,23 @@
             <div class="sponsorship_list d-flex flex-column gap-2">
 
               @forelse ($doctorProfile->sponsorships as $sponsorship)
+                @php
+                  $time_remaining = $sponsorship->time_remaining;
+                @endphp
+
                 <div class="sponsorship shadow px-2 py-3">
                   <div class="name mb-2">
                     {{ $sponsorship->name }}:
                   </div>
-                  <div id="countdown">Your {{ strtolower($sponsorship->name) }} will expire in:
+                  <div id="countdown-{{ $sponsorship->id }}" class="countdown"
+                    data-seconds-remaining="{{ $time_remaining['total_seconds'] }}">Your
+                    {{ strtolower($sponsorship->name) }}
+                    will
+                    expire in:
 
-                    <span id="hours">{{ $sponsorship->timeRemaining($sponsorship->created_at)['hours'] }}</span>
-                    <span id="minutes">{{ $sponsorship->timeRemaining($sponsorship->created_at)['minutes'] }}:</span>
-                    <span id="seconds">{{ $sponsorship->timeRemaining($sponsorship->created_at)['seconds'] }}</span>
+                    <span id="hours-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['hours'] }}</span>:
+                    <span id="minutes-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['minutes'] }}</span>:
+                    <span id="seconds-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['seconds'] }}</span>
 
                   </div>
                 </div>

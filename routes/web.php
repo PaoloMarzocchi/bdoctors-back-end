@@ -43,6 +43,13 @@ Route::get('/dashboard', function () {
     $average = 0;
     $numberVotes = 0;
 
+    $activeSponsorships = $doctorProfile->sponsorships;
+
+    // Calcola il tempo rimanente per ciascuna sponsorship
+    foreach ($activeSponsorships as $sponsorship) {
+        $sponsorship->time_remaining = $sponsorship->timeRemaining();
+    }
+
     if (count($votes) > 0) {
         $sum = 0;
 
@@ -55,7 +62,7 @@ Route::get('/dashboard', function () {
     }
 
 
-    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes'));
+    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes', 'activeSponsorships'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/statistics/index2', [StatisticController::class, 'index2'])->name('admin.statistics.index2');
