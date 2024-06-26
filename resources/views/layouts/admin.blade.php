@@ -34,7 +34,7 @@
           <!-- Sidebar -->
           @include('partials.sidebar', ['doctorProfile' => $doctorProfile])
 
-          <div class="view flex-fill">
+          <div class="view position-relative flex-fill">
 
             @yield('content')
 

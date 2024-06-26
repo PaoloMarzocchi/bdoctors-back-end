@@ -25,6 +25,22 @@ body {
     color: var(--primary);
 }
 
+.my_action_primary {
+    background-color: transparent;
+    border: 1px solid var(--dark-1);
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    min-width: 60px;
+    padding: 4px;
+
+    &:hover {
+        background-color: var(--secondary-hover);
+        border: 1px solid var(--primary);
+        color: var(--light-1);
+    }
+}
+
 .my_btn_primary {
     background-color: var(--primary);
     color: #fff;
@@ -160,9 +176,9 @@ body {
 }
 
 .wrapper {
-    background: rgba(230, 230, 230, 0.5);
+    background: rgba(230, 230, 230, 0.605);
     border-radius: 16px;
-    backdrop-filter: blur(6.5px);
+    // backdrop-filter: blur(6.5px);
     border: 1px solid rgba(162, 160, 164, 0.5);
 }
 
