@@ -3,10 +3,10 @@
 @section('content')
   <div class="container py-5">
 
-    <div class="image_right">
+    <div class="image_right positon-relative z-n1">
       <img src="/img/messages_green.png" alt="">
     </div>
-    <div class="image_left">
+    <div class="image_left positon-relative z-n1">
       <img src="/img/informations-right.png" alt="">
     </div>
 
@@ -16,7 +16,7 @@
       <h4 class="mb-4">Hi dr. {{ $doctor->surname }}, here are the messages from your patients</h4>
 
       @if ($messages)
-        <div class="table_glass table-responsive">
+        <div class="table-responsive">
           <table class="table border table-light table-striped table-bordered table-hover text-center">
             <thead>
               <tr>
@@ -42,9 +42,10 @@
                   </td>
 
                   <td>
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                    <button type="button" class="btn my_action_primary rounded-2" data-bs-toggle="modal"
                       data-bs-target="#modalId-{{ $message->id }}">
-                      <i class="fa-solid fa-eye"></i>
+                      <i class="fa-solid fa-eye me-1"></i>
+                      View
                     </button>
 
                     <!-- Modal Body -->
@@ -52,7 +53,7 @@
                     <div class="modal fade" id="modalId-{{ $message->id }}" tabindex="-1" data-bs-backdrop="static"
                       data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId-{{ $message->id }}"
                       aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                      <div class="modal-dialog modal-md" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="modalTitleId-{{ $message->id }}">
