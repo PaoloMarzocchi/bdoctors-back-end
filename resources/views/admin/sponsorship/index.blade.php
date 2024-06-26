@@ -3,12 +3,12 @@
 @section('content')
     <div class="container py-4">
 
-    <div class="image_right">
-      <img src="/img/sponsorship_green.png" alt="">
-    </div>
-    <div class="image_left">
-      <img src="/img/informations-right.png" alt="">
-    </div>
+        <div class="image_right">
+            <img src="/img/sponsorship_green.png" alt="">
+        </div>
+        <div class="image_left">
+            <img src="/img/informations-right.png" alt="">
+        </div>
 
         <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
 
@@ -81,7 +81,7 @@
                                     <span>hours!</span>
                                     </input>
 
-                                    <a href="{{ route('token', $sponsorship) }}"
+                                    <a href="{{ route('admin.token', $sponsorship) }}"
                                         class="btn my_btn_primary px-4 rounded-pill mx-auto" type="submit">
                                         Get this
                                         Sponsorship

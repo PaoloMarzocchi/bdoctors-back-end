@@ -13,7 +13,8 @@ class PaymentController extends Controller
     public function token(Request $request, Sponsorship $sponsorship)
     {
         //dd($sponsorship->price);
-        dd($request->all());
+        $user = Auth::user();
+        //dd($user);
         $gateway = new \Braintree\Gateway([
             'environment' => env('BRAINTREE_ENVIRONMENT'),
             'merchantId' => env("BRAINTREE_MERCHANT_ID"),
@@ -36,6 +37,7 @@ class PaymentController extends Controller
         }
 
         $clientToken = $gateway->clientToken()->generate();
+        $user->doctorProfile->sponsorships()->attach($sponsorship);
 
         return view('admin.sponsorship.payment', ['token' => $clientToken, 'sponsorship' => $sponsorship]);
     }
