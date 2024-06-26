@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-5">
+  <div class="container py-5">
 
 
     <div class="image_right positon-relative z-n1">
@@ -11,9 +11,9 @@
       <img src="/img/informations-right.png" alt="">
     </div>
 
-    <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
+    <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
 
-      <h3 class="display-6 fw-bold my_primary">Your messages</h3>
+      <h3 class="display-5 fw-bold my_primary">Your messages</h3>
       <h4 class="mb-4">Hi dr. {{ $doctor->surname }}, here are the messages from your patients</h4>
 
       @if ($messages)
@@ -84,16 +84,15 @@
                   </td>
 
                 </tr>
+              @endforeach
+            </tbody>
+          </table>
+          {{ $messages->links() }}
 
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $messages->links() }}
-
-                </div>
-            @else
-                <h4>You don't have any message yet.</h4>
-            @endif
         </div>
+      @else
+        <h4>You don't have any message yet.</h4>
+      @endif
     </div>
+  </div>
 @endsection

@@ -1,53 +1,54 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-4">
+  <div class="container py-4">
 
-        <div class="image_right z-n1">
-            <img src="/img/sponsorship_green.png" alt="">
-        </div>
-        <div class="image_left z-n1">
-            <img src="/img/informations-right.png" alt="">
-        </div>
 
-        <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
+    <div class="image_right positon-relative z-n1">
+      <img src="/img/sponsorship_green.png" alt="">
+    </div>
+    <div class="image_left positon-relative z-n1">
+      <img src="/img/informations-right.png" alt="">
+    </div>
 
-            <h3 class="display-6 fw-bold my_primary">Your sponsorship</h3>
 
-            <div class="sponsorship_list d-flex flex-column gap-2">
+    <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
 
-                @forelse ($doctorProfile->sponsorships as $sponsorship)
-                    <div class="shadow px-2 py-3 rounded-4">
-                        <div class="fw-bold mb-2 my_primary">
-                            {{ $sponsorship->name }}:
-                        </div>
-                        <div id="countdown">Your {{ strtolower($sponsorship->name) }} will expire in:
+      <h3 class="display-5 fw-bold my_primary">Your sponsorship</h3>
 
-                            <span id="hours">{{ $sponsorship->timeRemaining($sponsorship->created_at)['hours'] }}</span>
-                            <span
-                                id="minutes">{{ $sponsorship->timeRemaining($sponsorship->created_at)['minutes'] }}:</span>
-                            <span
-                                id="seconds">{{ $sponsorship->timeRemaining($sponsorship->created_at)['seconds'] }}</span>
+      <div class="sponsorship_list d-flex flex-column gap-2">
 
-                        </div>
-                    </div>
-                @empty
-                    <h4>You don't have any message for now.</h4>
-                @endforelse
+        @forelse ($doctorProfile->sponsorships as $sponsorship)
+          <div class="bg_dark_transparent shadow px-2 py-3 rounded-4">
+            <div class="fw-bold mb-2 my_primary">
+              {{ $sponsorship->name }}:
+            </div>
+            <div id="countdown">Your {{ strtolower($sponsorship->name) }} will expire in:
+
+              <span id="hours">{{ $sponsorship->timeRemaining($sponsorship->created_at)['hours'] }}</span>
+              <span id="minutes">{{ $sponsorship->timeRemaining($sponsorship->created_at)['minutes'] }}:</span>
+              <span id="seconds">{{ $sponsorship->timeRemaining($sponsorship->created_at)['seconds'] }}</span>
 
             </div>
+          </div>
+        @empty
+          <h4>You don't have any message for now.</h4>
+        @endforelse
 
-        </div>
+      </div>
 
-        <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
-            <h3 class="display-6 fw-bold my_primary">Purchase a new sponsorship</h3>
-            <div class="pricing-header pb-md-4">
-                <p class="fs-5">
-                    Highlight your profile! Purchase sponsorships to boost your visibility and reach more users. Take your
-                    presence
-                    to the next level with our promotion options
-                </p>
-            </div>
+    </div>
+
+    <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
+      <h3 class="display-5 fw-bold my_primary">Purchase a new sponsorship</h3>
+      <div class="pricing-header pb-md-4">
+        <p class="fs-5">
+          Highlight your profile! Purchase sponsorships to boost your visibility and reach more users. Take your
+          presence
+          to the next level with our promotion options
+        </p>
+      </div>
+
 
             @include('partials.session-message')
             <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -92,9 +93,13 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
 
-        </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+
     </div>
-    @vite(['resources/js/sponsorshipCountDown.js'])
+  </div>
+  @vite(['resources/js/sponsorshipCountDown.js'])
 @endsection
