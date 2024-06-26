@@ -13,7 +13,7 @@ class PaymentController extends Controller
     public function token(Request $request, Sponsorship $sponsorship)
     {
         //dd($sponsorship->price);
-        //dd($request->all());
+        dd($request->all());
         $gateway = new \Braintree\Gateway([
             'environment' => env('BRAINTREE_ENVIRONMENT'),
             'merchantId' => env("BRAINTREE_MERCHANT_ID"),

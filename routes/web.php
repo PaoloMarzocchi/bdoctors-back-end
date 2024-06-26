@@ -81,3 +81,4 @@ require __DIR__ . '/auth.php';
 
 
 Route::any('/payment/{sponsorship}', [PaymentController::class, 'token'])->name('token')->middleware('auth');
+/* ->parameters(['sponsorship' => 'sponsorship:slug']) */
