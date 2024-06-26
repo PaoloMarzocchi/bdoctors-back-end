@@ -1,32 +1,47 @@
-@extends('layouts.app');
+@extends('layouts.admin')
 
 @section('content')
     <div>
         <div class="container py-4">
-            <h1 class="mx-auto rounded text-center my_primary py-3 shadow">
-                My Statistics
-            </h1>
-            <div class="row py-3 text-center">
-                <div class="col-12">
-                    <div class="card shadow">
-                        <h2>Primo grafico</h2>
-                        <canvas id="myChart"></canvas>
+
+            <div class="image_right">
+                <img src="/img/statistics.png" alt="">
+            </div>
+            <div class="image_left">
+                <img src="/img/informations-right.png" alt="">
+            </div>
+
+            <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
+                <h3 class="display-6 fw-bold my_primary">
+                    Your statistics
+                </h3>
+
+            </div>
+
+            <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
+                <div class="row py-3 text-center">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <h4 class="display-6 fw-bold my_primary">Primo grafico</h4>
+                            <canvas id="myChart"></canvas>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 py-3">
-                    <div class="card shadow">
-                        <h2>Secondo grafico</h2>
-                        <canvas id="myChart2"></canvas>
+                    <div class="col-6 py-3">
+                        <div class="card shadow">
+                            <h4 class="display-6 fw-bold my_primary">Secondo grafico</h4>
+                            <canvas id="myChart2"></canvas>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 py-3">
-                    <div class="card shadow">
-                        <h2>Terzo grafico</h2>
-                        <canvas id="myChart3"></canvas>
+                    <div class="col-6 py-3">
+                        <div class="card shadow">
+                            <h4 class="display-6 fw-bold my_primary">Terzo grafico</h4>
+                            <canvas id="myChart3"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-            <canvas id="myChart"></canvas>
+
+
         </div>
 
     </div>
