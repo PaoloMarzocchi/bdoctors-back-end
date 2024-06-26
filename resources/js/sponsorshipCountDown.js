@@ -32,7 +32,7 @@ function updateCountdown() {
         } else {
           // Se il countdown è terminato, puoi gestire l'output qui
           clearInterval(countdownInterval);
-          timeElement.innerText = "Expired";
+          timeElement.innerText = "No active sponsorship";
           return;
         }
       }

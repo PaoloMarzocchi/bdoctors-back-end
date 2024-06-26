@@ -33,8 +33,8 @@
                         </div>
                     </div>
                 @else
-                    <span>
-                        You don't have any active sponsorship for now .
+                    <span class="fw-bold">
+                        You don't have any active sponsorship.
                     </span>
                 @endif
 
