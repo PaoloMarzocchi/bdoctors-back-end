@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-  <div class="container py-5">
+    <div class="container py-5">
 
     <div class="image_right positon-relative z-n1">
       <img src="/img/votes_green.png" alt="">
@@ -54,12 +54,6 @@
               </div>
             @endfor
 
-          </span>
         </div>
-      @else
-        <h4>You don't have any vote yet.</h4>
-      @endif
-
     </div>
-  </div>
 @endsection

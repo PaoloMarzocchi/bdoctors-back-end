@@ -1,22 +1,23 @@
 @extends('layouts.admin')
 
 @section('content')
-  <div class="container py-4">
+    <div class="container py-4">
 
 
-    <div class="image_right positon-relative z-n1">
-      <img src="/img/sponsorship_green.png" alt="">
-    </div>
-    <div class="image_left positon-relative z-n1">
-      <img src="/img/informations-right.png" alt="">
-    </div>
+        <div class="image_right positon-relative z-n1">
+            <img src="/img/sponsorship_green.png" alt="">
+        </div>
+        <div class="image_left positon-relative z-n1">
+            <img src="/img/informations-right.png" alt="">
+        </div>
 
 
-    <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
+        <div class="wrapper w-100 p-4 mb-4 shadow rounded-lg">
 
-      <h3 class="display-5 fw-bold my_primary">Your sponsorship</h3>
+            <h3 class="display-5 fw-bold my_primary">Your sponsorship</h3>
 
-      <div class="sponsorship_list d-flex flex-column gap-2">
+            <div class="sponsorship_list d-flex flex-column gap-2">
+
 
         @forelse ($doctorProfile->sponsorships as $sponsorship)
           @php
@@ -36,25 +37,26 @@
               <span id="minutes-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['minutes'] }}</span>:
               <span id="seconds-{{ $sponsorship->id }}">{{ $sponsorship->timeRemaining()['seconds'] }}</span>
 
+
+                        </div>
+                    </div>
+                @empty
+                    <h4>You don't have any message for now.</h4>
+                @endforelse
+
             </div>
-          </div>
-        @empty
-          <h4>You don't have any message for now.</h4>
-        @endforelse
 
-      </div>
+        </div>
 
-    </div>
-
-    <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
-      <h3 class="display-5 fw-bold my_primary">Purchase a new sponsorship</h3>
-      <div class="pricing-header pb-md-4">
-        <p class="fs-5">
-          Highlight your profile! Purchase sponsorships to boost your visibility and reach more users. Take your
-          presence
-          to the next level with our promotion options
-        </p>
-      </div>
+        <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
+            <h3 class="display-5 fw-bold my_primary">Purchase a new sponsorship</h3>
+            <div class="pricing-header pb-md-4">
+                <p class="fs-5">
+                    Highlight your profile! Purchase sponsorships to boost your visibility and reach more users. Take your
+                    presence
+                    to the next level with our promotion options
+                </p>
+            </div>
 
 
       @include('partials.session-message')
@@ -97,13 +99,16 @@
                 </div>
               </form>
             </div>
+
           </div>
         @endforeach
+
 
       </div>
     </div>
 
+
   </div>
   </div>
   @vite(['resources/js/sponsorshipCountDown.js'])
-@endsection
+
