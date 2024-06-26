@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
   <div class="container my-3">
 
 
@@ -13,6 +14,7 @@
                     ########### FAKE AI AREA BIGGER !! #############
                     ################################################ 
                     --}}
+
     {{--           <div class="card-body p-0">
             @if (session('status'))
               <div class="alert alert-success" role="alert">
@@ -86,12 +88,12 @@
                         </div> --}}
     {{--             </div>
 
-            <div class="input_message rounded p-2 mt-3 d-flex">
-              <a href="#"><i class="hide_sm fa-regular fa-xl fa-face-smile"></i></a>
-              <input type="text" placeholder="Scrivi un messaggio" v-model.trim="newMessage.message"
-                @keydown.enter="addMessage(activeContact)" @keyup.enter="replyMessage(activeContact)">
-              <a href="#"><i class="hide_sm fa-solid fa-xl fa-microphone"></i></a>
-            </div>
+                        <div class="input_message rounded p-2 mt-3 d-flex">
+                            <a href="#"><i class="hide_sm fa-regular fa-xl fa-face-smile"></i></a>
+                            <input type="text" placeholder="Scrivi un messaggio" v-model.trim="newMessage.message"
+                                @keydown.enter="addMessage(activeContact)" @keyup.enter="replyMessage(activeContact)">
+                            <a href="#"><i class="hide_sm fa-solid fa-xl fa-microphone"></i></a>
+                        </div>
 
           </div>
         </div> --}}
