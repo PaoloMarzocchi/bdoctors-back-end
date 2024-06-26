@@ -176,10 +176,19 @@ body {
 }
 
 .wrapper {
-    background: rgba(230, 230, 230, 0.605);
+    background: rgba(227, 227, 227, 0.6);
     border-radius: 16px;
     // backdrop-filter: blur(6.5px);
     border: 1px solid rgba(162, 160, 164, 0.5);
+}
+
+.bg_dark_transparent {
+    background: rgba(225, 225, 225, 0.9);
+}
+
+.stars_wrapper {
+    background: rgba(147, 147, 147, 0.9);
+    padding: 5.5px;
 }
 
 /* #region :::: SPECIALIZATIONS :::: */
