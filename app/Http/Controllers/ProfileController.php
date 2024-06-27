@@ -66,8 +66,22 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        $doctorProfile->delete();
-        $user->delete();
+        $doctorProfile->surname = null;
+        $doctorProfile->slug = null;
+        $doctorProfile->cv = null;
+        $doctorProfile->photo = null;
+        $doctorProfile->address = '';
+        $doctorProfile->telephone = null;
+        $doctorProfile->services = null;
+        $doctorProfile->save();
+
+        $user->name = '';
+        $user->email = '';
+        $user->password = '';
+        $user->save();
+
+        //$doctorProfile->delete();
+        //$user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
