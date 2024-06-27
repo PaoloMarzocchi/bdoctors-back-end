@@ -26,20 +26,6 @@
                     </div>
 
                 </div>
-
-                <div class="col-6 py-3">
-                    <h4 class="display-6 fw-bold my_primary">Votes by type</h4>
-                    <div class="card shadow">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-            <div class="row">
-
                 {{-- Message chart --}}
                 <div class="col-6 py-3">
                     <h5 class="display-6 fw-bold my_primary">Messages</h5>
@@ -48,6 +34,20 @@
                         data-message-data="{{ json_encode($messageData) }}">
                         <canvas id="messageChart"></canvas>
                     </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-6 py-3">
+                    <h4 class="display-6 fw-bold my_primary">Votes by type</h4>
+                    <div class="card shadow">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+
                 </div>
 
                 {{-- Review chart --}}
