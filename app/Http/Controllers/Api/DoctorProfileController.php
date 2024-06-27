@@ -71,7 +71,7 @@ class DoctorProfileController extends Controller
             ->select('doctor_profiles.*', DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'))
             ->orderBy('has_sponsorship', 'desc')
             ->distinct()
-            ->paginate(3);
+            ->paginate(4);
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
@@ -80,72 +80,40 @@ class DoctorProfileController extends Controller
     public function advancedSearch($specialization, $minAverageVote, $minTotalReviews)
     {
 
-        // dd($specialization, $vote, $review);
-
-        /*         $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
-            ->whereRelation('specializations', 'name', '=', $specialization)
-            ->whereRelation('votes', 'vote', '=', $minAverageVote)
-            ->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
-            ->select('doctor_profiles.*', DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'))
-            ->orderBy('has_sponsorship', 'desc')
-            ->distinct()
-            ->get(); */
-
-        /* IT FINALLY WORKS */
-        $searchResults =
-            DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
+        $query = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
             ->join('users', 'doctor_profiles.user_id', '=', 'users.id')
-            ->join('doctor_profile_specialization', 'doctor_profiles.id', '=', 'doctor_profile_specialization.doctor_profile_id')
-            ->join('specializations', 'doctor_profile_specialization.specialization_id', '=', 'specializations.id')
-            ->leftJoin('doctor_profile_vote', 'doctor_profiles.id', '=', 'doctor_profile_vote.doctor_profile_id')
-            ->leftJoin('votes', 'doctor_profile_vote.vote_id', '=', 'votes.id')
             ->leftJoin(
                 'doctor_profile_sponsorship',
                 'doctor_profiles.id',
                 '=',
                 'doctor_profile_sponsorship.doctor_profile_id'
             )
-            ->leftJoin(
-                'reviews',
-                'doctor_profiles.id',
-                '=',
-                'reviews.doctor_profile_id'
-            )
             ->select(
                 'doctor_profiles.*',
                 DB::raw('(SELECT AVG(votes.vote) FROM votes JOIN doctor_profile_vote ON votes.id = doctor_profile_vote.vote_id WHERE doctor_profile_vote.doctor_profile_id = doctor_profiles.id) as average_vote'),
                 DB::raw('(SELECT COUNT(*) FROM reviews WHERE reviews.doctor_profile_id = doctor_profiles.id) as review_count'),
-                DB::raw('IF(doctor_profile_sponsorship.doctor_profile_id IS NOT NULL, 1, 0) as has_sponsorship')
-            )
-            ->where('specializations.name', $specialization)
-            ->groupBy('doctor_profiles.id')
-            ->having('average_vote', '>=', $minAverageVote)
-            ->having('review_count', '>=', $minTotalReviews)
-            ->orderBy('has_sponsorship', 'desc')
-            ->paginate(3);
+                DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship')
+            );
 
+        if ($specialization != 'null') {
+            $query->join('doctor_profile_specialization', 'doctor_profiles.id', '=', 'doctor_profile_specialization.doctor_profile_id')
+                ->join('specializations', 'doctor_profile_specialization.specialization_id', '=', 'specializations.id')
+                ->where('specializations.name', $specialization);
+        }
 
+        if ($minAverageVote != 'null') {
+            $query->having('average_vote', '>=', $minAverageVote);
+        }
 
-        // dd($searchResults);
+        if ($minTotalReviews != 'null') {
+            $query->having('review_count', '>=', $minTotalReviews);
+        }
 
-        // $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
-        //     ->whereRelation('specializations', 'name', '=', $specialization)
-        //     ->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
-        //     ->leftJoin('doctor_profile_vote', 'doctor_profiles.id', '=', 'votes.doctor_profile_id')
-        //     ->leftJoin('reviews', 'doctor_profiles.id', '=', 'reviews.doctor_profile_id')
-        //     ->select(
-        //         'doctor_profiles.*',
-        //         DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'),
-        //         DB::raw('AVG(votes.vote) as average_vote'),
-        //         DB::raw('COUNT(reviews.id) as total_reviews')
-        //     )
-        //     ->groupBy('doctor_profiles.id')
-        //     ->having('average_vote', '>=', $minAverageVote)
-        //     ->having('total_reviews', '>=', $minTotalReviews)
-        //     ->orderBy('has_sponsorship', 'desc')
-        //     ->orderBy('average_vote', 'desc')
-        //     ->distinct()
-        //     ->get();
+        $query->distinct()
+            ->orderBy('has_sponsorship', 'desc');
+
+        $searchResults = $query->paginate(4);
+        //dd($searchResults);
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
