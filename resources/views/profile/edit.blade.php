@@ -36,9 +36,9 @@
             @include('profile.partials.update-password-form')
         </div>
 
-        {{-- <div class="card p-4 mb-4 bg-white shadow rounded-lg">
-      @include('profile.partials.delete-user-form')
-    </div> --}}
+        <div class="card p-4 mb-4 bg-white shadow rounded-4">
+            @include('profile.partials.delete-user-form')
+        </div>
         <div class="d-flex justify-content-center">
             <a class="btn my_btn_primary px-4 rounded-pill my-3 z-3" href="{{ route('admin.doctorProfile.index') }}">
                 Show
