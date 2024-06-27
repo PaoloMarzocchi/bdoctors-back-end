@@ -15,7 +15,7 @@
 
             <div class="d-flex flex-wrap">
                 <div class="me-auto p-2">
-                    <h1 class="display-5 fw-bold my_primary">
+                    <h1 class="display-5 mt-1 fw-bold my_primary">
                         Dr. {{ $doctorProfile->user->name }} {{ $doctorProfile->surname }}
                     </h1>
                 </div>
