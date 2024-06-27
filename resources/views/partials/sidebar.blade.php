@@ -1,4 +1,5 @@
-<div class="sidebar rounded-3 shadow d-flex flex-column flex-shrink-0 p-3 m-2">
+<div class="sidebar offcanvas-sm offcanvas-start rounded-3 shadow d-flex flex-column flex-shrink-0 p-3 m-2" tabindex="-1"
+    id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 
     {{-- BDoctors Logo --}}
     <a href="{{ url('/') }}" class="d-flex align-items-center link-body-emphasis text-decoration-none gap-3">
