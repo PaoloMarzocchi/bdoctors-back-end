@@ -9,7 +9,7 @@
         @if ($doctorProfile)
             <div class="row justify-content-between">
                 <div class="col-6 align-self-center">
-                    <h1 class="col-6 display-5 fw-bold my_primary">
+                    <h1 class="col-6 display-5 fw-bold my_primary text-nowrap">
                         Dr. {{ $doctorProfile->user->name }} {{ $doctorProfile->surname }}
                     </h1>
                 </div>
@@ -24,7 +24,7 @@
                     </a>
                     <a class="btn btn-outline-dark my_primary px-4 rounded-pill my-3 text-decoration-none shadow"
                         target="_blank" rel="noopener noreferrer"
-                        href="http://localhost:5173/doctor-profile/{{ $doctorProfile->slug }}?source=back-end">
+                        href="http://localhost:5174/doctor-profile/{{ $doctorProfile->slug }}?source=back-end">
                         <strong>UI VIEW</strong>
                     </a>
                 </div>
