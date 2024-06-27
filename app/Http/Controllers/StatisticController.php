@@ -19,11 +19,11 @@ class StatisticController extends Controller
      */
     public function index()
     {
+        // Conteggio dei voti per tipo (da 1 a 5)
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
         $votes = $user->doctorProfile->votes;
 
-        // Conteggio dei voti per tipo (da 1 a 5)
         $voteCounts = [0, 0, 0, 0, 0];
 
         foreach ($votes as $vote) {
@@ -38,7 +38,7 @@ class StatisticController extends Controller
         $doctorProfile = DoctorProfile::find($doctorProfile->id);
 
         $votes = $doctorProfile->votes()
-            ->where('votes.created_at', '>=', Carbon::now()->subYear())
+            ->wherePivot('created_at', '>=', Carbon::now()->subYear())
             ->get();
         // Conteggio dei voti per mese
         $votesCounts = [];
@@ -50,7 +50,7 @@ class StatisticController extends Controller
         }
 
         foreach ($votes as $vote) {
-            $voteMonthYear = Carbon::parse($vote->created_at)->format('Y-m');
+            $voteMonthYear = Carbon::parse($vote->pivot->created_at)->format('Y-m');
             if (isset($votesCounts[$voteMonthYear])) {
                 $votesCounts[$voteMonthYear]++;
             }

@@ -19,7 +19,7 @@
 
                 <div class="col-6 py-3">
 
-                    <h4 class="display-6 fw-bold my_primary">Voti per mese</h4>
+                    <h4 class="display-6 fw-bold my_primary">Votes by month</h4>
                     <div id="voteChartContainer" class="card shadow" data-vote-labels="{{ json_encode($voteLabels) }}"
                         data-vote-data="{{ json_encode($voteData) }}">
                         <canvas id="voteChart"></canvas>
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col-6 py-3">
-                    <h4 class="display-6 fw-bold my_primary">Voti per tipo</h4>
+                    <h4 class="display-6 fw-bold my_primary">Votes by type</h4>
                     <div class="card shadow">
                         <canvas id="myPieChart"></canvas>
                     </div>
@@ -72,9 +72,9 @@
                 var myPieChart = new Chart(ctxPie, {
                     type: 'doughnut',
                     data: {
-                        labels: ['Voto 1', 'Voto 2', 'Voto 3', 'Voto 4', 'Voto 5'],
+                        labels: ['Vote 1', 'Vote 2', 'Vote 3', 'Vote 4', 'Vote 5'],
                         datasets: [{
-                            label: 'Voti per tipo',
+                            label: 'Votes by type',
                             data: @json($voteCounts),
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.6)',
