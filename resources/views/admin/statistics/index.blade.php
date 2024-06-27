@@ -19,6 +19,10 @@
             <h3 class="display-5 fw-bold my_primary">
                 Your statistics
             </h3>
+            <h4 class="mb-4">Hi Dr. <span
+                    class="my_primary text-decoration-underline">{{ $doctorProfile->surname }}</span>, here you can find all
+                the statistics of your profile!
+            </h4>
 
             <div class="row">
 
