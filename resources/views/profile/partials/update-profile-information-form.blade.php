@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-gray-900 section_title display-5 fw-bold my_primary">
             {{ __("Account's Information") }}
         </h2>
 
@@ -79,7 +79,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-4">
-            <button class="btn my_primary btn-secondary fw-bold shadow" type="submit">
+            <button class="btn my_btn_primary px-4 rounded-pill my-3" type="submit">
                 {{ __('Save') }}
             </button>
 
