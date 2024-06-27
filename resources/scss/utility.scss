@@ -188,9 +188,16 @@ body {
 }
 
 .stars_wrapper {
+    text-align: center;
     background: rgba(147, 147, 147, 0.9);
-    padding: 5.5px;
+    padding: 5px 0;
 }
+
+/* @media only screen and (max-width: 1200px) {
+    .my_votes {
+        width: 0 auto;
+    }
+} */
 
 /* #region :::: SPECIALIZATIONS :::: */
 
@@ -301,3 +308,29 @@ body {
 }
 
 /* #endregion :::: REGISTRATION FORM :::: */
+
+.pagination>li>a {
+    background-color: #333;
+    color: white;
+}
+
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>li>span:focus,
+.pagination>li>span:hover {
+    color: var(--primary-hover);
+    background-color: #333;
+    border: solid 1px var(--primary-hover) !important;
+}
+
+.pagination>.active>span {
+    color: #333 !important;
+    background-color: var(--primary-hover) !important;
+    border: solid 1px var(--primary-hover) !important;
+}
+
+.pagination>.active>span:hover {
+    background-color: #333 !important;
+    border: solid 1px var(--primary-hover) !important;
+    color: var(--primary-hover) !important;
+}

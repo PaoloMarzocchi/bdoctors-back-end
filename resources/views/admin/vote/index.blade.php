@@ -1,62 +1,70 @@
 @extends('layouts.admin')
 
 @section('content')
-  <div class="container py-5">
+    <div class="container py-5">
 
-    <div class="image_right positon-relative z-n1">
-      <img src="/img/votes_green.png" alt="">
-    </div>
-    <div class="image_left positon-relative z-n1">
-      <img src="/img/informations-right.png" alt="">
-    </div>
-
-    <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
-
-      <h3 class="display-5 fw-bold my_primary">Your votes</h3>
-
-      @if ($votes)
-        <div class="d-flex align-items-center mb-4">
-
-          <h4> Hi dr. {{ $doctorProfile->surname }}, you received {{ $numberVotes }} votes, for an
-            average of:
-          </h4>
-
-          <span class="ms-3 mb-2 text-warning">
-            @for ($i = 1; $i <= 5; $i++)
-              @if ($i <= $average)
-                <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
-              @else
-                <i class="fa-regular fa-star fa-xl" style="color: #FFD43B;"></i>
-              @endif
-            @endfor
-
-          </span>
+        <div class="image_right positon-relative z-n1">
+            <img src="/img/votes_green.png" alt="">
+        </div>
+        <div class="image_left positon-relative z-n1">
+            <img src="/img/informations-right.png" alt="">
         </div>
 
-        <div class="wrapper bg_dark_transparent col-4 p-3 shadow px-2 py-3 rounded-4">
+        <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
 
-          <div class="mb-2">If you want to keep an eye on them, they are divided like this: </div>
+            <h3 class="display-5 fw-bold my_primary">Your votes</h3>
 
-          <span>
+            @if ($votes)
+                <div class="row align-items-center mb-4">
+                    <div class="col-4 col-lg-6">
+                        <h4>
+                            Hi Dr. <span class="my_primary text-decoration-underline">{{ $doctorProfile->surname }}</span>,
+                            you received
+                            <span class="my_primary text-decoration-underline">{{ $numberVotes }}</span> votes, for an
+                            average of:
+                        </h4>
+                    </div>
+                    <div class="col-4 col-lg-6 text-nowrap">
+                        <span class="ms-3 mb-2 text-warning">
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $average)
+                                    <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                                @else
+                                    <i class="fa-regular fa-star fa-xl" style="color: #FFD43B;"></i>
+                                @endif
+                            @endfor
 
-            @for ($i = 1; $i <= 5; $i++)
-              <div class="mb-2">
-                You got <?php echo count($votes->where('vote', $i)); ?> votes with
-                <div class="stars_wrapper ms-2 d-inline rounded-3">
-                  @for ($j = 1; $j <= 5; $j++)
-                    @if ($j <= $i)
-                      <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
-                    @else
-                      <i class="fa-regular fa-star fa-xl" style="color: #FFD43B;"></i>
-                    @endif
-                  @endfor
+                        </span>
+                    </div>
                 </div>
-              </div>
-            @endfor
+
+                <div class="wrapper bg_dark_transparent col-12 col-lg-6 col-xxl-4 p-3 shadow px-2 py-3 rounded-4">
+
+                    <div class="mb-2">
+                        If you want to keep an eye on them, they are divided like this:
+                    </div>
+
+
+                    @for ($i = 1; $i <= 5; $i++)
+                        <div class="mb-2 row align-items-center px-3">
+                            <div class="col-6">
+                                You got <?php echo count($votes->where('vote', $i)); ?> votes with
+                            </div>
+                            <div class="col-6 stars_wrapper d-inline rounded-3">
+                                @for ($j = 1; $j <= 5; $j++)
+                                    @if ($j <= $i)
+                                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                                    @else
+                                        <i class="fa-regular fa-star fa-xl" style="color: #FFD43B;"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                        </div>
+                    @endfor
+
+                </div>
+            @endif
 
         </div>
-      @endif
-
     </div>
-  </div>
 @endsection
