@@ -11,7 +11,7 @@
 
           <div class="form_body">
 
-            <div class="form_title text-center display-4 fw-bold mb-5">{{ __('Register as a new BDoctor') }}</div>
+            <div class="form_title text-center display-4 fw-bold mb-5">{{ __('Register') }}</div>
 
             <form class="row g-3" id="registrationForm" method="POST" action="{{ route('register') }}">
               @csrf

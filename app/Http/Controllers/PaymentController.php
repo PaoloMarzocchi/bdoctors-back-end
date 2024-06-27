@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 /* use App\Http\Requests\StoreSponsorshipRequest; */
 
 
@@ -12,8 +14,9 @@ class PaymentController extends Controller
 {
     public function token(Request $request, Sponsorship $sponsorship)
     {
-        //dd($sponsorship->price);
-        //dd($request->all());
+
+
+        //dd($user);
         $gateway = new \Braintree\Gateway([
             'environment' => env('BRAINTREE_ENVIRONMENT'),
             'merchantId' => env("BRAINTREE_MERCHANT_ID"),
@@ -31,7 +34,42 @@ class PaymentController extends Controller
                 'options' => [
                     'submitForSettlement' => True
                 ]
+
             ]);
+
+            // STORE THE NEW SPONSORSHIP IN DB PIVOT TABLE
+            $user = Auth::user();
+
+            $sponsorships = Sponsorship::all();
+            foreach ($sponsorships as $sponsor) {
+
+                if ($sponsorship->period == $sponsor->period && $sponsorship->price == $sponsor->price && $sponsorship->name == $sponsor->name) {
+                    date_default_timezone_set('Europe/Rome');
+                    $startDate = date('Y-m-d H:i:s');
+                    $today = date('Y-m-d H:i:s');
+
+
+
+                    $expirationDates = DB::table('doctor_profile_sponsorship')
+                        ->where('doctor_profile_id', $user->doctorProfile->id)
+                        ->pluck('expirationDate');
+
+
+                    foreach ($expirationDates as $expDate) {
+
+                        if ($startDate < $expDate) {
+                            $startDate = $expDate;
+                        }
+                    }
+
+
+                    $expirationDate = date('Y-m-d H:i:s', strtotime('+' . $sponsorship->period . ' hours', strtotime($startDate)));
+
+                    $user->doctorProfile->sponsorships()->attach($sponsorship, ['expirationDate' => $expirationDate, 'created_at' => $today]);
+                }
+            }
+
+
             //return view('dashboard');
         }
 

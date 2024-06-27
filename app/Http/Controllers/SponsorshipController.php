@@ -10,6 +10,8 @@ use DateInterval;
 use DateTime;
 use DateTimeInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class SponsorshipController extends Controller
 {
@@ -22,7 +24,39 @@ class SponsorshipController extends Controller
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
 
-        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile'));
+        // Calculating expiration time of sponsorhips
+        $expirationDates = DB::table('doctor_profile_sponsorship')
+            ->where('doctor_profile_id', $user->doctorProfile->id)
+            ->pluck('expirationDate')
+            ->last();
+
+        $expirationDate = Carbon::parse($expirationDates);
+
+        $now = Carbon::now();
+
+        $difference = $now->diff($expirationDate, false);
+
+        $remainingTime = $difference->format('%d days %h hours %i minutes %s seconds');
+
+
+        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'remainingTime'));
+    }
+    /**
+     * Display payment history of sponsorships.
+     */
+    public function history()
+    {
+        $user = Auth::user();
+        $doctorProfile = $user->doctorProfile;
+
+        $sponsorships = DB::table('sponsorships')
+            ->join('doctor_profile_sponsorship', 'sponsorships.id', '=', 'doctor_profile_sponsorship.sponsorship_id')
+            ->where('doctor_profile_sponsorship.doctor_profile_id', $doctorProfile->id)
+            ->orderBy('doctor_profile_sponsorship.created_at', 'desc')
+            ->select('sponsorships.*', 'doctor_profile_sponsorship.created_at as pivot_created_at', 'doctor_profile_sponsorship.expirationDate as pivot_expiration_date')
+            ->paginate(5);
+
+        return view('admin.sponsorship.history', compact('sponsorships', 'doctorProfile'));
     }
 
     /**

@@ -54,9 +54,18 @@ Route::get('/dashboard', function () {
         $average = $sum / $numberVotes;
     }
 
+    $activeSponsorships = $doctorProfile->sponsorships;
 
-    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes'));
+    // Calcola il tempo rimanente per ciascuna sponsorship
+    foreach ($activeSponsorships as $sponsorship) {
+        $sponsorship->time_remaining = $sponsorship->timeRemaining();
+    }
+
+
+    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes', 'activeSponsorships'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/admin/statistics/index2', [StatisticController::class, 'index2'])->name('admin.statistics.index2');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -82,14 +91,15 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/messages', MessageController::class);
         Route::resource('/vote', VoteController::class);
 
+        Route::get('/sponsorship/history', [SponsorshipController::class, 'history']);
         Route::resource('/sponsorship', SponsorshipController::class);
-
         Route::resource('/reviews', ReviewController::class);
 
         Route::resource('/statistics', StatisticController::class);
+        Route::any('/payment/{sponsorship}', [PaymentController::class, 'token'])->name('token');
     });
 
 require __DIR__ . '/auth.php';
 
 
-Route::any('/payment/{sponsorship}', [PaymentController::class, 'token'])->name('token')->middleware('auth');
+/* ->parameters(['sponsorship' => 'sponsorship:slug']) */

@@ -1,3 +1,4 @@
+
 // Convertiamo i dati dei conteggi dei messaggi in JSON
 
 const voteChartContainer = document.getElementById('voteChartContainer');
@@ -18,6 +19,7 @@ const reviewData = JSON.parse(reviewChartContainer.getAttribute('data-review-dat
 const messageData = @json($messageData);
 const reviewLabels = @json($reviewLabels);
 const reviewData = @json($reviewData); */
+
 
 const voteChartConfig = {
     type: 'bar',

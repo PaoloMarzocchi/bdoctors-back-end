@@ -71,7 +71,7 @@ class DoctorProfileController extends Controller
             ->select('doctor_profiles.*', DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'))
             ->orderBy('has_sponsorship', 'desc')
             ->distinct()
-            ->get();
+            ->paginate(3);
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
@@ -122,7 +122,7 @@ class DoctorProfileController extends Controller
             ->having('average_vote', '>=', $minAverageVote)
             ->having('review_count', '>=', $minTotalReviews)
             ->orderBy('has_sponsorship', 'desc')
-            ->get();
+            ->paginate(3);
 
 
 

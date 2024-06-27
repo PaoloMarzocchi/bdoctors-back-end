@@ -21,6 +21,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet">
 
+    <!-- Using BrainTree script -->
+    <script src="https://js.braintreegateway.com/web/dropin/1.24.0/js/dropin.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
   </head>
@@ -34,7 +38,7 @@
           <!-- Sidebar -->
           @include('partials.sidebar', ['doctorProfile' => $doctorProfile])
 
-          <div class="view flex-fill">
+          <div class="view position-relative flex-fill">
 
             @yield('content')
 
