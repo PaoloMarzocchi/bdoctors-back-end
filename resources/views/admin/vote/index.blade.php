@@ -21,7 +21,7 @@
                             Hi Dr. <span class="my_primary text-decoration-underline">{{ $doctorProfile->surname }}</span>,
                             you received
                             <span class="my_primary text-decoration-underline">{{ $numberVotes }}</span> votes, for an
-                            average of:
+                            average of :
                         </h4>
                     </div>
                     <div class="col-4 col-lg-6 text-nowrap">
@@ -41,7 +41,7 @@
                 <div class="wrapper bg_dark_transparent col-12 col-lg-6 col-xxl-4 p-3 shadow px-2 py-3 rounded-4">
 
                     <div class="mb-2">
-                        If you want to keep an eye on them, they are divided like this:
+                        If you want to keep an eye on them, they are divided like this :
                     </div>
 
 

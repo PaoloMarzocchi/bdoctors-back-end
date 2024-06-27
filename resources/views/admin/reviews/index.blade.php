@@ -14,7 +14,9 @@
         <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
 
             <h3 class="display-5 fw-bold my_primary">Your reviews</h3>
-            <h4 class="mb-4">Hi dr. {{ $doctor->surname }}, here you can find all of reviews you received so far!</h4>
+            <h4 class="mb-4">Hi Dr. <span class="my_primary text-decoration-underline">{{ $doctor->surname }}</span>, here
+                you can find all of reviews you received so far !
+            </h4>
 
             @if ($reviews)
                 <div class="table-responsive">

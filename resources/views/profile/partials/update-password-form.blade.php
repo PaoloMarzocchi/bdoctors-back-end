@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-gray-900 section_title display-5 fw-bold my_primary">
             {{ __('Update Password') }}
         </h2>
 
@@ -53,7 +53,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-4">
-            <button type="submit" class="btn my_primary btn-secondary fw-bold shadow">
+            <button type="submit" class="btn my_btn_primary px-4 rounded-pill my-3">
                 {{ __('Save') }}
             </button>
 

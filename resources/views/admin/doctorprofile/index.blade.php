@@ -17,7 +17,10 @@
                 <div class="col-6 justify-content-end d-flex align-items-center gap-3">
                     <a class="btn my_btn_primary px-4 rounded-pill my-3 text-decoration-none shadow"
                         href="{{ route('admin.doctorProfile.edit', $doctorProfile) }}">
-                        <strong>Edit your profile</strong>
+                        <strong>
+                            Edit your profile
+                        </strong>
+                        <i class="ms-2 fa-solid fa-arrow-right"></i>
                     </a>
                     <a class="btn btn-outline-dark my_primary px-4 rounded-pill my-3 text-decoration-none shadow"
                         target="_blank" rel="noopener noreferrer"
@@ -31,15 +34,15 @@
                 {{-- photo --}}
                 <div class="col-6">
                     @if ($doctorProfile->photo)
-                        <img width="" style="object-fit: cover" class="img-fluid rounded h-100 border shadow"
+                        <img width="" style="object-fit: contain" class="img-fluid rounded-4 h-100 border shadow"
                             loading="lazy" src="{{ asset('storage/' . $doctorProfile->photo) }}" alt="">
                     @else
-                        <img width="600" style="object-fit: cover" class="img-fluid rounded h-100 border shadow"
+                        <img width="" style="object-fit: cover" class="img-fluid h-100 rounded-4 border shadow"
                             loading="lazy" src="/img/no-image.jpg" alt="">
                     @endif
                 </div>
                 <div class="col-6 text-center">
-                    <div class="card h-100 shadow">
+                    <div class="card h-100 shadow rounded-4">
                         <div class="card-body d-flex flex-column justify-content-end">
                             <div class="card-img-top my_background h-100 image-fluid">
                                 {{-- <img src="/img/doctor-profile.png" alt=""> --}}
@@ -113,7 +116,7 @@
                                             <input type="file" class="form-control @error('cv') is-invalid @enderror"
                                                 name="cv" id="cv" aria-describedby="cvHelpId"
                                                 placeholder="Your CV" value="{{ old('cv', $doctorProfile->cv) }}" />
-                                            <button type="submit" class="btn btn-secondary my_primary">
+                                            <button type="submit" class="btn my_btn_primary">
                                                 Submit
                                             </button>
                                         </div>
