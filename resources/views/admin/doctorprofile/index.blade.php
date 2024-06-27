@@ -2,19 +2,24 @@
 
 @section('content')
     <div class="container my-4">
+        {{-- Bottone per sidebar --}}
+        <button class="btn rounded border mb-3 d-block d-sm-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
         @include('partials.session-message')
         @include('partials.validation-message')
 
         @if ($doctorProfile)
-            <div class="row justify-content-between">
-                <div class="col-6 align-self-center">
-                    <h1 class="col-6 display-5 fw-bold my_primary text-nowrap">
+
+            <div class="d-flex flex-wrap">
+                <div class="me-auto p-2">
+                    <h1 class="display-5 mt-1 fw-bold my_primary">
                         Dr. {{ $doctorProfile->user->name }} {{ $doctorProfile->surname }}
                     </h1>
                 </div>
-
-                <div class="col-6 justify-content-end d-flex align-items-center gap-3">
+                <div class="p-2">
                     <a class="btn my_btn_primary px-4 rounded-pill my-3 text-decoration-none shadow"
                         href="{{ route('admin.doctorProfile.edit', $doctorProfile) }}">
                         <strong>
@@ -28,11 +33,12 @@
                         <strong>UI VIEW</strong>
                     </a>
                 </div>
+
             </div>
 
             <div class="row py-5 vh-100 justify-content-between">
                 {{-- photo --}}
-                <div class="col-6">
+                <div class="col-sm-12 col-md-6 col-lg-6">
                     @if ($doctorProfile->photo)
                         <img width="" style="object-fit: contain" class="img-fluid rounded-4 h-100 border shadow"
                             loading="lazy" src="{{ asset('storage/' . $doctorProfile->photo) }}" alt="">
@@ -41,7 +47,7 @@
                             loading="lazy" src="/img/no-image.jpg" alt="">
                     @endif
                 </div>
-                <div class="col-6 text-center">
+                <div class="col-sm-12 col-md-6 col-lg-6 pt-4 pt-md-0 text-center">
                     <div class="card h-100 shadow rounded-4">
                         <div class="card-body d-flex flex-column justify-content-end">
                             <div class="card-img-top my_background h-100 image-fluid">

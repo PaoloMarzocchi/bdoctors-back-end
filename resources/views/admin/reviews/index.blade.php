@@ -1,8 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container my-3">
 
+        {{-- Bottone per sidebar --}}
+        <button class="btn rounded border mb-3 d-block d-sm-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
         <div class="image_right positon-relative z-n1">
             <img src="/img/reviews_green.png" alt="">

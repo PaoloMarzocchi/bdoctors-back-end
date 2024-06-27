@@ -34,6 +34,7 @@ const voteChartConfig = {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             x: {
                 title: {
@@ -65,6 +66,7 @@ const messageChartConfig = {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             x: {
                 title: {
@@ -96,6 +98,7 @@ var reviewChartConfig = {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             x: {
                 title: {
