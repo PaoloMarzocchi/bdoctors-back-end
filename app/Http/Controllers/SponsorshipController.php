@@ -53,7 +53,7 @@ class SponsorshipController extends Controller
             ->join('doctor_profile_sponsorship', 'sponsorships.id', '=', 'doctor_profile_sponsorship.sponsorship_id')
             ->where('doctor_profile_sponsorship.doctor_profile_id', $doctorProfile->id)
             ->orderBy('doctor_profile_sponsorship.created_at', 'desc')
-            ->select('sponsorships.*', 'doctor_profile_sponsorship.created_at as pivot_created_at')
+            ->select('sponsorships.*', 'doctor_profile_sponsorship.created_at as pivot_created_at', 'doctor_profile_sponsorship.expirationDate as pivot_expiration_date')
             ->paginate(5);
 
         return view('admin.sponsorship.history', compact('sponsorships', 'doctorProfile'));

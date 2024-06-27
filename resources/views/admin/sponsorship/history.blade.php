@@ -27,7 +27,7 @@
                                 <th scope="col">Period</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Purchase date</th>
-                                {{-- <th scope="col">Actions</th> --}}
+                                <th scope="col">Expiration date</th>
                             </tr>
                         </thead>
 
@@ -48,10 +48,13 @@
                                     <td>
                                         {{ $sponsorship->pivot_created_at }}
                                     </td>
+                                    <td>
+                                        {{ $sponsorship->pivot_expiration_date }}
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4">
+                                    <td colspan="5">
                                         No sponsorships yet
                                     </td>
                                 </tr>
