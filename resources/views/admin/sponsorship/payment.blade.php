@@ -7,8 +7,12 @@
                 @csrf
                 <div class="card-body">
                     <div id="dropin-wrapper">
-                        <div id="checkout-message"></div>
-                        <div id="dropin-container"></div>
+                        <div id="checkout-message">
+                            You select :<span class="my_primary fw-bold"> {{ $sponsorship->name }}</span>
+                        </div>
+                        <div id="dropin-container">
+
+                        </div>
                         <div class="d-flex justify-content-between align-items-center my-2">
                             <button id="submit-button" type="submit"
                                 class="btn my_btn_primary btn-lg px-4 rounded-pill my-3">
@@ -18,7 +22,7 @@
                             </button>
                             <div class="card-title">
                                 Checkout:
-                                <span class="text-success">{{ $sponsorship->price }} €</span>
+                                <span class="text-success fw-bold">{{ $sponsorship->price }} €</span>
                             </div>
                         </div>
                     </div>
@@ -86,7 +90,7 @@
                                                 `<h1 class="text-success">Success !</h1>
 
                                             <p>Congratulation, you add a sponsorship to your profile !</p>
-                                            <p>Add more time to your existing sponsorship </p>
+                                            <p>Add more time to your existing sponsorship : </p>
                                             <a class="btn my_btn_primary btn-lg px-4 rounded-pill my-3" href="{{ route('admin.sponsorship.index') }}">
                                                 Sponsorships
                                             </a>`
