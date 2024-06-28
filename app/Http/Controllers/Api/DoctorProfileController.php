@@ -65,13 +65,16 @@ class DoctorProfileController extends Controller
 
 
         //SELEZIONATI PER SPECIALIZZAZIONE ORDINATI PER SPONSORSHIP
+
         $searchResults = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
             ->whereRelation('specializations', 'name', '=', $name)
             ->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
-            ->select('doctor_profiles.*', DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship'))
+            ->select('doctor_profiles.*', DB::raw('IF(MAX(doctor_profile_sponsorship.sponsorship_id IS NOT NULL), 1, 0) as has_sponsorship'))
+            ->groupBy('doctor_profiles.id')
             ->orderBy('has_sponsorship', 'desc')
-            ->distinct()
             ->paginate(4);
+
+        dd($searchResults);
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
@@ -92,7 +95,7 @@ class DoctorProfileController extends Controller
                 'doctor_profiles.*',
                 DB::raw('(SELECT AVG(votes.vote) FROM votes JOIN doctor_profile_vote ON votes.id = doctor_profile_vote.vote_id WHERE doctor_profile_vote.doctor_profile_id = doctor_profiles.id) as average_vote'),
                 DB::raw('(SELECT COUNT(*) FROM reviews WHERE reviews.doctor_profile_id = doctor_profiles.id) as review_count'),
-                DB::raw('IF(doctor_profile_sponsorship.sponsorship_id IS NOT NULL, 1, 0) as has_sponsorship')
+                DB::raw('IF(MAX(doctor_profile_sponsorship.sponsorship_id IS NOT NULL), 1, 0) as has_sponsorship')
             );
 
         if ($specialization != 'null') {
@@ -109,11 +112,11 @@ class DoctorProfileController extends Controller
             $query->having('review_count', '>=', $minTotalReviews);
         }
 
-        $query->distinct()
+        $query->groupBy('doctor_profiles.id')
             ->orderBy('has_sponsorship', 'desc');
 
         $searchResults = $query->paginate(4);
-        //dd($searchResults);
+        dd($searchResults);
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
