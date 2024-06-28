@@ -23,7 +23,7 @@ class MessageController extends Controller
         // dd($messages);
         /* $messages['created_at']->format('d F Y'); */
 
-        return view('admin.messages.index', compact('messages', 'messageNumber', 'doctor', 'formattedMessages'));
+        return view('admin.messages.index', compact('messages', 'messageNumber', 'doctor'));
     }
 
     /**
