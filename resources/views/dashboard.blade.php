@@ -195,34 +195,25 @@
 
             <div class="sponsorship_list d-flex flex-column gap-2">
 
-              @forelse ($doctorProfile->sponsorships as $sponsorship)
-                @php
-                  $time_remaining = $sponsorship->time_remaining;
-                @endphp
-
-                <div class="sponsorship shadow px-2 py-3">
-
-                  <div class="name mb-2">
-                    {{ $sponsorship->name }}:
-                  </div>
-
+              @if ($doctorProfile->sponsorships)
+                <div class="bg_dark_transparent shadow px-4 py-3 rounded-4">
 
                   <div id="countdown" class="d-flex justify-content-between align-items-center">
 
                     <div>
                       <span class="fw-bold">Your sponsorization time will expire in:</span>
                       <br>
-                      <span id="remainingTime" class="fw-bold text-danger">{{ $remainingTime }}</span>
+                      <span id="remainingTime" class="fw-bold text-danger fs-5">{{ $remainingTime }}</span>
                     </div>
                     <a class="btn my_btn_primary px-4 rounded-pill" href="{{ route('admin.') }}">Payment history</a>
 
                   </div>
-
                 </div>
-
-              @empty
-                <h4>You don't have any active sponsowrhip for now</h4>
-              @endforelse
+              @else
+                <span class="fw-bold">
+                  You don't have any active sponsorship.
+                </span>
+              @endif
 
             </div>
 
