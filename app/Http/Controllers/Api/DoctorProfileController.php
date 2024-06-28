@@ -104,13 +104,13 @@ class DoctorProfileController extends Controller
                 ->where('specializations.name', $specialization);
         }
 
-        /* if ($minAverageVote != 'null') {
+        if ($minAverageVote != 'null') {
             $query->having('average_vote', '>=', $minAverageVote);
         }
 
         if ($minTotalReviews != 'null') {
             $query->having('review_count', '>=', $minTotalReviews);
-        } */
+        }
 
         $query->groupBy('doctor_profiles.id')
             ->orderBy('has_sponsorship', 'desc');
