@@ -1,19 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
-  <div class="container my-3">
-    {{-- Bottone per sidebar --}}
-    <button class="btn rounded border mb-3 d-block d-sm-none" type="button" data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-      <i class="fa-solid fa-bars"></i>
-    </button>
 
-    <div class="image_right positon-relative z-n1">
-      <img src="/img/statistics.png" alt="">
-    </div>
-    <div class="image_left positon-relative z-n1">
-      <img src="/img/informations-right.png" alt="">
-    </div>
+    <div class="container my-3">
+        {{-- Bottone per sidebar --}}
+        <button class="btn rounded border mb-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="image_right positon-relative z-n1">
+            <img src="/img/statistics.png" alt="">
+        </div>
+        <div class="image_left positon-relative z-n1">
+            <img src="/img/informations-right.png" alt="">
+        </div>
 
     <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg ">
       <h3 class="display-5 fw-bold my_primary">

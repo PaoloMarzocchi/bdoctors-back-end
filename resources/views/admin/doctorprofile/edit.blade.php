@@ -1,21 +1,21 @@
 @extends('layouts.admin')
 
 @section('content')
-  <section>
+    <section>
 
-    <div class="edit_image_right positon-relative z-n1">
-      <img src="/img/informations-right.png" alt="">
-    </div>
-    <div class="edit_image_left positon-relative z-n1">
-      <img src="/img/informations-left.png" alt="">
-    </div>
+        <div class="edit_image_right positon-relative z-n1">
+            <img src="/img/informations-right.png" alt="">
+        </div>
+        <div class="edit_image_left positon-relative z-n1">
+            <img src="/img/informations-left.png" alt="">
+        </div>
 
-    <div class="my_container my-4">
-      {{-- Bottone per sidebar --}}
-      <button class="btn rounded border mb-3 d-block d-sm-none" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+        <div class="my_container my-4">
+            {{-- Bottone per sidebar --}}
+            <button class="btn rounded border mb-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
       <div class="wrapper p-4 mb-4  shadow rounded-lg">
         <header class="d-flex justify-content-between align-items-center pb-4">
@@ -135,6 +135,7 @@
                   <strong>{{ $message }}</strong>
                 </span>
               @enderror
+
 
 
             </div>
