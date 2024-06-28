@@ -74,7 +74,7 @@ class DoctorProfileController extends Controller
             ->orderBy('has_sponsorship', 'desc')
             ->paginate(4);
 
-        dd($searchResults);
+        /* dd($searchResults); */
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
@@ -116,7 +116,7 @@ class DoctorProfileController extends Controller
             ->orderBy('has_sponsorship', 'desc');
 
         $searchResults = $query->paginate(4);
-        dd($searchResults);
+        /* dd($searchResults); */
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
