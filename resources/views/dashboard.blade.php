@@ -203,7 +203,7 @@
                     <div>
                       <span class="fw-bold">Your sponsorization time will expire in:</span>
                       <br>
-                      <span id="remainingTime" class="fw-bold text-danger fs-5">{{ $remainingTime }}</span>
+                      <span id="remainingTime" class="fw-bold my_primary fs-5">{{ $remainingTime }}</span>
                     </div>
                     <a class="btn my_btn_primary px-4 rounded-pill" href="{{ route('admin.') }}">Payment history</a>
 
