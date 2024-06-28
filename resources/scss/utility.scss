@@ -25,6 +25,10 @@ body {
     color: var(--primary);
 }
 
+.my_primary_hover {
+    color: var(--primary-hover);
+}
+
 .my_action_primary {
     background-color: transparent;
     border: 1px solid var(--dark-1);
