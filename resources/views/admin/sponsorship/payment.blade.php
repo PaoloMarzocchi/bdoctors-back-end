@@ -1,8 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
+    <div class="container py-5">
 
-    <div class="py-5">
+        {{-- Bottone per sidebar --}}
+        <button class="btn rounded border mb-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
         <div class="d-flex justify-content-center">
             <div class="card w-25 bg-body-secondary">
                 @csrf
@@ -106,7 +112,6 @@
                 });
         </script>
     </div>
-
 @endsection
 
 {{-- 
