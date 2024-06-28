@@ -3,15 +3,15 @@
 @section('content')
   <div class="container mt-4">
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-12 col-lg-10 col-xl-8">
 
         @include('partials.validation-message')
 
         <div class="registration_form login_form shadow">
-
+          <div class="form_background"></div>
           <div class="form_body">
 
-            <div class="form_title text-center display-4 fw-bold mb-5">{{ __('Register') }}</div>
+            <div class="form_title text-center display-4 fw-bold my_primary mb-5">{{ __('Register') }}</div>
 
             <form class="row g-3" id="registrationForm" method="POST" action="{{ route('register') }}">
               @csrf

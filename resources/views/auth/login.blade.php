@@ -3,13 +3,13 @@
 @section('content')
   <div class="container mt-4">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
 
         <div class="login_form shadow mt-4">
-
+          <div class="form_background"></div>
           <div class="form_body">
 
-            <h1 class="form_title text-center display-4 fw-bold mb-5">{{ __('Login') }}</h1>
+            <h1 class="form_title text-center display-4 fw-bold mb-5 my_primary">{{ __('Login') }}</h1>
 
             <form method="POST" action="{{ route('login') }}">
               @csrf
