@@ -20,8 +20,8 @@ class Message extends Model
 
         // Mappatura dei mesi
         $monthNames = [
-            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
-            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
         ];
 
         // Estrarre il giorno, il mese e l'anno
