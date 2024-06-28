@@ -85,38 +85,43 @@ class DoctorProfileController extends Controller
 
         $query = DoctorProfile::with('specializations', 'sponsorships', 'user', 'votes', 'reviews')
             ->join('users', 'doctor_profiles.user_id', '=', 'users.id')
-            ->leftJoin(
-                'doctor_profile_sponsorship',
-                'doctor_profiles.id',
-                '=',
-                'doctor_profile_sponsorship.doctor_profile_id'
-            )
+            ->leftJoin('doctor_profile_sponsorship', 'doctor_profiles.id', '=', 'doctor_profile_sponsorship.doctor_profile_id')
             ->select(
                 'doctor_profiles.*',
-                DB::raw('(SELECT AVG(votes.vote) FROM votes JOIN doctor_profile_vote ON votes.id = doctor_profile_vote.vote_id WHERE doctor_profile_vote.doctor_profile_id = doctor_profiles.id) as average_vote'),
-                DB::raw('(SELECT COUNT(*) FROM reviews WHERE reviews.doctor_profile_id = doctor_profiles.id) as review_count'),
+                DB::raw('(SELECT IFNULL(AVG(votes.vote), 0) 
+                  FROM votes 
+                  JOIN doctor_profile_vote 
+                  ON votes.id = doctor_profile_vote.vote_id 
+                  WHERE doctor_profile_vote.doctor_profile_id = doctor_profiles.id) as average_vote'),
+                DB::raw('(SELECT COUNT(DISTINCT reviews.id) 
+                  FROM reviews 
+                  WHERE reviews.doctor_profile_id = doctor_profiles.id) as review_count'),
                 DB::raw('IF(MAX(doctor_profile_sponsorship.sponsorship_id IS NOT NULL), 1, 0) as has_sponsorship')
             );
 
+        // Applica la condizione di specializzazione
         if ($specialization != 'null') {
-            $query->join('doctor_profile_specialization', 'doctor_profiles.id', '=', 'doctor_profile_specialization.doctor_profile_id')
-                ->join('specializations', 'doctor_profile_specialization.specialization_id', '=', 'specializations.id')
-                ->where('specializations.name', $specialization);
+            $query->whereHas('specializations', function ($query) use ($specialization) {
+                $query->where('name', $specialization);
+            });
         }
 
+        // Applica i filtri aggiuntivi su average_vote e review_count usando HAVING
         if ($minAverageVote != 'null') {
-            $query->having('average_vote', '>=', $minAverageVote);
+            $query->havingRaw('average_vote >= ?', [$minAverageVote]);
         }
 
         if ($minTotalReviews != 'null') {
-            $query->having('review_count', '>=', $minTotalReviews);
+            $query->havingRaw('review_count >= ?', [$minTotalReviews]);
         }
 
+        // Raggruppa per ID e ordina per has_sponsorship
         $query->groupBy('doctor_profiles.id')
             ->orderBy('has_sponsorship', 'desc');
 
         $searchResults = $query->paginate(4);
-        /* dd($searchResults); */
+
+        //dd($searchResults);
 
         return response()->json(['success' => true, 'searchResults' => $searchResults]);
     }
