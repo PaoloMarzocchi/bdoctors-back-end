@@ -31,8 +31,9 @@
                     <div class="">
                         <div class="mb-3">
                             <label for="cv" class="form-label">Curriculum Vitae</label>
-                            <input type="file" class="form-control @error('cv') is-invalid @enderror" name="cv"
-                                id="cv" aria-describedby="cvHelpId" placeholder="Your cv" value="" />
+                            <input type="file" accept=".pdf" class="form-control @error('cv') is-invalid @enderror"
+                                name="cv" id="cv" aria-describedby="cvHelpId" placeholder="Your cv"
+                                value="" />
                             <small id="cvHelpId" class="form-text text-muted">Choose your CV</small>
                             @error('cv')
                                 <div class="text-danger py-2">{{ $message }}</div>
@@ -46,8 +47,9 @@
                     <div class="">
                         <div class="mb-3 flex-fill">
                             <label for="photo" class="form-label">Photo</label>
-                            <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
-                                id="photo" aria-describedby="photoHelpId" placeholder="Your Photo" value="" />
+                            <input type="file" accept=".jpg,.png"
+                                class="form-control @error('photo') is-invalid @enderror" name="photo" id="photo"
+                                aria-describedby="photoHelpId" placeholder="Your Photo" value="" />
                             <small id="photoHelpId" class="form-text text-muted">Choose your photo</small>
                             @error('photo')
                                 <div class="text-danger py-2">{{ $message }}</div>
