@@ -25,17 +25,17 @@
 
       @if ($reviews)
         <div class="table-responsive">
+        <table class="table table-light border border-2 table-striped table-bordered table-hover">
 
-          <table class="table table-light border border-2 table-striped table-bordered table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th class="text-center" scope="col">Received at</th>
+                                <th class="text-center" scope="col">Actions</th>
+                            </tr>
+                        </thead>
 
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Received at</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
 
             <tbody>
               @forelse ($reviews as $review)
@@ -49,16 +49,18 @@
                     {{ $review->email }}
                   </td>
 
-                  <td>
-                    {{ $review->created_at }}
-                  </td>
+                                    <td class="text-center">
+                                        {{ $review->created_at }}
+                                    </td>
 
-                  <td>
-                    <button type="button" class="btn my_action_primary rounded-2" data-bs-toggle="modal"
-                      data-bs-target="#modalId-{{ $review->id }}" title="Open review">
-                      View
-                      <i class="fa-solid fa-eye me-1"></i>
-                    </button>
+                                    <td class="text-center">
+                                        <button type="button" class="btn my_action_primary rounded-2"
+                                            data-bs-toggle="modal" data-bs-target="#modalId-{{ $review->id }}"
+                                            title="Open review">
+                                            View
+                                            <i class="fa-solid fa-eye me-1"></i>
+                                        </button>
+
 
                     <!-- Modal Body -->
                     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
