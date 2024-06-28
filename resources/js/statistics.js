@@ -22,7 +22,7 @@ const reviewData = @json($reviewData); */
 
 
 const voteChartConfig = {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: voteLabels,
         datasets: [{

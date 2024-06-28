@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\DoctorProfile;
 use App\Models\Message;
 use App\Models\Review;
-use App\Models\Sponsorship;
-use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,15 +54,22 @@ Route::get('/dashboard', function () {
         $average = $sum / $numberVotes;
     }
 
-    $activeSponsorships = $doctorProfile->sponsorships;
+    // Calculating expiration time of sponsorhips
+    $expirationDates = DB::table('doctor_profile_sponsorship')
+        ->where('doctor_profile_id', $doctorProfile->id)
+        ->pluck('expirationDate')
+        ->last();
 
-    // Calcola il tempo rimanente per ciascuna sponsorship
-    foreach ($activeSponsorships as $sponsorship) {
-        $sponsorship->time_remaining = $sponsorship->timeRemaining();
-    }
+    $expirationDate = Carbon::parse($expirationDates);
+
+    $now = Carbon::now();
+
+    $difference = $now->diff($expirationDate, false);
+
+    $remainingTime = $difference->format('%d days %h hours %i minutes %s seconds');
 
 
-    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes', 'activeSponsorships'));
+    return view('dashboard', compact('doctorProfile', 'messages', 'reviews', 'votes', 'average', 'numberVotes', 'remainingTime'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/statistics/index2', [StatisticController::class, 'index2'])->name('admin.statistics.index2');

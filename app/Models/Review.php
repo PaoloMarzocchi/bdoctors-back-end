@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use DateTime;
 
 class Review extends Model
 {
@@ -17,5 +18,28 @@ class Review extends Model
     public function doctorProfile(): BelongsTo
     {
         return $this->belongsTo(DoctorProfile::class);
+    }
+
+    function formattedDate($date)
+    {
+        // Creare un oggetto DateTime
+        $dateObject = new DateTime($date);
+
+        // Mappatura dei mesi
+        $monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        // Estrarre il giorno, il mese e l'anno
+        $day = $dateObject->format('d');
+        $month = $monthNames[$dateObject->format('n') - 1];
+        $year = $dateObject->format('Y');
+
+        // Cambiare il formato della data in DD-mese-AAAA
+        $formattedDate = "$day $month $year";
+
+        // Restituire il risultato
+        return $formattedDate;
     }
 }

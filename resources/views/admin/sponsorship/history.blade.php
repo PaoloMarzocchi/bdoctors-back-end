@@ -19,7 +19,9 @@
         <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
 
             <h3 class="display-5 fw-bold my_primary">Your sponsorship history</h3>
-            <h4 class="mb-4">Hi dr. {{ $doctorProfile->surname }}, here you can find all the sponsorship you bought</h4>
+            <h4 class="mb-4">Hi Dr. <span
+                    class="text-decoration-underline my_primary">{{ $doctorProfile->surname }}</span>, here you can find all
+                the sponsorship you bought</h4>
 
             @if ($sponsorships)
                 <div class="table-responsive">

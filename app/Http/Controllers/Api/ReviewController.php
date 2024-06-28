@@ -17,10 +17,10 @@ class ReviewController extends Controller
         // validate
         $val_data = Validator::make($data, [
             'doctor_profile_id' => 'required',
-            'first_name' => 'max:50',
-            'last_name' => 'max:50',
-            'email' => 'max:100',
-            'review_text' => 'max:500'
+            'first_name' => 'required|max:50',
+            'last_name' => 'required|max:50',
+            'email' => 'required|max:100',
+            'review_text' => 'required|max:500'
         ]);
 
         // return response json with errors if the validator fails
