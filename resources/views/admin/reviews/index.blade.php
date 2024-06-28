@@ -26,14 +26,14 @@
             @if ($reviews)
                 <div class="table-responsive">
 
-                    <table class="table table-light border border-2 table-striped table-bordered table-hover text-center">
+                    <table class="table table-light border border-2 table-striped table-bordered table-hover">
 
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Received at</th>
-                                <th scope="col">Actions</th>
+                                <th class="text-center" scope="col">Received at</th>
+                                <th class="text-center" scope="col">Actions</th>
                             </tr>
                         </thead>
 
@@ -49,11 +49,11 @@
                                         {{ $review->email }}
                                     </td>
 
-                                    <td>
+                                    <td class="text-center">
                                         {{ $review->created_at }}
                                     </td>
 
-                                    <td>
+                                    <td class="text-center">
                                         <button type="button" class="btn my_action_primary rounded-2"
                                             data-bs-toggle="modal" data-bs-target="#modalId-{{ $review->id }}"
                                             title="Open review">

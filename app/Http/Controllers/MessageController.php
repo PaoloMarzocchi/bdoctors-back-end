@@ -21,8 +21,9 @@ class MessageController extends Controller
         $messageNumber = count($messages);
         $doctor = DoctorProfile::find(Auth::id());
         // dd($messages);
+        /* $messages['created_at']->format('d F Y'); */
 
-        return view('admin.messages.index', compact('messages', 'messageNumber', 'doctor'));
+        return view('admin.messages.index', compact('messages', 'messageNumber', 'doctor', 'formattedMessages'));
     }
 
     /**
