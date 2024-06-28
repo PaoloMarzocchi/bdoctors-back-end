@@ -24,13 +24,13 @@
 
             @if ($messages)
                 <div class="table-responsive">
-                    <table class="table border table-light table-striped table-bordered table-hover text-center">
+                    <table class="table border table-light table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">Sender</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">At</th>
-                                <th scope="col">Actions</th>
+                                <th class="text-center" scope="col">At</th>
+                                <th class="text-center" scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,11 +44,11 @@
                                     </td>
 
 
-                                    <td>
+                                    <td class="text-center">
                                         {{ $message->created_at }}
                                     </td>
 
-                                    <td>
+                                    <td class="text-center">
                                         <button type="button" class="btn my_action_primary rounded-2"
                                             data-bs-toggle="modal" data-bs-target="#modalId-{{ $message->id }}">
                                             <i class="fa-solid fa-eye me-1"></i>

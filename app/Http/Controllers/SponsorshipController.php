@@ -28,6 +28,8 @@ class SponsorshipController extends Controller
 
         $expirationDate = Carbon::parse($expirationDates);
 
+        $formattedExpirationDate = $expirationDate->format('d F Y');
+
         $now = Carbon::now();
 
         $difference = $now->diff($expirationDate, false);
@@ -35,7 +37,7 @@ class SponsorshipController extends Controller
         $remainingTime = $difference->format('%d days %h hours %i minutes %s seconds');
 
 
-        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'remainingTime'));
+        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'remainingTime', 'formattedExpirationDate'));
     }
     /**
      * Display payment history of sponsorships.
