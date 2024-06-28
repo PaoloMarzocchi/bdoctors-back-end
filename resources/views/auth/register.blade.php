@@ -184,7 +184,7 @@
                       {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }} />
 
                     <label class="specialization_label" for="specialization-{{ $specialization->id }}">
-                      <i class="me-2 fa-solid my_primary {{ $specialization->icon }}"></i>
+                      <i class="me-2 fa-solid my_primary_hover {{ $specialization->icon }}"></i>
                       <span>{{ $specialization->name }}</span>
                     </label>
                   @endforeach
