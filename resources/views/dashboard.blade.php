@@ -145,7 +145,7 @@
                   </div>
                   <div class="email">{{ $review->email }}</div>
                   <div class="review_text">{{ $review->review_text }}</div>
-                  <div class="date">{{ $message->formattedDate($review->created_at) }}</div>
+                  <div class="date">{{ $review->formattedDate($review->created_at) }}</div>
 
                 </div>
               @empty
