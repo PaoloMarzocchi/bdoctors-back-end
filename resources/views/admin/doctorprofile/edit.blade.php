@@ -1,25 +1,25 @@
 @extends('layouts.admin')
 
 @section('content')
-    <section>
+  <section class="edit_profile_section">
 
-        <div class="edit_image_right positon-relative z-n1">
-            <img src="/img/informations-right.png" alt="">
-        </div>
-        <div class="edit_image_left positon-relative z-n1">
-            <img src="/img/informations-left.png" alt="">
-        </div>
+    <div class="edit_image_right positon-relative z-n1 d-none d-lg-block">
+      <img src="/img/informations-right.png" alt="">
+    </div>
+    <div class="edit_image_left positon-relative z-n1 d-none d-lg-block">
+      <img src="/img/informations-left.png" alt="">
+    </div>
 
-        <div class="my_container my-4">
-            {{-- Bottone per sidebar --}}
-            <button class="btn rounded border mb-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+    <div class="container my-4">
+      {{-- Bottone per sidebar --}}
+      <button class="btn rounded border mb-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-      <div class="wrapper p-4 mb-4  shadow rounded-lg">
+      <div class="wrapper p-3 p-md-4 mb-4 shadow rounded-lg">
         <header class="d-flex justify-content-between align-items-center pb-4">
-          <h2 class="text-lg font-medium text-gray-900 my_primary">
+          <h2 class="text-lg font-medium my_primary">
             {{ __("Doctor's Information") }}
           </h2>
         </header>
@@ -28,8 +28,10 @@
           enctype="multipart/form-data">
           @csrf
           @method('put')
-          <div class="">
-            <div class="mb-3">
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
               <label for="cv" class="form-label">Curriculum Vitae</label>
               <input type="file" accept=".pdf" class="form-control @error('cv') is-invalid @enderror" name="cv"
                 id="cv" aria-describedby="cvHelpId" placeholder="Your cv" value="" />
@@ -37,14 +39,31 @@
               @error('cv')
                 <div class="text-danger py-2">{{ $message }}</div>
               @enderror
+              {{-- <iframe width="100px" height="100px" src="{{ '/storage/' . $doctorProfile->cv }}" frameborder="0"></iframe> --}}
+              <div class="overflow-auto" style="width:100%">
+                <object data="{{ 'http://127.0.0.1:8000/storage/' . $doctorProfile->cv }}" type=""></object>
+              </div>
             </div>
-            {{-- <iframe width="100px" height="100px" src="{{ '/storage/' . $doctorProfile->cv }}" frameborder="0"></iframe> --}}
-            <object height="150" data="{{ 'http://127.0.0.1:8000/storage/' . $doctorProfile->cv }}"
-              type=""></object>
+
+            <div class="col-md-6 mb-3">
+              <label for="photo" class="form-label">Photo</label>
+              <input type="file" accept=".jpg,.png" class="form-control @error('photo') is-invalid @enderror"
+                name="photo" id="photo" aria-describedby="photoHelpId" placeholder="Your Photo" value="" />
+              <small id="photoHelpId" class="form-text text-muted">Choose your photo</small>
+              @error('photo')
+                <div class="text-danger py-2">{{ $message }}</div>
+              @enderror
+              @if ($doctorProfile->photo)
+                <div class="overflow-auto" style="height: 150px; width:100%">
+                  <object height="" width="300"
+                    data="{{ 'http://127.0.0.1:8000/storage/' . $doctorProfile->photo }}" type=""></object>
+                </div>
+              @endif
+            </div>
           </div>
 
-          <div class="">
-            <div class="mb-3 flex-fill">
+          {{--           <div class="">
+            <div class="flex-fill mb-3">
               <label for="photo" class="form-label">Photo</label>
               <input type="file" accept=".jpg,.png" class="form-control @error('photo') is-invalid @enderror"
                 name="photo" id="photo" aria-describedby="photoHelpId" placeholder="Your Photo" value="" />
@@ -59,7 +78,7 @@
                   data="{{ 'http://127.0.0.1:8000/storage/' . $doctorProfile->photo }}" type=""></object>
               </div>
             @endif
-          </div>
+          </div> --}}
 
           <div class="mb-3">
             <label for="address" class="form-label">Address *</label>
@@ -112,7 +131,7 @@
               </label>
 
 
-              <div class="specialization_wrapper d-flex rounded flex-wrap gap-2"
+              <div class="specialization_wrapper d-flex rounded flex-wrap gap-2 mb-3"
                 @error('technologies') is-invalid @enderror">
 
                 @foreach ($specializations as $specialization)
@@ -146,7 +165,7 @@
               </label>
 
 
-              <div class="specialization_wrapper d-flex rounded flex-wrap gap-2"
+              <div class="specialization_wrapper d-flex rounded flex-wrap gap-2 mb-3"
                 @error('technologies') is-invalid @enderror">
 
                 @foreach ($specializations as $specialization)
@@ -166,7 +185,7 @@
             </div>
           @endif
 
-          <div class="col-md-12 my-5 row text-danger">
+          <div class="col-md-12 my-4 row text-danger">
             <p>
               ( <span class="text-dark">*</span> ) Required fields.
             </p>
