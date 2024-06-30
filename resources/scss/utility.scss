@@ -56,12 +56,14 @@ body {
 }
 
 .my_btn_secondary {
-    background-color: var(--secondary);
-    color: #fff;
+    background-color: var(--light-1);
+    border: 1px solid var(--dark-3);
+    color: var(--primary);
+    font-weight: bold;
 
     &:hover {
-        color: #fff;
-        background-color: var(--secondary-hover);
+        color: var(--dark-3);
+        background-color: var(--secondary);
     }
 }
 
