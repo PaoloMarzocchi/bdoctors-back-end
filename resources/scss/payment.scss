@@ -1,0 +1,12 @@
+#card-payment,
+#payment-container {
+    min-width: 200px;
+}
+
+@media (min-width: 576px) {
+
+    #card-payment,
+    #payment-container {
+        min-width: 400px;
+    }
+}
