@@ -22,10 +22,11 @@
 
             <div class="sponsorship_list d-flex flex-column gap-2">
 
-                @if ($doctorProfile->sponsorships)
+                @if ($expirationDates)
                     <div class="bg_dark_transparent shadow px-4 py-3 rounded-4">
 
-                        <div id="countdown" class="d-flex justify-content-between align-items-center">
+                        <div id="countdown"
+                            class="d-flex justify-content-between flex-column gap-4 flex-md-row align-items-start align-items-md-center">
 
                             <div>
                                 <span class="fw-bold">Your sponsorization time will expire in:</span>
@@ -45,25 +46,6 @@
                         You don't have any active sponsorship.
                     </span>
                 @endif
-
-                {{-- @forelse ($doctorProfile->sponsorships as $sponsorship)
-                    <div class="bg_dark_transparent shadow px-2 py-3 rounded-4">
-                        <div class="fw-bold mb-2 my_primary">
-                            {{ $sponsorship->name }}:
-                        </div>
-                        <div id="countdown">Your {{ strtolower($sponsorship->name) }} will expire in:
-
-                            <span id="hours">{{ $sponsorship->timeRemaining($sponsorship->created_at)['hours'] }}</span>
-                            <span
-                                id="minutes">{{ $sponsorship->timeRemaining($sponsorship->created_at)['minutes'] }}:</span>
-                            <span
-                                id="seconds">{{ $sponsorship->timeRemaining($sponsorship->created_at)['seconds'] }}</span>
-
-                        </div>
-                    </div>
-                @empty
-                    <h4>You don't have any message for now.</h4>
-                @endforelse --}}
 
             </div>
 
@@ -111,8 +93,7 @@
 
                                     <a href="{{ route('admin.token', $sponsorship) }}"
                                         class="btn my_btn_primary px-4 rounded-pill mx-auto">
-                                        Get this
-                                        Sponsorship
+                                        Buy <i class="fa-regular fa-credit-card ms-2" style="color: #ffffff;"></i>
                                     </a>
 
                                 </div>

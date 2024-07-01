@@ -15,32 +15,31 @@
             <img src="/img/informations-right.png" alt="">
         </div>
 
-        <div class="wrapper bg_dark_transparent w-100 p-4 mb-4 shadow rounded-lg">
+        <div class="wrapper bg_dark_transparent p-4 mb-4 shadow rounded-lg">
 
             <h3 class="display-5 fw-bold my_primary">Your votes</h3>
 
             @if ($votes)
-                <div class="row align-items-center mb-4">
-                    <div class="col-4 col-lg-6">
+                <div class="row d-flex flex-column mb-4">
+                    <div class="col-12 col-md-6">
                         <h4>
                             Hi Dr. <span class="my_primary text-decoration-underline">{{ $doctorProfile->surname }}</span>,
                             you received
-                            <span class="my_primary text-decoration-underline">{{ $numberVotes }}</span> votes, for an
-                            average of :
+                            <span class="my_primary text-decoration-underline">{{ $numberVotes }}</span> votes.
                         </h4>
-                    </div>
-                    <div class="col-4 col-lg-6 text-nowrap">
-                        <span class="ms-3 mb-2 text-warning">
-                            @for ($i = 1; $i <= 5; $i++)
-                                @if ($i <= $average)
-                                    <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
-                                @else
-                                    <i class="fa-regular fa-star fa-xl" style="color: #FFD43B;"></i>
-                                @endif
-                            @endfor
+                        <h5 class="my-4">Average vote: <span class="ms-3 mb-2 text-warning stars_wrapper rounded-3 p-2">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $average)
+                                        <i class="fa-solid fa-star fa-lg" style="color: #FFD43B;"></i>
+                                    @else
+                                        <i class="fa-regular fa-star fa-lg" style="color: #FFD43B;"></i>
+                                    @endif
+                                @endfor
+                            </span>
+                        </h5>
 
-                        </span>
                     </div>
+
                 </div>
 
                 <div class="wrapper bg_dark_transparent col-12 col-lg-6 col-xxl-4 p-3 shadow px-2 py-3 rounded-4">

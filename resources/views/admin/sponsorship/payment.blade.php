@@ -15,8 +15,9 @@
                 @csrf
                 <div id="card-payment" class="card-body">
                     <div id="dropin-wrapper">
-                        <div id="checkout-message">
-                            You have selected : <br> <span class="my_primary fw-bold"> {{ $sponsorship->name }}</span>
+                        <div class="mb-3" id="checkout-message">
+                            You have selected: <br>
+                            <span class="my_primary fw-bold fs-4"> {{ $sponsorship->name }}</span>
                         </div>
                         <div id="dropin-container">
 
@@ -24,7 +25,7 @@
                         <div class="d-flex flex-column align-items-center my-2">
                             <div class="card-title">
                                 Checkout:
-                                <span class="text-success fw-bold">{{ $sponsorship->price }} €</span>
+                                <span class="text-success fw-bold fs-3">{{ $sponsorship->price }} €</span>
                             </div>
                             <button id="submit-button" type="submit"
                                 class="btn my_btn_primary btn-md px-4 rounded-pill my-3">
@@ -43,34 +44,34 @@
                     authorization: 'sandbox_gpfmdzyr_8z3hxnydn4f53rdg',
                     selector: '#dropin-container',
                     vaultManager: true,
-                    paypal: {
-                        flow: 'checkout',
-                        amount: {{ $sponsorship->price }},
-                        currency: 'EUR',
-                        buttonStyle: {
-                            color: 'blue',
-                            shape: 'rect',
-                            size: 'responsive',
-                            label: 'paypal',
-                            layout: 'vertical'
-                        }
-                    },
-                    googlePay: {
-                        googleMerchantId: 'merchant-id-from-google',
-                        googlePayVersion: 2,
-                        transactionInfo: {
-                            currencyCode: "EUR",
-                            countryCode: "IT",
-                            totalPriceStatus: "FINAL",
-                            totalPrice: {{ $sponsorship->price }},
-                            checkoutOption: "COMPLETE_IMMEDIATE_PURCHASE"
-                        },
-                        button: {
-                            buttonColor: "black",
-                            buttonType: "pay",
-                            buttonSizeMode: "fill"
-                        }
-                    }
+                    // paypal: {
+                    //     flow: 'checkout',
+                    //     amount: {{ $sponsorship->price }},
+                    //     currency: 'EUR',
+                    //     buttonStyle: {
+                    //         color: 'blue',
+                    //         shape: 'rect',
+                    //         size: 'responsive',
+                    //         label: 'paypal',
+                    //         layout: 'vertical'
+                    //     }
+                    // },
+                    // googlePay: {
+                    //     googleMerchantId: 'merchant-id-from-google',
+                    //     googlePayVersion: 2,
+                    //     transactionInfo: {
+                    //         currencyCode: "EUR",
+                    //         countryCode: "IT",
+                    //         totalPriceStatus: "FINAL",
+                    //         totalPrice: {{ $sponsorship->price }},
+                    //         checkoutOption: "COMPLETE_IMMEDIATE_PURCHASE"
+                    //     },
+                    //     button: {
+                    //         buttonColor: "black",
+                    //         buttonType: "pay",
+                    //         buttonSizeMode: "fill"
+                    //     }
+                    // }
                 },
                 function(err, instance) {
                     button.addEventListener('click', function() {
