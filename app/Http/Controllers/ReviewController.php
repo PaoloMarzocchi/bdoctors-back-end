@@ -16,9 +16,8 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->paginate(5);
-        $reviewsNumber = count($reviews);
+        $reviewsNumber = $reviews->total();
         $doctor = DoctorProfile::find(Auth::id());
-        // dd($reviews);
 
         return view('admin.reviews.index', compact('reviews', 'reviewsNumber', 'doctor'));
     }

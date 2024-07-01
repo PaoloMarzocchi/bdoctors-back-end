@@ -18,7 +18,8 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::where('doctor_profile_id', '=', Auth::id())->orderBy('created_at', 'desc')->paginate(8);
-        $messageNumber = count($messages);
+
+        $messageNumber = $messages->total();
         $doctor = DoctorProfile::find(Auth::id());
         // dd($messages);
         /* $messages['created_at']->format('d F Y'); */

@@ -35,4 +35,24 @@ class Message extends Model
         // Restituire il risultato
         return $formattedDate;
     }
+
+    function formattedDateWithHour($date)
+    {
+        // Creare un oggetto DateTime
+        $dateObject = new DateTime($date);
+        // Mappatura dei mesi
+        $monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        // Formattazione della data
+        $day = $dateObject->format('d');
+        $month = $monthNames[$dateObject->format('n') - 1];
+        $year = $dateObject->format('Y');
+        $hour = $dateObject->format('H:i');
+        // Cambiare il formato della data in DD-mese-AAAA
+        $formattedDate = "$day $month $year $hour";
+        // Restituire il risultato
+        return $formattedDate;
+    }
 }

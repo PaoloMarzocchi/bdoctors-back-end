@@ -30,18 +30,18 @@
 
                         <thead>
                             <tr>
-                                <th scope="col">Name</th>
+                                <th class="text-start" scope="col">Name</th>
                                 <th scope="col">Period</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Purchase date</th>
-                                <th scope="col">Expiration date</th>
+                                {{-- <th scope="col">Expiration date</th> --}}
                             </tr>
                         </thead>
 
                         <tbody>
                             @forelse ($sponsorships as $sponsorship)
                                 <tr class="">
-                                    <td scope="row">
+                                    <td class="text-start" scope="row">
                                         {{ $sponsorship->name }}
 
                                     </td>
@@ -53,11 +53,13 @@
                                         {{ $sponsorship->price }} €
                                     </td>
                                     <td>
-                                        {{ $sponsorship->pivot_created_at }}
+
+                                        {{ $sponsorship->formattedDateWithHour($sponsorship->pivot_created_at) }}
                                     </td>
-                                    <td>
-                                        {{ $sponsorship->pivot_expiration_date }}
-                                    </td>
+                                    {{-- <td>
+
+                                        {{ $sponsorship->formattedDateWithHour($sponsorship->pivot_expiration_date) }}
+                                    </td> --}}
                                 </tr>
                             @empty
                                 <tr>

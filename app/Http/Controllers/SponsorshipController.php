@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sponsorship;
 use App\Http\Requests\StoreSponsorshipRequest;
 use App\Http\Requests\UpdateSponsorshipRequest;
+use App\Models\DoctorProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -20,15 +21,18 @@ class SponsorshipController extends Controller
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
 
+
         // Calculating expiration time of sponsorhips
-        $expirationDates = DB::table('doctor_profile_sponsorship')
-            ->where('doctor_profile_id', $user->doctorProfile->id)
+        $expirationDates = Sponsorship::where('doctor_profile_id', '=', $doctorProfile->id)
+            ->join('doctor_profile_sponsorship', 'sponsorships.id', '=', 'doctor_profile_sponsorship.sponsorship_id')
             ->pluck('expirationDate')
             ->last();
 
         $expirationDate = Carbon::parse($expirationDates);
 
         $formattedExpirationDate = $expirationDate->format('d F Y');
+
+        // dd($doctorProfile, $expirationDates, $expirationDate);
 
         $now = Carbon::now();
 
@@ -37,7 +41,7 @@ class SponsorshipController extends Controller
         $remainingTime = $difference->format('%d days %h hours %i minutes %s seconds');
 
 
-        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'remainingTime', 'formattedExpirationDate'));
+        return view('admin.sponsorship.index', compact('sponsorships', 'doctorProfile', 'expirationDates', 'remainingTime', 'formattedExpirationDate'));
     }
     /**
      * Display payment history of sponsorships.
@@ -47,7 +51,14 @@ class SponsorshipController extends Controller
         $user = Auth::user();
         $doctorProfile = $user->doctorProfile;
 
-        $sponsorships = DB::table('sponsorships')
+        // $sponsorships = DB::table('sponsorships')
+        //     ->join('doctor_profile_sponsorship', 'sponsorships.id', '=', 'doctor_profile_sponsorship.sponsorship_id')
+        //     ->where('doctor_profile_sponsorship.doctor_profile_id', $doctorProfile->id)
+        //     ->orderBy('doctor_profile_sponsorship.created_at', 'desc')
+        //     ->select('sponsorships.*', 'doctor_profile_sponsorship.created_at as pivot_created_at', 'doctor_profile_sponsorship.expirationDate as pivot_expiration_date')
+        //     ->paginate(5);
+
+        $sponsorships = Sponsorship::where('doctor_profile_id', '=', Auth::id())
             ->join('doctor_profile_sponsorship', 'sponsorships.id', '=', 'doctor_profile_sponsorship.sponsorship_id')
             ->where('doctor_profile_sponsorship.doctor_profile_id', $doctorProfile->id)
             ->orderBy('doctor_profile_sponsorship.created_at', 'desc')
